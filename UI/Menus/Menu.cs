@@ -30,14 +30,6 @@ public class Menu
         AnsiConsole.Write(_table);
     }
 
-    public virtual void Show(bool clearConsole) // Shows the menu (Shows the table) with an option to clear the console.
-    {
-        if (clearConsole)
-            Console.Clear();
-
-        AnsiConsole.Write(_table);
-    }
-
     public int Count() => _menuItems.Count; //Returns the number of menu items.
 }
 

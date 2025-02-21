@@ -7,28 +7,13 @@ namespace w5_assignment_ksteph.UI;
 // The UserInterface class contains elements for the UI including the main menu and the exit message.
 public static class UserInterface
 {
-    public static MainMenu MainMenu { get; private set; } = new();
     public static InteractiveMainMenu InteractiveMainMenu { get; private set; } = new();
     public static Menu ExitMenu { get; private set; } = new();
 
     public static void BuildMenus() // Builds main menu and he exit message.
     {
-        BuildMainMenu();
         BuildInteractiveMainMenu();
         BuildExitMenu();
-    }
-
-    private static void BuildMainMenu() // Builds the main menu.  The main menu stores an index (AutoNumber), option, description, and an action.
-                                        // Used for quick and easy reference later when these menus are shown and the selection action is executed.
-    {
-        MainMenu = new();
-        MainMenu.AddMenuItem("Display All Characters", "Displays all characters and items in their inventory.", CharacterManager.DisplayAllCharacters);
-        MainMenu.AddMenuItem("Find Character", "Finds an existing character by name.", CharacterFunctions.FindCharacter);
-        MainMenu.AddMenuItem("New Character", "Creates a new character.", CharacterFunctions.NewCharacter);
-        MainMenu.AddMenuItem("Level Up Chracter", "Levels an existing character.", CharacterFunctions.LevelUp);
-        MainMenu.AddMenuItem("Change File Format", "Changes the file format between Csv and Json", FileManager.SwitchFileType);
-        MainMenu.AddMenuItem("Exit", "Ends the program.", DoNothing);
-        MainMenu.BuildTable();
     }
 
     private static void BuildInteractiveMainMenu() // Builds the main menu.  The main menu stores an index (AutoNumber), option, description, and an action.
@@ -40,7 +25,7 @@ public static class UserInterface
         InteractiveMainMenu.AddMenuItem("New Character", "Creates a new character.", CharacterFunctions.NewCharacter);
         InteractiveMainMenu.AddMenuItem("Level Up Chracter", "Levels an existing character.", CharacterFunctions.LevelUp);
         InteractiveMainMenu.AddMenuItem("Change File Format", "Changes the file format between Csv and Json", FileManager.SwitchFileType);
-        InteractiveMainMenu.AddMenuItem("Exit", "Ends the program.", DoNothing);
+        InteractiveMainMenu.AddMenuItem("Exit", "Ends the program.", Exit);
         InteractiveMainMenu.BuildTable();
     }
 
@@ -51,8 +36,9 @@ public static class UserInterface
         ExitMenu.BuildTable();
     }
 
-    private static void DoNothing() // This method does nothing... or does it?
+    private static void Exit() // Shows the exit menu.
     {
-        //
+        Console.Clear();
+        ExitMenu.Show();
     }
 }
