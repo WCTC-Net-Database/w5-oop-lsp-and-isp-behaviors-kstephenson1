@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration;
 
-namespace w4_assignment_ksteph.FileIO.Csv;
+namespace w5_assignment_ksteph.FileIO.Csv;
 
 public class CsvCharacterMap : ClassMap<Characters.Character>
 {

@@ -1,11 +1,11 @@
-﻿namespace w4_assignment_ksteph.FileIO.Csv;
+﻿namespace w5_assignment_ksteph.FileIO.Csv;
 
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.Collections.Generic;
 using System.Globalization;
-using w4_assignment_ksteph.Characters;
-using w4_assignment_ksteph.Config;
+using w5_assignment_ksteph.Characters;
+using w5_assignment_ksteph.Config;
 
 public class CsvFileHandler : ICharacterIO
 {

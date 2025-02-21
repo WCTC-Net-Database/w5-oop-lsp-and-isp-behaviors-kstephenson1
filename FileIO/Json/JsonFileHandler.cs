@@ -1,8 +1,8 @@
-﻿namespace w4_assignment_ksteph.FileIO.Json;
+﻿namespace w5_assignment_ksteph.FileIO.Json;
 
 using System.Collections.Generic;
 using System.Text.Json;
-using w4_assignment_ksteph.Characters;
+using w5_assignment_ksteph.Characters;
 
 public class JsonFileHandler : ICharacterIO
 {

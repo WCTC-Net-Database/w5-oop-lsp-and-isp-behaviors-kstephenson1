@@ -1,9 +1,9 @@
-﻿namespace w4_assignment_ksteph.FileIO;
+﻿namespace w5_assignment_ksteph.FileIO;
 
 using System;
 using System.Collections.Generic;
-using w4_assignment_ksteph.Inventories;
-using w4_assignment_ksteph.DataHelper;
+using w5_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.DataHelper;
 
 public class InventorySerializer
 {

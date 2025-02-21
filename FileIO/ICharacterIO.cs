@@ -1,6 +1,6 @@
-﻿using w4_assignment_ksteph.Characters;
+﻿using w5_assignment_ksteph.Characters;
 
-namespace w4_assignment_ksteph.FileIO;
+namespace w5_assignment_ksteph.FileIO;
 
 public interface ICharacterIO
 {

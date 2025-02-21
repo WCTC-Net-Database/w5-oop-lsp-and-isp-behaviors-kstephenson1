@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Runtime.CompilerServices;
 
-namespace w4_assignment_ksteph.DataHelper;
+namespace w5_assignment_ksteph.DataHelper;
 
 // The DataHelper.StringFuctions class contains string manipulation methods.
 public static class StringHelper

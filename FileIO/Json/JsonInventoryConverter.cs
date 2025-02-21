@@ -2,9 +2,9 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using w4_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.Inventories;
 
-namespace w4_assignment_ksteph.FileIO.Json;
+namespace w5_assignment_ksteph.FileIO.Json;
 
 // The JsonInventoryConverter is used to turn json format into an Inventories Object automatically.
 public class JsonInventoryConverter : JsonConverter<Inventory>

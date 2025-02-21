@@ -1,9 +1,9 @@
-﻿namespace w4_assignment_ksteph.Characters;
+﻿namespace w5_assignment_ksteph.Characters;
 
 using Spectre.Console;
-using w4_assignment_ksteph.Config;
-using w4_assignment_ksteph.DataHelper;
-using w4_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.Config;
+using w5_assignment_ksteph.DataHelper;
+using w5_assignment_ksteph.Inventories;
 public class CharacterFunctions
 {
     // CharacterFunctions class contains fuctions that manipulate characters based on user input.

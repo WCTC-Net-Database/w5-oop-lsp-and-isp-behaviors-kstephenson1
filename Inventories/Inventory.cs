@@ -1,6 +1,6 @@
-﻿using w4_assignment_ksteph.FileIO;
+﻿using w5_assignment_ksteph.FileIO;
 
-namespace w4_assignment_ksteph.Inventories;
+namespace w5_assignment_ksteph.Inventories;
 public class Inventory
 {
     public List<Item>? Items { get; set; } = new();

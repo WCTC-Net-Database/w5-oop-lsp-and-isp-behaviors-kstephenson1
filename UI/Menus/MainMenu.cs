@@ -1,6 +1,6 @@
 ﻿using Spectre.Console;
 
-namespace w4_assignment_ksteph.UI;
+namespace w5_assignment_ksteph.UI;
 
 public class MainMenu : Menu
 {

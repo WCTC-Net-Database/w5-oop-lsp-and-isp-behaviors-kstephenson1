@@ -1,9 +1,9 @@
 ﻿
-using w4_assignment_ksteph.DataHelper;
-using w4_assignment_ksteph.Characters;
-using w4_assignment_ksteph.UI;
+using w5_assignment_ksteph.DataHelper;
+using w5_assignment_ksteph.Characters;
+using w5_assignment_ksteph.UI;
 
-namespace w4_assignment_ksteph;
+namespace w5_assignment_ksteph;
 
 class Program
 {

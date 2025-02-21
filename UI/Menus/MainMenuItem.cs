@@ -1,4 +1,4 @@
-﻿namespace w4_assignment_ksteph.UI;
+﻿namespace w5_assignment_ksteph.UI;
 public class MainMenuItem : MenuItem
 {
     // The MainMenuItem is used to store information about the selection in the main menu.  This stores the index and name (from the base),

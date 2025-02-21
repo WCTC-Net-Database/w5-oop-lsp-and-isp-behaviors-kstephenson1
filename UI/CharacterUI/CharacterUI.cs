@@ -1,8 +1,8 @@
 ﻿using Spectre.Console;
-using w4_assignment_ksteph.Characters;
-using w4_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.Characters;
+using w5_assignment_ksteph.Inventories;
 
-namespace w4_assignment_ksteph.UI;
+namespace w5_assignment_ksteph.UI;
 
 public static class CharacterUI
 {

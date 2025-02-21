@@ -1,4 +1,4 @@
-﻿namespace w4_assignment_ksteph.UI;
+﻿namespace w5_assignment_ksteph.UI;
 public class MenuItem
 {
     // MenuItem is an object to be stored in a menu.  It holds an index and a name.

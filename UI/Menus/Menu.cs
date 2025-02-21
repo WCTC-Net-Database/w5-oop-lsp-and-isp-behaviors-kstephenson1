@@ -1,11 +1,11 @@
 ﻿using Spectre.Console;
 
-namespace w4_assignment_ksteph.UI;
+namespace w5_assignment_ksteph.UI;
 
 public class Menu
 {
-    // The Menu class is an abstract class to build other menus off of.  The Menu class holds a table which is part of the user interface
-    // which is displayed to the user.  The Menu also holds menu items, which can store different types of data.
+    // The Menus class is an abstract class to build other menus off of.  The Menus class holds a table which is part of the user interface
+    // which is displayed to the user.  The Menus also holds menu items, which can store different types of data.
     protected Table _table = new();
     protected List<MenuItem> _menuItems = new();
 

@@ -1,6 +1,6 @@
-﻿namespace w4_assignment_ksteph.Inventories;
+﻿namespace w5_assignment_ksteph.Inventories;
 
-using w4_assignment_ksteph.UI;
+using w5_assignment_ksteph.UI;
 
 public class InventoryManager
 {

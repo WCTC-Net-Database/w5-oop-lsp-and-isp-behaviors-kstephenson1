@@ -1,6 +1,6 @@
-﻿namespace w4_assignment_ksteph.Characters;
+﻿namespace w5_assignment_ksteph.Characters;
 
-using w4_assignment_ksteph.FileIO;
+using w5_assignment_ksteph.FileIO;
 
 
 // The CharacterHandler class contains methods that manipulate Characters data, including displaying, adding, and leveling up characters.

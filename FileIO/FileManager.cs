@@ -1,10 +1,10 @@
-﻿namespace w4_assignment_ksteph.FileIO;
+﻿namespace w5_assignment_ksteph.FileIO;
 
-using w4_assignment_ksteph.FileIO.Csv;
-using w4_assignment_ksteph.FileIO.Json;
-using w4_assignment_ksteph.Characters;
-using w4_assignment_ksteph.Config;
-using w4_assignment_ksteph.DataTypes;
+using w5_assignment_ksteph.FileIO.Csv;
+using w5_assignment_ksteph.FileIO.Json;
+using w5_assignment_ksteph.Characters;
+using w5_assignment_ksteph.Config;
+using w5_assignment_ksteph.DataTypes;
 
 public class FileManager
 {

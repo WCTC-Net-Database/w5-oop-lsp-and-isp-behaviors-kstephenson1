@@ -1,7 +1,7 @@
-﻿using w4_assignment_ksteph.FileIO;
-using w4_assignment_ksteph.Inventories;
+﻿using w5_assignment_ksteph.FileIO;
+using w5_assignment_ksteph.Inventories;
 
-namespace w4_assignment_ksteph.UI;
+namespace w5_assignment_ksteph.UI;
 
 public static class InventoryUI
 {

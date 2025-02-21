@@ -1,10 +1,10 @@
-﻿namespace w4_assignment_ksteph.Characters;
+﻿namespace w5_assignment_ksteph.Characters;
 
 using CsvHelper.Configuration.Attributes;
 using System.Text.Json.Serialization;
-using w4_assignment_ksteph.FileIO.Csv;
-using w4_assignment_ksteph.Inventories;
-using w4_assignment_ksteph.UI;
+using w5_assignment_ksteph.FileIO.Csv;
+using w5_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.UI;
 
 // The character class stores information for each character.  It is used in conjunction with CsvHelper to import and export character information to csv format.
 public class Character

@@ -1,6 +1,6 @@
-﻿using w4_assignment_ksteph.DataHelper;
+﻿using w5_assignment_ksteph.DataHelper;
 
-namespace w4_assignment_ksteph.Inventories;
+namespace w5_assignment_ksteph.Inventories;
 
 public class Item
 {

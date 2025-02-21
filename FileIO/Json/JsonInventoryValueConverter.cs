@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using w4_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.Inventories;
 
-namespace w4_assignment_ksteph.FileIO.Json;
+namespace w5_assignment_ksteph.FileIO.Json;
 
 public class JsonInventoryValueConverter : JsonConverterFactory
 {

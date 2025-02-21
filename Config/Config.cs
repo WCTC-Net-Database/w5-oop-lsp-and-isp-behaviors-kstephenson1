@@ -1,6 +1,6 @@
-﻿using w4_assignment_ksteph.DataTypes;
+﻿using w5_assignment_ksteph.DataTypes;
 
-namespace w4_assignment_ksteph.Config;
+namespace w5_assignment_ksteph.Config;
 
 public static class Config
 {

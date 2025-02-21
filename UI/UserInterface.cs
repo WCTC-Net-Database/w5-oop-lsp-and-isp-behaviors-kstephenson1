@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
-using w4_assignment_ksteph.Characters;
-using w4_assignment_ksteph.FileIO;
+using w5_assignment_ksteph.Characters;
+using w5_assignment_ksteph.FileIO;
 
-namespace w4_assignment_ksteph.UI;
+namespace w5_assignment_ksteph.UI;
 
 // The UserInterface class contains elements for the UI including the main menu and the exit message.
 public static class UserInterface
