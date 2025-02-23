@@ -2,7 +2,7 @@
 
 namespace w5_assignment_ksteph.Entities.Monsters;
 
-public class Monster : Entity
+public class Monster : Unit
 {
     
 }

@@ -20,11 +20,11 @@ public static class UserInterface
                                         // Used for quick and easy reference later when these menus are shown and the selection action is executed.
     {
         InteractiveMainMenu = new();
-        InteractiveMainMenu.AddMenuItem("Display All Characters", "Displays all characters and items in their inventory.", CharacterManager.DisplayAllCharacters);
+        InteractiveMainMenu.AddMenuItem("Display All Characters", "Displays all characters and items in their inventory.", CharacterCollection.DisplayAllCharacters);
         InteractiveMainMenu.AddMenuItem("Find Character", "Finds an existing character by name.", CharacterFunctions.FindCharacter);
         InteractiveMainMenu.AddMenuItem("New Character", "Creates a new character.", CharacterFunctions.NewCharacter);
         InteractiveMainMenu.AddMenuItem("Level Up Chracter", "Levels an existing character.", CharacterFunctions.LevelUp);
-        InteractiveMainMenu.AddMenuItem("Change File Format", "Changes the file format between Csv and Json", FileManager.SwitchFileType);
+        InteractiveMainMenu.AddMenuItem("Change File Format", "Changes the file format between Csv and Json", FileManager<Character>.SwitchFileType);
         InteractiveMainMenu.AddMenuItem("Exit", "Ends the program.", Exit);
         InteractiveMainMenu.BuildTable();
     }

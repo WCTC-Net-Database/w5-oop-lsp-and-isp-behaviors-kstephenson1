@@ -4,7 +4,7 @@ using Spectre.Console;
 using w5_assignment_ksteph.Config;
 using w5_assignment_ksteph.DataHelper;
 using w5_assignment_ksteph.Inventories;
-public class CharacterFunctions
+public class CharacterUtilities
 {
     // CharacterFunctions class contains fuctions that manipulate characters based on user input.
     public static void NewCharacter() // Creates a new character.  Asks for name, class, level, hitpoints, and items.

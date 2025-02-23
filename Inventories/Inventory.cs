@@ -11,5 +11,24 @@ public class Inventory
         Items = items;
     }
 
+    public void AddItem(Item item)
+    {
+        Items!.Add(item);
+    }
+
+    public bool RemoveItem(Item item)
+    {
+        try
+        {
+            Items!.Remove(item);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+        
+    }
+
     public override string ToString() => InventorySerializer.Serialize(this)!;
 }
