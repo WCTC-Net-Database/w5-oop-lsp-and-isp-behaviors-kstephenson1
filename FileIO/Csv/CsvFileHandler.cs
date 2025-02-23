@@ -4,8 +4,8 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using System.Collections.Generic;
 using System.Globalization;
-using w5_assignment_ksteph.Characters;
 using w5_assignment_ksteph.Config;
+using w5_assignment_ksteph.Entities.Characters;
 
 public class CsvFileHandler : ICharacterIO
 {

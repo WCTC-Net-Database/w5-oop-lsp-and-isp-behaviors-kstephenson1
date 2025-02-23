@@ -1,5 +1,5 @@
 ﻿using Spectre.Console;
-using w5_assignment_ksteph.Characters;
+using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.Inventories;
 
 namespace w5_assignment_ksteph.UI;
@@ -18,7 +18,7 @@ public static class CharacterUI
         Grid hpTable = new Grid().Width(15).AddColumn();
         hpTable
             .AddRow(new Text($"Hit Points:").Centered())
-                .AddRow(new Text($"{character.HitPoints}/{character.HitPoints}").Centered());
+                .AddRow(new Text($"{character.HitPoints}/{character.MaxHitPoints}").Centered());
 
         //Creates a table that just says "Inventory:" This may be redesigned later.
         Grid invHeader = new Grid().Width(25).AddColumn();

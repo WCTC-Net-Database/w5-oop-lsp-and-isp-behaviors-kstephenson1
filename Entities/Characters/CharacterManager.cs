@@ -1,4 +1,4 @@
-﻿namespace w5_assignment_ksteph.Characters;
+﻿namespace w5_assignment_ksteph.Entities.Characters;
 
 using w5_assignment_ksteph.FileIO;
 
@@ -23,7 +23,7 @@ public static class CharacterManager
     {
         Console.Clear();
 
-        foreach (Character character in CharacterManager.Characters)
+        foreach (Character character in Characters)
         {
             character.DisplayCharacterInfo();
         }

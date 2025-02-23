@@ -1,4 +1,4 @@
-﻿namespace w5_assignment_ksteph.Characters;
+﻿namespace w5_assignment_ksteph.Entities.Characters;
 
 using Spectre.Console;
 using w5_assignment_ksteph.Config;
@@ -30,7 +30,7 @@ public class CharacterFunctions
         Console.WriteLine($"\nWelcome, {name} the {characterClass}! You are level {level} and your equipment includes: {string.Join(", ", inventory)}.\n");
 
         CharacterManager.AddCharacter(
-            new() { Name = name, Class = characterClass, Level = level, HitPoints = hitPoints, Inventory = inventory });
+            new() { Name = name, Class = characterClass, Level = level, MaxHitPoints = hitPoints, Inventory = inventory });
 
         CharacterManager.ExportCharacters();
     }
@@ -53,7 +53,7 @@ public class CharacterFunctions
 
     private static Character? FindCharacterByName(string name) // Finds and returns a character based on input.
     {
-        return CharacterManager.Characters.Where(character => String.Equals(character.Name, name, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+        return CharacterManager.Characters.Where(character => string.Equals(character.Name, name, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
     }
 
     public static void LevelUp() //Asks the user for a character to level up, then displays that character.

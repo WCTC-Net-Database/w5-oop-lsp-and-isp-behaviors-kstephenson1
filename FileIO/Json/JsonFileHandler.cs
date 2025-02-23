@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 using System.Text.Json;
-using w5_assignment_ksteph.Characters;
+using w5_assignment_ksteph.Entities.Characters;
 
 public class JsonFileHandler : ICharacterIO
 {

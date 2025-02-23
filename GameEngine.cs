@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using w5_assignment_ksteph.Characters;
+using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.UI;
 
 namespace w5_assignment_ksteph;

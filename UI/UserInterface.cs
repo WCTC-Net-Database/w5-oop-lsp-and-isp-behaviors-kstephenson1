@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using w5_assignment_ksteph.Characters;
+using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.FileIO;
 
 namespace w5_assignment_ksteph.UI;
