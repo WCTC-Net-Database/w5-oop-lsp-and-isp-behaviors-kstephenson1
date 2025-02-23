@@ -2,6 +2,7 @@
 
 using CsvHelper.Configuration.Attributes;
 using System.Text.Json.Serialization;
+using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.FileIO.Csv;
 using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Inventories;
@@ -10,24 +11,24 @@ using w5_assignment_ksteph.UI;
 // The character class stores information for each character.  It is used in conjunction with CsvHelper to import and export character information to csv format.
 public class Character : Unit
 {
-    [Name("Name")]                  // CsvHelper Attribute
+    [Name("Name")]                                          // CsvHelper Attribute
     public override required string Name { get; set; }
 
-    [Name("Class")]                 // CsvHelper Attribute
+    [Name("Class")]                                         // CsvHelper Attribute
     public override required string Class { get; set; }
 
-    [Name("Level")]                 // CsvHelper Attribute
+    [Name("Level")]                                         // CsvHelper Attribute
     public override required int Level { get; set; }
 
-    [Name("HP")]                    // CsvHelper Attribute
-    [JsonPropertyName("HP")]        // Json Atribute
+    [Name("HP")]                                            // CsvHelper Attribute
+    [JsonPropertyName("HP")]                                // Json Atribute
     public override required int MaxHitPoints { get; set; }
 
     public override int HitPoints { get; set; }
 
-    [Name("Equipment")]             // CsvHelper Attribute
-    [JsonPropertyName("Equipment")] // Json Atribute
-    [TypeConverter(typeof(CsvInventoryConverter))] // CsvHelper Attribute that helps CsvHelper import a new inventory object instead of a string.
+    [Name("Equipment")]                                     // CsvHelper Attribute
+    [JsonPropertyName("Equipment")]                         // Json Atribute
+    [TypeConverter(typeof(CsvInventoryConverter))]          // CsvHelper Attribute that helps CsvHelper import a new inventory object instead of a string.
     public override required Inventory Inventory { get; set; }
 
     [JsonConstructor]
@@ -50,5 +51,10 @@ public class Character : Unit
     public override string ToString()
     {
         return $"{Name},{Class},{Level},{HitPoints},{Inventory}";
+    }
+
+    public override void Move(Position position)
+    {
+        Console.WriteLine($"{Name} moved to {position.ToString}");
     }
 }

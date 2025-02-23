@@ -10,12 +10,10 @@ namespace w5_assignment_ksteph.Interfaces
     {
         public int HitPoints { get; set; }
         public int MaxHitPoints { get; set; }
-        public void TakeDamage()
-        {
-            OnDamageTaken();
-            OnDeath();
-        }
+        public void TakeDamage(int damage);
         void OnDamageTaken();
         void OnDeath();
+        bool IsDead();
+        
     }
 }

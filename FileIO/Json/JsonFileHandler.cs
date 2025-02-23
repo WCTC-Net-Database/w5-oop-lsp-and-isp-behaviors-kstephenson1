@@ -18,6 +18,7 @@ public class JsonFileHandler : ICharacterIO
         _options.WriteIndented = true;                              // Writes the json file in indented format.
     }
 
+    /*
     public List<Character> ReadCharacters()
     {
 
@@ -31,6 +32,7 @@ public class JsonFileHandler : ICharacterIO
         using StreamWriter writer = new(JSON_FILE_PATH);            // Takes a list of characters and writes to the json file
         writer.WriteLine(JsonSerializer.Serialize<List<Character>>(characters, _options));
     }
+    */
 
     public List<TUnit> ReadUnits<TUnit>(string dir)
     {

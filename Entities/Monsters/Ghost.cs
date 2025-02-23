@@ -10,4 +10,5 @@ public class Ghost : Monster, IFlyable
     {
         Console.WriteLine($"{Name} soars through the air to {position.ToString}");
     }
+
 }

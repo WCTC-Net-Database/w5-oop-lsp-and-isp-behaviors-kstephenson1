@@ -9,15 +9,16 @@ using w5_assignment_ksteph.Entities.Monsters;
 
 public class FileManager<TUnit>
 {
-    Type _unitType = typeof(TUnit);
     private static FileType _fileType = Config.DEFAULT_FILE_TYPE;
-    Dictionary<Type, int> _unitTypeDict = new Dictionary<Type, int>
+
+    private Type _unitType = typeof(TUnit);
+    private Dictionary<Type, int> _unitTypeDict = new Dictionary<Type, int>
         {
             {typeof(Character),0},
             {typeof(Monster),1},
         };
 
-    public string GetFilePath()
+    private string GetFilePath()
     {
         return _unitTypeDict[_unitType] switch
         {

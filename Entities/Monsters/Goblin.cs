@@ -9,8 +9,5 @@ namespace w5_assignment_ksteph.Entities.Monsters;
 
 public class Goblin : Monster
 {
-    public override void Attack(IEntity target)
-    {
-        Console.WriteLine($"{Name} slashes {target.Name}");
-    }
+
 }

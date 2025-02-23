@@ -16,26 +16,37 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
 
     public virtual void Attack(IEntity target)
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"{Name} attacks {target.Name}");
     }
 
-    public virtual void Move()
+    public virtual void Move(Position position)
     {
-        Console.WriteLine($"{Name} moves.");
+        Console.WriteLine($"{Name} moves to {position.ToString}");
     }
 
-    public void Move(Position position)
+    public virtual void TakeDamage(int damage)
     {
-        throw new NotImplementedException();
+        HitPoints -= damage;
+        OnDamageTaken();
+
+        if (IsDead())
+            OnDeath();
     }
 
-    public void OnDamageTaken()
+    public virtual void OnDamageTaken()
     {
-        throw new NotImplementedException();
+
     }
 
-    public void OnDeath()
+    public virtual void OnDeath()
     {
-        throw new NotImplementedException();
+
     }
+
+    public bool IsDead()
+    {
+        return HitPoints <= 0 ? true : false;
+    }
+
+
 }
