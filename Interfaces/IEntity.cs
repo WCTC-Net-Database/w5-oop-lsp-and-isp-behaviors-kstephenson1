@@ -1,9 +1,13 @@
-﻿namespace w5_assignment_ksteph.Interfaces;
+﻿using w5_assignment_ksteph.DataTypes.Structs;
 
-public interface IEntity
+namespace w5_assignment_ksteph.Interfaces;
+
+public interface IEntity : IAttackable, IAttack, IInventory
 {
-    int Id { get; set; }
-    string Name { get; set; }
-    void Move();
-    void Attack(IEntity target);
+    public string Name { get; set; }
+    public string Class { get; set; }
+    public int Level { get; set; }
+    Position Position { get; set; }
+
+    void Move(Position position);
 }
