@@ -1,32 +1,45 @@
 ﻿using System.Diagnostics;
+using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.FileIO;
+using w5_assignment_ksteph.Interfaces;
 
 namespace w5_assignment_ksteph.UI;
 
 // The UserInterface class contains elements for the UI including the main menu and the exit message.
 public static class UserInterface
 {
-    public static InteractiveMainMenu InteractiveMainMenu { get; private set; } = new();
+    public static InteractiveMainMenu MainMenu { get; private set; } = new();
+    public static InteractiveUnitSelectionMenu UnitSelectionMenu { get; private set; } = new();
     public static Menu ExitMenu { get; private set; } = new();
 
     public static void BuildMenus() // Builds main menu and he exit message.
     {
         BuildInteractiveMainMenu();
+        BuildUnitSelectMenu();
         BuildExitMenu();
     }
 
-    private static void BuildInteractiveMainMenu() // Builds the main menu.  The main menu stores an index (AutoNumber), option, description, and an action.
-                                        // Used for quick and easy reference later when these menus are shown and the selection action is executed.
+    public static void UpdateUnitSelectMenu()
     {
-        InteractiveMainMenu = new();
-        InteractiveMainMenu.AddMenuItem("Display All Characters", "Displays all characters and items in their inventory.", CharacterCollection.DisplayAllCharacters);
-        InteractiveMainMenu.AddMenuItem("Find Character", "Finds an existing character by name.", CharacterFunctions.FindCharacter);
-        InteractiveMainMenu.AddMenuItem("New Character", "Creates a new character.", CharacterFunctions.NewCharacter);
-        InteractiveMainMenu.AddMenuItem("Level Up Chracter", "Levels an existing character.", CharacterFunctions.LevelUp);
-        InteractiveMainMenu.AddMenuItem("Change File Format", "Changes the file format between Csv and Json", FileManager<Character>.SwitchFileType);
-        InteractiveMainMenu.AddMenuItem("Exit", "Ends the program.", Exit);
-        InteractiveMainMenu.BuildTable();
+        UnitSelectionMenu = new();
+        foreach(IEntity unit in CharacterCollection.Characters)
+        {
+            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class}", unit);
+        }
+        UnitSelectionMenu.AddMenuItem("Exit", "", null!);
+    }
+    private static void BuildInteractiveMainMenu() // Builds the main menu.  The main menu stores an index (AutoNumber), option, description, and an action.
+                                                   // Used for quick and easy reference later when these menus are shown and the selection action is executed.
+    {
+        MainMenu = new();
+        MainMenu.AddMenuItem("Display All Characters", "Displays all characters and items in their inventory.", CharacterCollection.DisplayAllCharacters);
+        MainMenu.AddMenuItem("Find Character", "Finds an existing character by name.", CharacterFunctions.FindCharacter);
+        MainMenu.AddMenuItem("New Character", "Creates a new character.", CharacterFunctions.NewCharacter);
+        MainMenu.AddMenuItem("Level Up Chracter", "Levels an existing character.", CharacterFunctions.LevelUp);
+        MainMenu.AddMenuItem("Change File Format", "Changes the file format between Csv and Json", FileManager<Character>.SwitchFileType);
+        MainMenu.AddMenuItem("Start Game", "Starts the game", DoNothing);
+        MainMenu.BuildTable();
     }
 
     private static void BuildExitMenu() // Builds the exit message.  It's technically a menu but who cares.
@@ -36,9 +49,13 @@ public static class UserInterface
         ExitMenu.BuildTable();
     }
 
-    private static void Exit() // Shows the exit menu.
+    public static void BuildUnitSelectMenu() => UpdateUnitSelectMenu();
+
+    public static void Exit() // Shows the exit menu.
     {
         Console.Clear();
         ExitMenu.Show();
     }
+
+    private static void DoNothing() { } // This method does nothing...  or does it?
 }
