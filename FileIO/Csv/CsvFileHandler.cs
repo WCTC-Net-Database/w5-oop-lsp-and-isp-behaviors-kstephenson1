@@ -18,7 +18,7 @@ public class CsvFileHandler<TUnit> : ICharacterIO
     {
         using StreamReader reader = new(dir + CSV_EXT);
         using CsvReader csv = new(reader, CultureInfo.InvariantCulture);
-        //csv.Context.RegisterClassMap<CharacterMap>();
+        //csv.Context.RegisterClassMap<UnitMap>();
 
         IEnumerable<TUnit> units = csv.GetRecords<TUnit>();
 
@@ -41,7 +41,7 @@ public class CsvFileHandler<TUnit> : ICharacterIO
 
         using StreamWriter writer = new(dir + CSV_EXT);
         using CsvWriter csvOut = new(writer, config);
-        //csvOut.Context.RegisterClassMap<CharacterMap>();
+        //csvOut.Context.RegisterClassMap<UnitMap>();
 
         csvOut.WriteRecords(units);
     }

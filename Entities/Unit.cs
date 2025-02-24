@@ -34,9 +34,21 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
     [JsonPropertyName("Equipment")]                         // Json Atribute
     [TypeConverter(typeof(CsvInventoryConverter))]          // CsvHelper Attribute that helps CsvHelper import a new inventory object instead of a string.
     public virtual Inventory Inventory { get; set; } = new();
+
+    [JsonPropertyName("Position")]                         // Json Atribute
+    [TypeConverter(typeof(CsvPositionConverter))]          // CsvHelper Attribute that helps CsvHelper import a new Position struct instead of a string.
     public virtual Position Position { get; set; } = new();
+
+    [Ignore]
+    [JsonIgnore]
     public virtual CommandInvoker Invoker { get; set; } = new();
+
+    [Ignore]
+    [JsonIgnore]
     public virtual AttackCommand AttackCommand { get; set; } = null!;
+
+    [Ignore]
+    [JsonIgnore]
     public virtual MoveCommand MoveCommand { get; set; } = null!;
 
     public Unit() { }

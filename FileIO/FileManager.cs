@@ -37,7 +37,7 @@ public class FileManager<TTUnit>
         return _fileType switch
         {
             FileType.Csv => new CsvFileHandler<TUnit>(),
-            FileType.Json => new JsonFileHandler(),
+            FileType.Json => new JsonFileHandler<TUnit>(),
             _ => throw new NullReferenceException("Error: File type not found in FileManager.GetFileType()"),
         };
     }

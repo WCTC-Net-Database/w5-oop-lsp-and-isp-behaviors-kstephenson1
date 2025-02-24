@@ -6,7 +6,10 @@
     "HP": 14,
     "MaxHitPoints": 14,
     "Equipment": [],
-    "Position": {}
+    "Position": {
+      "x": 6,
+      "y": 6
+    }
   },
   {
     "Name": "Ruthless Treasure-Gather",
@@ -15,7 +18,10 @@
     "HP": 11,
     "MaxHitPoints": 11,
     "Equipment": [],
-    "Position": {}
+    "Position": {
+      "x": 5,
+      "y": 7
+    }
   },
   {
     "Name": "Sniper",
@@ -24,7 +30,10 @@
     "HP": 12,
     "MaxHitPoints": 12,
     "Equipment": [],
-    "Position": {}
+    "Position": {
+      "x": 4,
+      "y": 4
+    }
   },
   {
     "Name": "Studious Spellcaster",
@@ -33,7 +42,10 @@
     "HP": 7,
     "MaxHitPoints": 7,
     "Equipment": [],
-    "Position": {}
+    "Position": {
+      "x": 9,
+      "y": 3
+    }
   },
   {
     "Name": "Doctor of the Fallen",
@@ -42,6 +54,9 @@
     "HP": 9,
     "MaxHitPoints": 9,
     "Equipment": [],
-    "Position": {}
+    "Position": {
+      "x": 0,
+      "y": 1
+    }
   }
 ]

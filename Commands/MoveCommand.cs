@@ -18,8 +18,8 @@ public class MoveCommand : ICommand
     {
         if (_unit is IEntity)
         {
+            Console.WriteLine($"{_unit.Name} moves from {_unit.Position} to {_position.ToString()}");
             _unit.Position = _position;
-            Console.WriteLine($"{_unit.Name} moves to {_position.ToString()}");
         }
         else
         {

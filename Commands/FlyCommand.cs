@@ -19,8 +19,8 @@ public class FlyCommand : ICommand
     {
         if (_unit is IFlyable)
         {
+            Console.WriteLine($"{_unit.Name} moves from {_unit.Position} to {_position.ToString()}");
             _unit.Position = _position;
-            Console.WriteLine($"{_unit.Name} flies to {_position.ToString()}");
         } else
         {
             Console.WriteLine($"{_unit.Name} cannot fly and remains on {_unit.Position}");

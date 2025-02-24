@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 
-public class JsonFileHandler : ICharacterIO
+public class JsonFileHandler<TUnit> : ICharacterIO
 {
     // JsonFileHandler is used to convert bewtween units and json format.  Just like the CsvFileHandler, this class was refactored
     // to implement generic types.
@@ -14,6 +14,7 @@ public class JsonFileHandler : ICharacterIO
     public JsonFileHandler()
     {
         _options.Converters.Add(new JsonInventoryConverter());      // Using a custom converter to convert json string -> Inventory
+        _options.Converters.Add(new JsonPositionConverter());       // Using a custom converter to convert json string -> Position
         _options.WriteIndented = true;                              // Writes the json file in indented format.
     }
 

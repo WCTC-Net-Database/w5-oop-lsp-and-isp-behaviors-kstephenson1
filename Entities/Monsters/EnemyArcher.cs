@@ -6,6 +6,10 @@ namespace w5_assignment_ksteph.Entities.Monsters;
 
 public class EnemyArcher : Monster, IArcher
 {
+    public EnemyArcher()
+    {
+
+    }
     // An Archer unit that is able to shoot.
     public ShootCommand ShootCommand { get; set; }
 

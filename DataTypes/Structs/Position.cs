@@ -1,4 +1,8 @@
-﻿namespace w5_assignment_ksteph.DataTypes.Structs;
+﻿using CsvHelper.Configuration.Attributes;
+using System.Text.Json.Serialization;
+using w5_assignment_ksteph.FileIO.Csv;
+
+namespace w5_assignment_ksteph.DataTypes.Structs;
 
 public struct Position
 {

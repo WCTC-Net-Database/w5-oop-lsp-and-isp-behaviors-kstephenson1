@@ -25,7 +25,7 @@ public static class CharacterUI
         //Creates a table that just says "Inventory:" This may be redesigned later.
         Grid invHeader = new Grid().Width(25).AddColumn();
         invHeader
-            .AddRow(new Text("Inventory:").RightJustified());
+            .AddRow(new Text($"{character.Position.ToString()}").RightJustified());
 
         // Creates an inventory table that lists all the items in the character's inventory.
         Grid invTable = new Grid();

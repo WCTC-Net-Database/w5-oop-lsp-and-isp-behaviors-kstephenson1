@@ -1,14 +1,14 @@
 ﻿using CsvHelper.Configuration;
-using w5_assignment_ksteph.Entities.Characters;
+using w5_assignment_ksteph.Entities;
 
 namespace w5_assignment_ksteph.FileIO.Csv;
 
-public class CharacterMap : ClassMap<Character>
+public class UnitMap : ClassMap<Unit>
 {
-    // The CharacterMap assists the turning the csv file into units.
+    // The UnitMap assists the turning the csv file into units.
     // This class allows the inventory to be imported as a custom Inventories object instead of a string with
     // the help of the InventoryConverter
-    public CharacterMap()
+    public UnitMap()
     {
         Map(unit => unit.Name);
         Map(unit => unit.Class);

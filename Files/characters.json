@@ -8,7 +8,11 @@
       "sword",
       "shield",
       "potion"
-    ]
+    ],
+    "Position": {
+      "x": 1,
+      "y": 2
+    }
   },
   {
     "Name": "Jane",
@@ -19,7 +23,11 @@
       "staff",
       "robe",
       "book"
-    ]
+    ],
+    "Position": {
+      "x": -1,
+      "y": -3
+    }
   },
   {
     "Name": "Bob, Sneaky",
@@ -30,7 +38,11 @@
       "dagger",
       "lockpick",
       "cloak"
-    ]
+    ],
+    "Position": {
+      "x": 2,
+      "y": 3
+    }
   },
   {
     "Name": "Alice",
@@ -41,7 +53,11 @@
       "mace",
       "armor",
       "potion"
-    ]
+    ],
+    "Position": {
+      "x": 0,
+      "y": 5
+    }
   },
   {
     "Name": "Reginald III, Sir",
@@ -52,6 +68,10 @@
       "sword",
       "armor",
       "horse"
-    ]
+    ],
+    "Position": {
+      "x": -1,
+      "y": 1
+    }
   }
 ]
