@@ -27,7 +27,7 @@ We are happy to introduce the new interactive menu!  Instead of prompting the us
 Intrudoducing new unit structure system that includes:
 - Abstract Unit class that implements IEntity that serves as a base for other units.
    - Generic Monster class
-      - An Archer class that is able to shoow.
+      - An Archer class that is able to shoot.
       - A Cleric class that can heal others and cast spells.
       - A Ghost class that can fly.
       - A Goblin class with no special features.
