@@ -1,6 +1,7 @@
 ﻿using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.Entities.Monsters;
 using w5_assignment_ksteph.FileIO;
+using w5_assignment_ksteph.Interfaces;
 
 namespace w5_assignment_ksteph.Entities;
 
@@ -36,6 +37,16 @@ public static class UnitManager
             if (monster.Class == "Mage")
                 Monsters.AddUnit(new Mage() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
         }
+
+        foreach (IEntity unit in Characters.Units)
+        {
+            unit.MaxHitPoints = unit.HitPoints;
+        }
+
+        foreach (IEntity unit in Monsters.Units)
+        {
+            unit.MaxHitPoints = unit.HitPoints;
+        }
     }
 
     public static void ExportUnits()                           //Exports the stored characters into the specified csv file
@@ -43,7 +54,6 @@ public static class UnitManager
         new FileManager<Character>().ExportUnits<Character>(Characters.Units);
         new FileManager<Monster>().ExportUnits<Monster>(Monsters.Units);
     }
-
 
     public static void AddCharacter(Character character)            // Adds a new character to the stored characters list.
     {
