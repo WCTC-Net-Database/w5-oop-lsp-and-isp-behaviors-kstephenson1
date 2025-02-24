@@ -2,7 +2,7 @@
 
 namespace w5_assignment_ksteph.Commands;
 
-public class EncounterStats
+public class Encounter
 {
     private static Random _generator = new Random();
     int Roll;
@@ -13,7 +13,7 @@ public class EncounterStats
     public int HitChance { get; set; }
     public int CritChance { get; set; }
 
-    public EncounterStats(IEntity unit, IEntity target, int minDamage, int maxDamage, int hitChance, int critChance)
+    public Encounter(IEntity unit, IEntity target, int minDamage, int maxDamage, int hitChance, int critChance)
     {
         Roll = _generator.Next(100) + 1;
         Unit = unit;

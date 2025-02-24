@@ -6,12 +6,12 @@ public class ShootCommand : ICommand
 {
     private readonly IEntity _unit;
     private readonly IEntity _target;
-    private readonly EncounterStats _encounter;
-    public ShootCommand(EncounterStats encounter)
+    private readonly Encounter _encounter;
+    public ShootCommand(IEntity unit, IEntity target)
     {
-        _unit = encounter.Unit;
-        _target = encounter.Target;
-        _encounter = encounter;
+        _unit = unit;
+        _target = target;
+        _encounter = new(unit, target, 1, 4, 70, 5);
     }
 
     public void Execute()

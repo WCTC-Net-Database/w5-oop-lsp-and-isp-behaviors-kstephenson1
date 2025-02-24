@@ -1,5 +1,7 @@
 ﻿using CsvHelper.Configuration.Attributes;
 using System.Text.Json.Serialization;
+using w5_assignment_ksteph.Commands;
+using w5_assignment_ksteph.Commands.Invokers;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.FileIO.Csv;
 using w5_assignment_ksteph.Interfaces;
@@ -30,6 +32,9 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
     [TypeConverter(typeof(CsvInventoryConverter))]          // CsvHelper Attribute that helps CsvHelper import a new inventory object instead of a string.
     public virtual Inventory Inventory { get; set; } = new();
     public virtual Position Position { get; set; } = new();
+    public CommandInvoker Invoker { get; set; } = new();
+    public AttackCommand AttackCommand { get; set; } = null!;
+    public MoveCommand MoveCommand { get; set; } = null!;
 
     public Unit() { }
 
@@ -44,12 +49,14 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
 
     public virtual void Attack(IEntity target)
     {
-        Console.WriteLine($"{Name} attacks {target.Name}");
+        AttackCommand = new(this, target);
+        Invoker.ExecuteCommand(AttackCommand);
     }
 
     public virtual void Move(Position position)
     {
-        Console.WriteLine($"{Name} moves to {position.ToString}");
+        MoveCommand = new(this, position);
+        Invoker.ExecuteCommand(MoveCommand);
     }
 
     public virtual void TakeDamage(int damage)

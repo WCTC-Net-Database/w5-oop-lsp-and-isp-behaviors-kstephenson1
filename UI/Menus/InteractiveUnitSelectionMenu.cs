@@ -18,7 +18,7 @@ public class InteractiveUnitSelectionMenu : InteractiveMenu
 
     public IEntity RunInteractiveMenuReturnUnit(string prompt)
     {
-        IEntity unit = null;
+        IEntity unit = null!;
         bool exit = false;
         while (exit != true)
         {
@@ -52,7 +52,7 @@ public class InteractiveUnitSelectionMenu : InteractiveMenu
     }
     protected IEntity DoKeyActionReturnUnit(ConsoleKey key, out bool exit)
     {
-        IEntity unit = null;
+        IEntity unit = null!;
         exit = false;
         switch (key)
         {

@@ -7,12 +7,12 @@ public class AttackCommand : ICommand
 {
     private readonly IEntity _unit;
     private readonly IEntity _target;
-    private readonly EncounterStats _encounter;
-    public AttackCommand(EncounterStats encounter)
+    private readonly Encounter _encounter;
+    public AttackCommand(IEntity unit, IEntity target)
     {
-        _unit = encounter.Unit;
-        _target = encounter.Target;
-        _encounter = encounter;
+        _unit = unit;
+        _target = target;
+        _encounter = new(unit, target, 1, 4, 80, 10);
     }
     public void Execute()
     {
