@@ -76,13 +76,16 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
     // Triggers every time this unit takes damage.
     public virtual void OnDamageTaken()
     {
-
+        if (HitPoints > MaxHitPoints)
+            HitPoints = MaxHitPoints;
+        if (HitPoints <= 0)
+            HitPoints = 0;
     }
 
     // Triggers when this unit dies.
     public virtual void OnDeath()
     {
-
+        
     }
 
     // Function to check to see if unit should be dead.
@@ -94,6 +97,19 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
     public override string ToString()
     {
         return $"{Name},{Class},{Level},{HitPoints},{Inventory}";
+    }
+
+    public string GetHealthBar()
+    {
+        string bar = "[[";
+        for (int i = 0; i < MaxHitPoints; i++)
+        {
+            if (i < HitPoints)
+                bar += "[green]■[/]";
+            else
+                bar += "[red]■[/]";
+        }
+        return bar + "]]";
     }
 
 }

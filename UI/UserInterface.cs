@@ -45,14 +45,15 @@ public static class UserInterface
 
     public static void BuildUnitSelectMenu()
     {
-        UnitSelectionMenu = new();
+        int prevIndex = UnitSelectionMenu.GetSelectedIndex();
+        UnitSelectionMenu = new(prevIndex);
         foreach (IEntity unit in UnitManager.Characters.Units)
         {
-            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class}", unit);
+            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class} {unit.GetHealthBar()}", unit);
         }
         foreach (IEntity unit in UnitManager.Monsters.Units)
         {
-            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class}", unit);
+            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class} {unit.GetHealthBar()}", unit);
         }
     }
     public static void BuildCommandMenu()

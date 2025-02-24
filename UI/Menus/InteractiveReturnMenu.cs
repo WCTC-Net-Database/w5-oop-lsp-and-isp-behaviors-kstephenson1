@@ -5,6 +5,16 @@ public class InteractiveReturnMenu<Ttype> : InteractiveMenu
 
     // The MainMenu contains items that have 4 parts, the index, the name, the description, and the action that
     // is completed when that menu item is chosen.
+
+    public InteractiveReturnMenu()
+    {
+        
+    }
+
+    public InteractiveReturnMenu(int selectedIndex)
+    {
+        _selectedIndex = selectedIndex;
+    }
     public void AddMenuItem(string name, string desc, Ttype selection)
     {
         _menuItems.Add(new InteractiveReturnMenuItem<Ttype>(_menuItems.Count, name, desc, selection));

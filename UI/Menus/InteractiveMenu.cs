@@ -7,6 +7,15 @@ public class InteractiveMenu : Menu
     // The interactive menu is a menu where you can select the options by moving the arrow selector up and down
     // using the arrow or w/s keys. The MainMenu contains items that have 4 parts, the index, the name, the
     // description, and the action that is completed when that menu item is chosen.
+    public InteractiveMenu()
+    {
+        
+    }
+
+    public InteractiveMenu(int selectedIndex)
+    {
+        _selectedIndex = selectedIndex;
+    }
 
     protected int _selectedIndex = 0;
     public void AddMenuItem(string name, string desc)
@@ -113,5 +122,7 @@ public class InteractiveMenu : Menu
                 break;
         }
     }
+
+    public int GetSelectedIndex() => _selectedIndex;
 }
 

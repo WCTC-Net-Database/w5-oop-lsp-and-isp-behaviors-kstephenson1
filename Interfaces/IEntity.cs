@@ -1,5 +1,6 @@
 ﻿using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.DataTypes.Structs;
+using w5_assignment_ksteph.UI;
 
 namespace w5_assignment_ksteph.Interfaces;
 
@@ -13,4 +14,5 @@ public interface IEntity : IAttackable, IAttack, IInventory
     Position Position { get; set; }
 
     void Move(Position position);
+    string GetHealthBar();
 }

@@ -26,15 +26,13 @@ public class ShootCommand : ICommand
 
             if (_encounter.IsCrit())
             {
-                int damage = _encounter.RollDamage();
-                Console.WriteLine($"{_unit.Name} critically hit {_target.Name} for {damage} damage!");
-                _target.TakeDamage(damage);
+                Console.WriteLine($"{_unit.Name} critically hit {_target.Name} for {_encounter.Damage} damage!");
+                _target.TakeDamage(_encounter.Damage);
             }
             else if (_encounter.IsHit())
             {
-                int damage = _encounter.RollDamage();
-                Console.WriteLine($"{_unit.Name} hit {_target.Name} for {_encounter.RollDamage()} damage.");
-                _target.TakeDamage(damage);
+                Console.WriteLine($"{_unit.Name} hit {_target.Name} for {_encounter.Damage} damage.");
+                _target.TakeDamage(_encounter.Damage);
             }
             else
             {

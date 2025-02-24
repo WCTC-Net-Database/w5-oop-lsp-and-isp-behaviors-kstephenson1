@@ -1,4 +1,5 @@
-﻿using w5_assignment_ksteph.Commands;
+﻿using Spectre.Console;
+using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.DataHelper;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Entities;
@@ -38,6 +39,8 @@ public class GameEngine
         {
             // Asks the user to choose a unit.
             IEntity unit1 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit("Select unit to control");
+
+            if (unit1.HitPoints <= 0) continue;
 
             // Asks the user to choose an action for unit.
             ICommand command = UserInterface.CommandMenu.RunInteractiveMenuReturnUnit($"Select action for {unit1.Name}");
@@ -107,6 +110,8 @@ public class GameEngine
                     Console.WriteLine($"{unit1.Name} is not a spellcaster!");
                 }
             }
+
+            UserInterface.BuildUnitSelectMenu(); ;
 
             // Waits for user input.  Escape leaves the program and any other button loops the process.
             Console.WriteLine("\nPress escape to exit or any other key to continue...");

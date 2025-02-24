@@ -15,6 +15,7 @@ public class Encounter
     public int MaxDamage { get; set; }
     public int HitChance { get; set; }
     public int CritChance { get; set; }
+    public int Damage {  get; set; }
 
     public Encounter(IEntity unit, IEntity target, int minDamage, int maxDamage, int hitChance, int critChance)
     {
@@ -25,6 +26,7 @@ public class Encounter
         MaxDamage = maxDamage;      // in a constructor.
         HitChance = hitChance;      //
         CritChance = critChance;    //
+        Damage = RollDamage();
     }
 
 
