@@ -1,11 +1,11 @@
-﻿using w5_assignment_ksteph.Commands.Invokers;
-using w5_assignment_ksteph.Commands;
+﻿using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.DataTypes.Structs;
 
 namespace w5_assignment_ksteph.Interfaces;
 
 public interface IEntity : IAttackable, IAttack, IInventory
 {
+    // Interface tha allows units to exist.
     MoveCommand MoveCommand { set; get; }
     public string Name { get; set; }
     public string Class { get; set; }

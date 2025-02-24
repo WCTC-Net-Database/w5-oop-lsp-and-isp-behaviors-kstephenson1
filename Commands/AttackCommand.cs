@@ -1,10 +1,13 @@
-﻿using w5_assignment_ksteph.Entities.Characters;
+﻿using w5_assignment_ksteph.Combat;
 using w5_assignment_ksteph.Interfaces;
 
 namespace w5_assignment_ksteph.Commands;
 
 public class AttackCommand : ICommand
 {
+    // A generic attack command.  It takes in an attacking unit and a target, creates a new encounter object, and calculates whether or
+    // not the unit hit/crit and calculates damage.  If the unit cannot attack, a message is provided to the user.
+
     private readonly IEntity _unit;
     private readonly IEntity _target;
     private readonly Encounter _encounter;

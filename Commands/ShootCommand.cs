@@ -1,9 +1,13 @@
-﻿using w5_assignment_ksteph.Interfaces;
+﻿using w5_assignment_ksteph.Combat;
+using w5_assignment_ksteph.Interfaces;
 
 namespace w5_assignment_ksteph.Commands;
 
 public class ShootCommand : ICommand
 {
+    // The ShootCommand takes an attacking unit and a target, checks to see if the unit is able to shoot, then shoots at the target if available,
+    // using an Encounter to calculate the damage and hit/crit chances.
+
     private readonly IEntity _unit;
     private readonly IEntity _target;
     private readonly Encounter _encounter;

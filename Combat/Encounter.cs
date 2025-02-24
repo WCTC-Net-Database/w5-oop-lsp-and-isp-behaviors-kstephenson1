@@ -1,9 +1,12 @@
 ﻿using w5_assignment_ksteph.Interfaces;
 
-namespace w5_assignment_ksteph.Commands;
+namespace w5_assignment_ksteph.Combat;
 
 public class Encounter
 {
+    // The encounter class is used to store and calculate information about combat encounters.  This object takes in an attacking unit,
+    // target unit and will be able to generate combat chances and damages.
+
     private static Random _generator = new Random();
     int Roll;
     public IEntity Unit { get; set; }
@@ -18,10 +21,10 @@ public class Encounter
         Roll = _generator.Next(100) + 1;
         Unit = unit;
         Target = target;
-        MinDamage = minDamage;
-        MaxDamage = maxDamage;
-        HitChance = hitChance;
-        CritChance = critChance;
+        MinDamage = minDamage;      // These stats will eventually be calculated using unit stats instead of directly
+        MaxDamage = maxDamage;      // in a constructor.
+        HitChance = hitChance;      //
+        CritChance = critChance;    //
     }
 
 

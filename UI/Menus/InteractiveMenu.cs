@@ -1,13 +1,13 @@
 ﻿using Spectre.Console;
-using System.Data;
-using w5_assignment_ksteph.DataHelper;
 
 namespace w5_assignment_ksteph.UI;
 
 public class InteractiveMenu : Menu
 {
-    // The MainMenu contains items that have 4 parts, the index, the name, the description, and the action that
-    // is completed when that menu item is chosen.
+    // The interactive menu is a menu where you can select the options by moving the arrow selector up and down
+    // using the arrow or w/s keys. The MainMenu contains items that have 4 parts, the index, the name, the
+    // description, and the action that is completed when that menu item is chosen.
+
     protected int _selectedIndex = 0;
     public void AddMenuItem(string name, string desc)
     {

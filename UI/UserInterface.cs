@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows.Input;
-using w5_assignment_ksteph.Commands;
+﻿using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.FileIO;
@@ -19,6 +17,7 @@ public static class UserInterface
 
     public static void BuildMenus() // Builds main menu and he exit message.
     {
+        BuildCommandMenu();
         BuildInteractiveMainMenu();
         BuildUnitSelectMenu();
         BuildExitMenu();

@@ -11,6 +11,8 @@ namespace w5_assignment_ksteph.Entities;
 
 public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
 {
+    // Unit is an abstract class that holds basic unit properties and functions.
+
     [Name("Name")]                                          // CsvHelper Attribute
     public virtual required string Name { get; set; }
 
@@ -47,18 +49,21 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
         Inventory = inventory;
     }
 
+    // Attacks the target unit.
     public virtual void Attack(IEntity target)
     {
         AttackCommand = new(this, target);
         Invoker.ExecuteCommand(AttackCommand);
     }
 
+    // Moves the unit to a position.
     public virtual void Move(Position position)
     {
         MoveCommand = new(this, position);
         Invoker.ExecuteCommand(MoveCommand);
     }
 
+    // Has the unit take damage then check if it is dead.
     public virtual void TakeDamage(int damage)
     {
         HitPoints -= damage;
@@ -68,16 +73,19 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
             OnDeath();
     }
 
+    // Triggers every time this unit takes damage.
     public virtual void OnDamageTaken()
     {
 
     }
 
+    // Triggers when this unit dies.
     public virtual void OnDeath()
     {
 
     }
 
+    // Function to check to see if unit should be dead.
     public bool IsDead()
     {
         return HitPoints <= 0 ? true : false;

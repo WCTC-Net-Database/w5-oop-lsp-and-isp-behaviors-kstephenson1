@@ -1,13 +1,11 @@
 ﻿using CsvHelper.Configuration;
 using w5_assignment_ksteph.Entities.Characters;
-using w5_assignment_ksteph.Entities.Monsters;
-using w5_assignment_ksteph.Interfaces;
 
 namespace w5_assignment_ksteph.FileIO.Csv;
 
 public class CharacterMap : ClassMap<Character>
 {
-    // The CharacterMap is an extension of CsvHelper that assists turning the csv file into units.
+    // The CharacterMap assists the turning the csv file into units.
     // This class allows the inventory to be imported as a custom Inventories object instead of a string with
     // the help of the InventoryConverter
     public CharacterMap()

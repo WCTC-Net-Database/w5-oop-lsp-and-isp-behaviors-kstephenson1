@@ -4,7 +4,8 @@ using w5_assignment_ksteph.FileIO;
 using w5_assignment_ksteph.Interfaces;
 
 
-// The CharacterHandler class contains methods that manipulate Characters data, including displaying, adding, and leveling up characters.
+// UnitSet<TUnit> is a class contains a list of a generic type of unit and functions that point toward this generic unit type's
+// import and export methods.
 
 public class UnitSet<TUnit> where TUnit : IEntity
 {

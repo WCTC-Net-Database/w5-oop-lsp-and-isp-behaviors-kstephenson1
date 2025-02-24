@@ -1,9 +1,4 @@
-﻿
-using w5_assignment_ksteph.DataHelper;
-using w5_assignment_ksteph.Entities;
-using w5_assignment_ksteph.UI;
-
-namespace w5_assignment_ksteph;
+﻿namespace w5_assignment_ksteph;
 
 class Program
 {

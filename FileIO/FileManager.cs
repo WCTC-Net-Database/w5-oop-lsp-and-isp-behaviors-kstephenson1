@@ -9,6 +9,9 @@ using w5_assignment_ksteph.Entities.Monsters;
 
 public class FileManager<TTUnit>
 {
+    // FileManager contains redirects to functions that assist with file IO functions.  This class allows the import and export of a generic
+    // unit type.
+
     private static FileType _fileType = Config.DEFAULT_FILE_TYPE;
 
     private Type _unitType = typeof(TTUnit);
@@ -53,9 +56,6 @@ public class FileManager<TTUnit>
         }
     }
 
-    // FileManager contains redirects to functions that assist with file IO functions.
-    //public List<Character> ImportCharacters() => GetFileType().ReadCharacters();
-    //public void ExportCharacters(List<Character> characters) => GetFileType().WriteCharacters(characters);
     public List<TUnit> ImportUnits<TUnit>() => GetFileType<TUnit>().ReadUnits<TUnit>(GetFilePath());
     public void ExportUnits<TUnit>(List<TUnit> units) => GetFileType<TUnit>().WriteUnits(units, GetFilePath());
 }

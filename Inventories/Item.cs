@@ -4,6 +4,8 @@ namespace w5_assignment_ksteph.Inventories;
 
 public class Item
 {
+    // Item is a class that holds item information.
+
     public string Name { get; set; }
     public string ID { get; set; }
 

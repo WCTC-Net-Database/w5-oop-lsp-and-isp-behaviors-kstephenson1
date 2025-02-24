@@ -1,7 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using w5_assignment_ksteph.FileIO;
 
 namespace w5_assignment_ksteph.FileIO.Csv;
 

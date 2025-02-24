@@ -1,17 +1,7 @@
-﻿using Spectre.Console;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using w5_assignment_ksteph.Commands;
-using w5_assignment_ksteph.Commands.Invokers;
+﻿using w5_assignment_ksteph.Commands;
+using w5_assignment_ksteph.DataHelper;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Entities;
-using w5_assignment_ksteph.Entities.Characters;
-using w5_assignment_ksteph.Entities.Monsters;
 using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.UI;
 
@@ -36,36 +26,73 @@ public class GameEngine
 
     public static void Run()
     {
-        //UserInterface.MainMenu.RunInteractiveMenu();
+        // Shows the main menu.  Allows you to add/edit characters before the game is started.
+        UserInterface.MainMenu.RunInteractiveMenu();
 
+        // Builds the unit select menu.
         UserInterface.BuildUnitSelectMenu();
 
         List<IEntity> entities = new();
-        foreach(IEntity entity in UnitManager.Characters.Units)
-        {
-            entities.Add(entity);
-        }
-
-        foreach(IEntity entity in UnitManager.Monsters.Units)
-        {
-            entities.Add(entity);
-        }
 
         while (true)
         {
-            IEntity unit1 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit("Select attacking unit");
+            // Asks the user to choose a unit.
+            IEntity unit1 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit("Select unit to control");
 
-            IEntity unit2 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit($"Select unit being attacked by {unit1.Name}");
+            // Asks the user to choose an action for unit.
+            ICommand command = UserInterface.CommandMenu.RunInteractiveMenuReturnUnit($"Select action for {unit1.Name}");
 
-            if (unit1 != unit2)
+            // If the unit is able to move, the unit moves.
+            if (command.GetType() == typeof(MoveCommand))
             {
-                unit1.Attack(unit2);
+                if (unit1 is IEntity)
+                {
+                    int x = Input.GetInt("Enter location's x-coordinate: ");
+                    int z = Input.GetInt("Enter location's z-coordinate: ");
+                    Position position = new(x, z);
+                    unit1.Move(position);
+                } else
+                {
+                    Console.WriteLine($"{unit1.Name} is unable to move!");
+                }
+
             }
-            else
+            // If the unit is able to attack, it attacks.
+            else if (command.GetType() == typeof(AttackCommand))
             {
-                Console.WriteLine($"{unit1.Name} should not attack themselves.  That's not very nice!");
+                if (unit1 is IAttack)
+                {
+                    IEntity unit2 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit($"Select unit being attacked by {unit1.Name}");
+
+                    if (unit1 != unit2)
+                    {
+                        unit1.Attack(unit2);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{unit1.Name} should not attack themselves.  That's not very nice!");
+                    }
+                } else
+                {
+                    Console.WriteLine($"{unit1.Name} cannot attack!");
+                }
+
+            }
+            // If the unit is able to cast spells, it casts a spell.
+            else if (command.GetType() == typeof(CastCommand))
+            {
+                if (unit1 is ICastable)
+                {
+                    string spell = Input.GetString($"Enter name of spell being cast by {unit1.Name}: ");
+                    ((ICastable)unit1).Cast(spell);
+                }
+                else
+                {
+                    Console.WriteLine($"{unit1.Name} is not a spellcaster!");
+                }
             }
 
+            // Waits for user input.  Escape leaves the program and any other button loops the process.
             Console.WriteLine("\nPress escape to exit or any other key to continue...");
             ConsoleKey key = Console.ReadKey(true).Key;
             if (key == ConsoleKey.Escape)

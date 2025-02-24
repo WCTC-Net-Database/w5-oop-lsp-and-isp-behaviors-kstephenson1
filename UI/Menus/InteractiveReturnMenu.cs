@@ -1,10 +1,4 @@
-﻿using Spectre.Console;
-using System.Data;
-using w5_assignment_ksteph.DataHelper;
-using w5_assignment_ksteph.Entities;
-using w5_assignment_ksteph.Interfaces;
-
-namespace w5_assignment_ksteph.UI;
+﻿namespace w5_assignment_ksteph.UI;
 
 public class InteractiveReturnMenu<Ttype> : InteractiveMenu
 {
@@ -18,7 +12,7 @@ public class InteractiveReturnMenu<Ttype> : InteractiveMenu
 
     public Ttype RunInteractiveMenuReturnUnit(string prompt)
     {
-        Ttype selection = default(Ttype);
+        Ttype selection = default(Ttype)!;
         bool exit = false;
         while (exit != true)
         {
@@ -52,7 +46,7 @@ public class InteractiveReturnMenu<Ttype> : InteractiveMenu
     }
     protected Ttype DoKeyActionReturnUnit(ConsoleKey key, out bool exit)
     {
-        Ttype selection = default(Ttype);
+        Ttype selection = default(Ttype)!;
         exit = false;
         switch (key)
         {

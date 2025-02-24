@@ -1,12 +1,12 @@
 ﻿using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.Entities.Monsters;
 using w5_assignment_ksteph.FileIO;
-using w5_assignment_ksteph.Interfaces;
 
 namespace w5_assignment_ksteph.Entities;
 
 public static class UnitManager
 {
+    // The UnitManager class is a static class that holds lists of units for reference.
     public static UnitSet<Character> Characters { get; private set; } = new();
     public static UnitSet<Monster> Monsters { get; private set; } = new();
 

@@ -2,15 +2,12 @@
 
 using System.Collections.Generic;
 using System.Text.Json;
-using w5_assignment_ksteph.Entities;
-using w5_assignment_ksteph.Entities.Characters;
-using w5_assignment_ksteph.Entities.Monsters;
 
 public class JsonFileHandler : ICharacterIO
 {
-    // JsonFileHandler is used to convert bwtween characters and json format
+    // JsonFileHandler is used to convert bewtween units and json format.  Just like the CsvFileHandler, this class was refactored
+    // to implement generic types.
 
-    private const string JSON_FILE_PATH = "Files/Input.json";
     private const string JSON_EXT = ".json";
     private readonly JsonSerializerOptions _options = new();
 

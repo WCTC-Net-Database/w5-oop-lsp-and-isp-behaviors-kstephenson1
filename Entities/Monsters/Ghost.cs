@@ -1,5 +1,4 @@
 ﻿using w5_assignment_ksteph.Commands;
-using w5_assignment_ksteph.Commands.Invokers;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Interfaces;
 
@@ -7,6 +6,7 @@ namespace w5_assignment_ksteph.Entities.Monsters;
 
 public class Ghost : Monster, IFlyable
 {
+    // A Ghost unit that is able fly.
     public FlyCommand FlyCommand { get ; set ; } = null!;
 
     public void Fly(Position position)

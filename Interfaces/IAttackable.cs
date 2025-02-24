@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace w5_assignment_ksteph.Interfaces
+﻿namespace w5_assignment_ksteph.Interfaces
 {
     public interface IAttackable
     {
+        // Interface tha allows units to be attacked.
         public int HitPoints { get; set; }
         public int MaxHitPoints { get; set; }
         public void TakeDamage(int damage);

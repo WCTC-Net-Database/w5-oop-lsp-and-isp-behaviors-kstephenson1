@@ -5,11 +5,12 @@ using CsvHelper.Configuration;
 using System.Collections.Generic;
 using System.Globalization;
 using w5_assignment_ksteph.Config;
-using w5_assignment_ksteph.Entities.Characters;
 
 public class CsvFileHandler<TUnit> : ICharacterIO
 {
-    private const string CSV_FILE_PATH = "Files/Input.csv";
+    // CsvFileHandler<TUnit> is a class that handles the read and write functions for a TUnit type.  This class was turned generic to allow
+    // the import and export of Characters, Monsters, and whatever other units we want.
+
     private const string CSV_EXT = ".csv";
 
     // Is used to deserialize generic unit types from csv

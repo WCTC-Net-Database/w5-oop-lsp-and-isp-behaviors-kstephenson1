@@ -6,6 +6,8 @@ namespace w5_assignment_ksteph.UI;
 
 public static class CharacterUI
 {
+    // CharacterUI helps display character information in a nice little table.
+
     public static void DisplayCharacterInfo(Character character) // Displays the character's info
     {
         // Builds a character table with 2 lines: Name, Level and Class.
