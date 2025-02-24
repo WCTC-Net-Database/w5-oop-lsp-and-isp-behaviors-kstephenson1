@@ -81,9 +81,11 @@ Last, but certainly not least, we have implemented a new GameEngine class.
       - Asks the user to select an action using the new interactive menu.
          - Move:
             - Asks the user to input an x-coord and a z-coord
+            - Flies the unit if it is able to.
             - Moves the unit if it is able to.
          - Attack:
             - Asks the user to select a target unit.
+            - Shoots the target init if it is able to do so.
             - Attacks the target unit if it is able to.
                - Calculates hit and crit chance.  (Crit deals double damage)
                - Applies damage if applicable.
