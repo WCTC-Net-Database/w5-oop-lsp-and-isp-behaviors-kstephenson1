@@ -7,11 +7,11 @@ using w5_assignment_ksteph.DataTypes;
 using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.Entities.Monsters;
 
-public class FileManager<TUnit>
+public class FileManager<TTUnit>
 {
     private static FileType _fileType = Config.DEFAULT_FILE_TYPE;
 
-    private Type _unitType = typeof(TUnit);
+    private Type _unitType = typeof(TTUnit);
     private Dictionary<Type, int> _unitTypeDict = new Dictionary<Type, int>
         {
             {typeof(Character),0},
@@ -29,11 +29,11 @@ public class FileManager<TUnit>
 
     }
 
-    private static ICharacterIO GetFileType() // Checks to see what the current file type is set to and execute the proper file system.
+    private static ICharacterIO GetFileType<TUnit>() // Checks to see what the current file type is set to and execute the proper file system.
     {
         return _fileType switch
         {
-            FileType.Csv => new CsvFileHandler(),
+            FileType.Csv => new CsvFileHandler<TUnit>(),
             FileType.Json => new JsonFileHandler(),
             _ => throw new NullReferenceException("Error: File type not found in FileManager.GetFileType()"),
         };
@@ -56,6 +56,6 @@ public class FileManager<TUnit>
     // FileManager contains redirects to functions that assist with file IO functions.
     //public List<Character> ImportCharacters() => GetFileType().ReadCharacters();
     //public void ExportCharacters(List<Character> characters) => GetFileType().WriteCharacters(characters);
-    public List<TUnit> ImportUnits() => GetFileType().ReadUnits<TUnit>(GetFilePath());
-    public void ExportUnits(List<TUnit> units) => GetFileType().WriteUnits<TUnit>(units, GetFilePath());
+    public List<TUnit> ImportUnits<TUnit>() => GetFileType<TUnit>().ReadUnits<TUnit>(GetFilePath());
+    public void ExportUnits<TUnit>(List<TUnit> units) => GetFileType<TUnit>().WriteUnits(units, GetFilePath());
 }

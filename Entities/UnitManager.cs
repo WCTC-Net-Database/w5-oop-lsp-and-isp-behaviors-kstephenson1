@@ -22,13 +22,14 @@ public static class UnitManager
 
     public static void ImportUnits()                           //Imports the characters from the csv file and stores them.
     {
-        Characters.Units = new FileManager<Character>().ImportUnits();
+        Characters.Units = new FileManager<Character>().ImportUnits<Character>();
+        Monsters.Units = new FileManager<Monster>().ImportUnits<Monster>();
     }
 
     public static void ExportUnits()                           //Exports the stored characters into the specified csv file
     {
-        new FileManager<Character>().ExportUnits(Characters.Units);
-        new FileManager<Monster>().ExportUnits(Monsters.Units);
+        new FileManager<Character>().ExportUnits<Character>(Characters.Units);
+        new FileManager<Monster>().ExportUnits<Monster>(Monsters.Units);
     }
 
 

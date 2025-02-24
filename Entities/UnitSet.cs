@@ -12,12 +12,12 @@ public class UnitSet<TUnit> where TUnit : IEntity
 
     public void ImportUnits()                           //Imports the characters from the csv file and stores them.
     {
-        Units = new FileManager<TUnit>().ImportUnits();
+        Units = new FileManager<TUnit>().ImportUnits<TUnit>();
     }
 
     public void ExportUnits()                           //Exports the stored characters into the specified csv file
     {
-        new FileManager<TUnit>().ExportUnits(Units);
+        new FileManager<TUnit>().ExportUnits<TUnit>(Units);
     }
 
     public void AddUnit(TUnit unit)            // Adds a new character to the stored characters list.

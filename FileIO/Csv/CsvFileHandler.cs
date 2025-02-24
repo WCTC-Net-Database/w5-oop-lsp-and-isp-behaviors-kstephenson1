@@ -7,7 +7,7 @@ using System.Globalization;
 using w5_assignment_ksteph.Config;
 using w5_assignment_ksteph.Entities.Characters;
 
-public class CsvFileHandler : ICharacterIO
+public class CsvFileHandler<TUnit> : ICharacterIO
 {
     private const string CSV_FILE_PATH = "Files/Input.csv";
     private const string CSV_EXT = ".csv";
@@ -17,6 +17,7 @@ public class CsvFileHandler : ICharacterIO
     {
         using StreamReader reader = new(dir + CSV_EXT);
         using CsvReader csv = new(reader, CultureInfo.InvariantCulture);
+        //csv.Context.RegisterClassMap<CharacterMap>();
 
         IEnumerable<TUnit> units = csv.GetRecords<TUnit>();
 
@@ -39,6 +40,7 @@ public class CsvFileHandler : ICharacterIO
 
         using StreamWriter writer = new(dir + CSV_EXT);
         using CsvWriter csvOut = new(writer, config);
+        //csvOut.Context.RegisterClassMap<CharacterMap>();
 
         csvOut.WriteRecords(units);
     }
