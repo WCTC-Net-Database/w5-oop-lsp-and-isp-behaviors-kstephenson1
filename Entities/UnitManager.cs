@@ -28,6 +28,8 @@ public static class UnitManager
         List<Monster> importedMonsters = new FileManager<Monster>().ImportUnits<Monster>();
         foreach (Monster monster in importedMonsters)
         {
+            // Units imported from the monsters file are imported as monsters.  This block of text converts these monsters to their respective types.
+            // Is there a way to automate this without having to add a new line for every unit I add?
             if (monster.Class == "Archer")
                 Monsters.AddUnit(new Archer() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
             if (monster.Class == "Ghost")
@@ -36,6 +38,8 @@ public static class UnitManager
                 Monsters.AddUnit(new Goblin() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
             if (monster.Class == "Mage")
                 Monsters.AddUnit(new Mage() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
+            if (monster.Class == "Cleric")
+                Monsters.AddUnit(new Cleric() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
         }
 
         foreach (IEntity unit in Characters.Units)

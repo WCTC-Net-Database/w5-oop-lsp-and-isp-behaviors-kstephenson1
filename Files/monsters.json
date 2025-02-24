@@ -2,36 +2,45 @@
   {
     "Name": "Ghost",
     "Class": "Ghost",
-    "Level": 1,
-    "HP": 5,
-    "MaxHitPoints": 5,
+    "Level": 4,
+    "HP": 14,
+    "MaxHitPoints": 14,
     "Equipment": [],
     "Position": {}
   },
   {
     "Name": "Goblin",
     "Class": "Goblin",
-    "Level": 1,
-    "HP": 5,
-    "MaxHitPoints": 5,
+    "Level": 2,
+    "HP": 11,
+    "MaxHitPoints": 11,
     "Equipment": [],
     "Position": {}
   },
   {
     "Name": "Archer",
     "Class": "Archer",
-    "Level": 1,
-    "HP": 5,
-    "MaxHitPoints": 5,
+    "Level": 5,
+    "HP": 12,
+    "MaxHitPoints": 12,
     "Equipment": [],
     "Position": {}
   },
   {
     "Name": "Mage",
     "Class": "Mage",
-    "Level": 1,
-    "HP": 5,
-    "MaxHitPoints": 5,
+    "Level": 2,
+    "HP": 7,
+    "MaxHitPoints": 7,
+    "Equipment": [],
+    "Position": {}
+  },
+  {
+    "Name": "Cleric",
+    "Class": "Cleric",
+    "Level": 3,
+    "HP": 9,
+    "MaxHitPoints": 9,
     "Equipment": [],
     "Position": {}
   }

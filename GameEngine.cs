@@ -72,9 +72,25 @@ public class GameEngine
                     {
                         Console.WriteLine($"{unit1.Name} should not attack themselves.  That's not very nice!");
                     }
-                } else
+                }
+                else
                 {
                     Console.WriteLine($"{unit1.Name} cannot attack!");
+                }
+
+            }
+            // If the unit is able to attack, it attacks.
+            else if (command.GetType() == typeof(HealCommand))
+            {
+                if (unit1 is IHeal)
+                {
+                    IEntity unit2 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit($"Select unit being healed by {unit1.Name}");
+
+                    ((IHeal)unit1).Heal(unit2);
+                }
+                else
+                {
+                    Console.WriteLine($"{unit1.Name} cannot heal!");
                 }
 
             }

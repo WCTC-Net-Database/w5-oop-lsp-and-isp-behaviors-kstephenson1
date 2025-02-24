@@ -58,9 +58,10 @@ public static class UserInterface
     public static void BuildCommandMenu()
     {
         CommandMenu = new();
-        CommandMenu.AddMenuItem("Move", "Moves", new MoveCommand(null, new()));
-        CommandMenu.AddMenuItem("Attack", "Attacks", new AttackCommand(null, null));
-        CommandMenu.AddMenuItem("Cast", "Casts", new CastCommand(null, "null"));
+        CommandMenu.AddMenuItem("Move", "Moves the unit.", new MoveCommand(null, new()));
+        CommandMenu.AddMenuItem("Attack", "Attacks a target unit.", new AttackCommand(null, null));
+        CommandMenu.AddMenuItem("Heal", "Heals a target unit.", new HealCommand(null, null));
+        CommandMenu.AddMenuItem("Cast", "Casts a spell.", new CastCommand(null, "null"));
         CommandMenu.BuildTable();
     }
 
