@@ -39,11 +39,10 @@ public class GameEngine
         UserInterface.MainMenu.RunInteractiveMenu();
         UserInterface.UnitSelectionMenu.RunInteractiveMenu();
 
-        UnitSet<Monster> monsters = new();
-        monsters.AddUnit(new Ghost() { Name = "Ghost", Class = "Ghost", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new() });
-        monsters.AddUnit(new Goblin() { Name = "Goblin", Class = "Goblin", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new() });
-        monsters.AddUnit(new Archer() { Name = "Archer", Class = "Archer", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new() });
-        monsters.AddUnit(new Mage() { Name = "Mage", Class = "Mage", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new() });
+        UnitManager.Monsters.AddUnit(new Ghost() { Name = "Ghost", Class = "Ghost", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new(0, 0) });
+        UnitManager.Monsters.AddUnit(new Goblin() { Name = "Goblin", Class = "Goblin", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new(0, 0) });
+        UnitManager.Monsters.AddUnit(new Archer() { Name = "Archer", Class = "Archer", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new(0, 0) });
+        UnitManager.Monsters.AddUnit(new Mage() { Name = "Mage", Class = "Mage", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new(0, 0) });
 
         List<IEntity> entities = new();
         foreach(IEntity entity in UnitManager.Characters.Units)
@@ -51,10 +50,12 @@ public class GameEngine
             entities.Add(entity);
         }
 
-        foreach(IEntity entity in monsters.Units)
+        foreach(IEntity entity in UnitManager.Monsters.Units)
         {
             entities.Add(entity);
         }
+
+        UnitManager.ExportUnits();
 
         while (true)
         {
@@ -80,7 +81,6 @@ public class GameEngine
                 if (key == ConsoleKey.Enter)
                     return;
         }
-
     }
 
     public static void End()

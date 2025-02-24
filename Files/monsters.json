@@ -1,0 +1,38 @@
+﻿[
+  {
+    "Name": "Ghost",
+    "Class": "Ghost",
+    "Level": 1,
+    "MaxHitPoints": 5,
+    "HitPoints": 5,
+    "Inventory": [],
+    "Position": {}
+  },
+  {
+    "Name": "Goblin",
+    "Class": "Goblin",
+    "Level": 1,
+    "MaxHitPoints": 5,
+    "HitPoints": 5,
+    "Inventory": [],
+    "Position": {}
+  },
+  {
+    "Name": "Archer",
+    "Class": "Archer",
+    "Level": 1,
+    "MaxHitPoints": 5,
+    "HitPoints": 5,
+    "Inventory": [],
+    "Position": {}
+  },
+  {
+    "Name": "Mage",
+    "Class": "Mage",
+    "Level": 1,
+    "MaxHitPoints": 5,
+    "HitPoints": 5,
+    "Inventory": [],
+    "Position": {}
+  }
+]

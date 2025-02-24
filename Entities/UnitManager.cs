@@ -28,6 +28,7 @@ public static class UnitManager
     public static void ExportUnits()                           //Exports the stored characters into the specified csv file
     {
         new FileManager<Character>().ExportUnits(Characters.Units);
+        new FileManager<Monster>().ExportUnits(Monsters.Units);
     }
 
 
