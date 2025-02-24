@@ -23,20 +23,23 @@ public static class UserInterface
     public static void UpdateUnitSelectMenu()
     {
         UnitSelectionMenu = new();
-        foreach(IEntity unit in UnitManager.Characters.Units)
+        foreach (IEntity unit in UnitManager.Characters.Units)
         {
             UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class}", unit);
         }
-        UnitSelectionMenu.AddMenuItem("Exit", "", null!);
+        foreach (IEntity unit in UnitManager.Monsters.Units)
+        {
+            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class}", unit);
+        }
     }
     private static void BuildInteractiveMainMenu() // Builds the main menu.  The main menu stores an index (AutoNumber), option, description, and an action.
                                                    // Used for quick and easy reference later when these menus are shown and the selection action is executed.
     {
         MainMenu = new();
         MainMenu.AddMenuItem("Display All Characters", "Displays all characters and items in their inventory.", UnitManager.DisplayCharacters);
-        MainMenu.AddMenuItem("Find Character", "Finds an existing character by name.", CharacterFunctions.FindCharacter);
-        MainMenu.AddMenuItem("New Character", "Creates a new character.", CharacterFunctions.NewCharacter);
-        MainMenu.AddMenuItem("Level Up Chracter", "Levels an existing character.", CharacterFunctions.LevelUp);
+        MainMenu.AddMenuItem("Find Character", "Finds an existing character by name.", CharacterUtilities.FindCharacter);
+        MainMenu.AddMenuItem("New Character", "Creates a new character.", CharacterUtilities.NewCharacter);
+        MainMenu.AddMenuItem("Level Up Chracter", "Levels an existing character.", CharacterUtilities.LevelUp);
         MainMenu.AddMenuItem("Change File Format", "Changes the file format between Csv and Json", FileManager<Character>.SwitchFileType);
         MainMenu.AddMenuItem("Start Game", "Starts the game", DoNothing);
         MainMenu.BuildTable();

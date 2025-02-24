@@ -8,11 +8,28 @@ namespace w5_assignment_ksteph.UI;
 
 public class InteractiveUnitSelectionMenu : InteractiveMenu
 {
+
     // The MainMenu contains items that have 4 parts, the index, the name, the description, and the action that
     // is completed when that menu item is chosen.
     public void AddMenuItem(string name, string desc, IEntity unit)
     {
         _menuItems.Add(new InteractiveUnitSelectionMenuItem(_menuItems.Count, name, desc, unit));
+    }
+
+    public IEntity RunInteractiveMenuReturnUnit(string prompt)
+    {
+        IEntity unit = null;
+        bool exit = false;
+        while (exit != true)
+        {
+            Console.Clear();
+            Console.WriteLine(prompt);
+            BuildTable();
+            Show();
+            ConsoleKey key = ReturnValidKey();
+            unit = DoKeyActionReturnUnit(key, out exit);
+        }
+        return unit;
     }
 
     public IEntity GetUnit(int selection)
@@ -28,10 +45,28 @@ public class InteractiveUnitSelectionMenu : InteractiveMenu
         return menuItems[selection].Unit; // Runs the action selected.
     }
 
-    protected override bool MenuSelectEnter()
+    protected bool MenuSelectEnterReturnUnit(out IEntity unit)
     {
-        IEntity selectedUnit = GetUnit(_selectedIndex);
-        return (_selectedIndex == _menuItems.Count - 1) ? true : false;
+        unit = GetUnit(_selectedIndex);
+        return true;
+    }
+    protected IEntity DoKeyActionReturnUnit(ConsoleKey key, out bool exit)
+    {
+        IEntity unit = null;
+        exit = false;
+        switch (key)
+        {
+            case ConsoleKey.UpArrow:
+                MenuSelectUp();
+                break;
+            case ConsoleKey.DownArrow:
+                MenuSelectDown();
+                break;
+            case ConsoleKey.Enter:
+                exit = MenuSelectEnterReturnUnit(out unit);
+                break;
+        }
+        return unit;
     }
 }
 
