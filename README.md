@@ -1,3 +1,100 @@
+## ConsoleRPG Feature Notes v0.1.5
+
+### New Interactive Menu
+We are happy to introduce the new interactive menu!  Instead of prompting the user for a number, we have a new menu that allows the user to hit up, down, and enter to make selections.
+
+### New Inferfaces
+- IAttack
+  - Allows a unit to attack.
+- IAttackable
+   - Allows a unit to be attacked.
+- ICastable
+   - Allows a unit to cast spells.
+- IEntity
+   - Allows a unit to exist.
+- IFlyable
+   - Allows a unit to fly.
+- IHeal
+   - Allows a unit to heal.
+- IInventory
+   - Allows a unit to hold items.
+- IShootable
+   - Allows a unit to shoot
+- ICommand
+   - An interface to implement the new command system.
+
+### New Classes
+Intrudoducing new unit structure system that includes:
+- Abstract Unit class that implements IEntity that serves as a base for other units.
+   - Generic Monster class
+      - An Archer class that is able to shoow.
+      - A Cleric class that can heal others and cast spells.
+      - A Ghost class that can fly.
+      - A Goblin class with no special features.
+      - A Mage class that can cast spells.
+
+### Refactors For Generic Types!
+A few changes have been made to a few classes to allow for generic types to be used.
+- Character importing and exporting
+   - UnitManager<TUnit>, FileManager<TUnit>, CsvFileHandler<TUnit>, and JsonFileHandler<TUnit> now allow generic types to allow importing of other types of units instead of just characters.  A new monsters.csv and monsters.json file have been added that load monsters into the game.
+- InteractiveReturnMenu
+   - InteractiveReturnMenu<TType> is a menu that allows the user to select an option using the new interactive menu and returns a generic type.  This new menu type is being used to:
+      - Ask the user to select a unit and returns a unit.
+      - Asks the user to select a command and returns an ICommand.
+      - Used in the Interactive Main Menu to store Actions.
+- Unit storage
+   - A new UnitSet<TUnit> class allows storage of sets of units of a certain type.  We currently implement two unit sets:
+      - UnitSet<Character> that holds a list of characters
+      - UnitSet<Monster> that holds a list of monsters of various classes.
+
+
+### New Command System
+A new command system has been added that implments the usage of ICommand.
+- AttackCommand
+  - Allows a unit to attack another unit.  The attack command uses a hit chance and a crit chance to determine whether or not an attack lands.  Damage is also calculated.
+- CastCommand
+   - Allows a unit to cast a spell.  Takes in a spell name and causes the unit to cast the named spell.
+- FlyCommand
+   - Allows a unit to fly.  A unit will fly instead of move when move is called.
+- HealCommand
+   - Allows a unit to heal others.  Takes in a target and calculates crit chance and heal amount.  Heal spells cannot miss.
+- MoveCommand
+   - Allows a unit to move.  Asks the user for an x-coord and a z-coord and moves the unit to that position.
+- ShootCommand
+   - Allows a unit to shoot another unit.  The attack command uses a hit chance and a crit chance to determine whether or not an attack lands.  Damage is also calculated.  A unit will shoot instead of attack if possible.
+ 
+### Game Engine
+Last, but certainly not least, we have implemented a new GameEngine class.
+- Shows the main menu that allows:
+   - Display Characters
+      - Displays each character, their basic information, and their inventory.
+   - Find Character
+      - Prompts the user for a character name and displays character information for that character.
+   - New Character
+      - Asks the user for some information and creates a new character.
+   - Level Up Character
+      - Asks the user for a character name and levels that character up by one.
+   - Change File Format
+      - Switches the file format between .csv and .json
+   - Start Game
+      - Asks the user to select a unit from the new interactive menu.
+      - Asks the user to select an action using the new interactive menu.
+         - Move:
+            - Asks the user to input an x-coord and a z-coord
+            - Moves the unit if it is able to.
+         - Attack:
+            - Asks the user to select a target unit.
+            - Attacks the target unit if it is able to.
+               - Calculates hit and crit chance.  (Crit deals double damage)
+               - Applies damage if applicable.
+         - Heal:
+            - Asks the user to select a unit to heal.
+            - Heals if the unit is able to.
+         - Cast:
+            - Asks the user for a spell name.
+            - The unit casts that spell if it is able to.
+
+
 ## Week 5 Assignment: Refactor ConsoleRPG to Adhere to LSP and Implement New Behaviors
 
 ### Objective
