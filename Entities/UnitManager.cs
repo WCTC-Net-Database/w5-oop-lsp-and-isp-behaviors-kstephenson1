@@ -31,15 +31,15 @@ public static class UnitManager
             // Units imported from the monsters file are imported as monsters.  This block of text converts these monsters to their respective types.
             // Is there a way to automate this without having to add a new line for every unit I add?
             if (monster.Class == "Archer")
-                Monsters.AddUnit(new Archer() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
+                Monsters.AddUnit(new EnemyArcher() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
             if (monster.Class == "Ghost")
-                Monsters.AddUnit(new Ghost() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
+                Monsters.AddUnit(new EnemyGhost() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
             if (monster.Class == "Goblin")
-                Monsters.AddUnit(new Goblin() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
+                Monsters.AddUnit(new EnemyGoblin() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
             if (monster.Class == "Mage")
-                Monsters.AddUnit(new Mage() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
+                Monsters.AddUnit(new EnemyMage() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
             if (monster.Class == "Cleric")
-                Monsters.AddUnit(new Cleric() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
+                Monsters.AddUnit(new EnemyCleric() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
         }
 
         foreach (IEntity unit in Characters.Units)

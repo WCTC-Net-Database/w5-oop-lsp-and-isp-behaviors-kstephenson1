@@ -1,7 +1,7 @@
 ﻿using w5_assignment_ksteph.Commands.Invokers;
 using w5_assignment_ksteph.Commands;
 
-namespace w5_assignment_ksteph.Interfaces;
+namespace w5_assignment_ksteph.Interfaces.Behaviors;
 
 public interface IAttack
 {

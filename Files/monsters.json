@@ -1,6 +1,6 @@
 [
   {
-    "Name": "Ghost",
+    "Name": "Poltergeist",
     "Class": "Ghost",
     "Level": 4,
     "HP": 14,
@@ -9,7 +9,7 @@
     "Position": {}
   },
   {
-    "Name": "Goblin",
+    "Name": "Ruthless Treasure-Gather",
     "Class": "Goblin",
     "Level": 2,
     "HP": 11,
@@ -18,7 +18,7 @@
     "Position": {}
   },
   {
-    "Name": "Archer",
+    "Name": "Sniper",
     "Class": "Archer",
     "Level": 5,
     "HP": 12,
@@ -27,7 +27,7 @@
     "Position": {}
   },
   {
-    "Name": "Mage",
+    "Name": "Studious Spellcaster",
     "Class": "Mage",
     "Level": 2,
     "HP": 7,
@@ -36,7 +36,7 @@
     "Position": {}
   },
   {
-    "Name": "Cleric",
+    "Name": "Doctor of the Fallen",
     "Class": "Cleric",
     "Level": 3,
     "HP": 9,

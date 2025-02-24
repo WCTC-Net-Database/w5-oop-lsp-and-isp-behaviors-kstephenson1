@@ -4,6 +4,7 @@ using w5_assignment_ksteph.DataHelper;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Interfaces;
+using w5_assignment_ksteph.Interfaces.Behaviors;
 using w5_assignment_ksteph.UI;
 
 namespace w5_assignment_ksteph;

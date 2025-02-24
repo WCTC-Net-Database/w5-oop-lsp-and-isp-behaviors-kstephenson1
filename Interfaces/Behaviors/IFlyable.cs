@@ -2,7 +2,7 @@
 using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.DataTypes.Structs;
 
-namespace w5_assignment_ksteph.Interfaces;
+namespace w5_assignment_ksteph.Interfaces.Behaviors;
 
 public interface IFlyable
 {

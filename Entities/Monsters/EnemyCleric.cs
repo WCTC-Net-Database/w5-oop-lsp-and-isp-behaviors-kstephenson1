@@ -1,9 +1,10 @@
 ﻿using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.Interfaces;
+using w5_assignment_ksteph.Interfaces.Behaviors;
 
 namespace w5_assignment_ksteph.Entities.Monsters;
 
-public class Cleric : Monster, IHeal, ICastable
+public class EnemyCleric : Monster, ICleric
 {
     // An Cleric unit that is able to heal and cast spells.
 

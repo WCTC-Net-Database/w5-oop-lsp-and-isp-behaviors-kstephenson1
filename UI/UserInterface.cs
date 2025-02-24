@@ -49,11 +49,19 @@ public static class UserInterface
         UnitSelectionMenu = new(prevIndex);
         foreach (IEntity unit in UnitManager.Characters.Units)
         {
-            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class} {unit.GetHealthBar()}", unit);
+            if (unit.HitPoints <= 0)
+            {
+                UnitSelectionMenu.AddMenuItem($"[green][dim][strikethrough]{unit.Name} Level {unit.Level} {unit.Class}[/][/][/]", $" {unit.GetHealthBar()}", unit);
+            }
+            else
+            {
+                UnitSelectionMenu.AddMenuItem($"[green][bold]{unit.Name}[/][/] Level {unit.Level} {unit.Class}", $" {unit.GetHealthBar()}", unit);
+
+            }
         }
         foreach (IEntity unit in UnitManager.Monsters.Units)
         {
-            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class} {unit.GetHealthBar()}", unit);
+            UnitSelectionMenu.AddMenuItem($"[red][bold]{unit.Name}[/][/] Level {unit.Level} {unit.Class}", $" {unit.GetHealthBar()}", unit);
         }
     }
     public static void BuildCommandMenu()

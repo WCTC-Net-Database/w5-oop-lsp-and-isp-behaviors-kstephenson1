@@ -1,6 +1,4 @@
-﻿using w5_assignment_ksteph.Interfaces;
-using w5_assignment_ksteph.Inventories;
-using w5_assignment_ksteph.UI;
+﻿using w5_assignment_ksteph.Inventories;
 
 namespace w5_assignment_ksteph.Entities.Monsters;
 

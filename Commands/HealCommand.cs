@@ -1,5 +1,6 @@
 ﻿using w5_assignment_ksteph.Combat;
 using w5_assignment_ksteph.Interfaces;
+using w5_assignment_ksteph.Interfaces.Behaviors;
 
 namespace w5_assignment_ksteph.Commands;
 

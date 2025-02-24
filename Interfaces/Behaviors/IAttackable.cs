@@ -1,4 +1,4 @@
-﻿namespace w5_assignment_ksteph.Interfaces
+﻿namespace w5_assignment_ksteph.Interfaces.Behaviors
 {
     public interface IAttackable
     {
@@ -9,6 +9,6 @@
         void OnDamageTaken();
         void OnDeath();
         bool IsDead();
-        
+
     }
 }

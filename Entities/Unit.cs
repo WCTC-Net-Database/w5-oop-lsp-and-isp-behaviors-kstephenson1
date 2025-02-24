@@ -5,6 +5,7 @@ using w5_assignment_ksteph.Commands.Invokers;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.FileIO.Csv;
 using w5_assignment_ksteph.Interfaces;
+using w5_assignment_ksteph.Interfaces.Behaviors;
 using w5_assignment_ksteph.Inventories;
 
 namespace w5_assignment_ksteph.Entities;
@@ -34,9 +35,9 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
     [TypeConverter(typeof(CsvInventoryConverter))]          // CsvHelper Attribute that helps CsvHelper import a new inventory object instead of a string.
     public virtual Inventory Inventory { get; set; } = new();
     public virtual Position Position { get; set; } = new();
-    public CommandInvoker Invoker { get; set; } = new();
-    public AttackCommand AttackCommand { get; set; } = null!;
-    public MoveCommand MoveCommand { get; set; } = null!;
+    public virtual CommandInvoker Invoker { get; set; } = new();
+    public virtual AttackCommand AttackCommand { get; set; } = null!;
+    public virtual MoveCommand MoveCommand { get; set; } = null!;
 
     public Unit() { }
 
@@ -107,9 +108,15 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
             if (i < HitPoints)
                 bar += "[green]■[/]";
             else
-                bar += "[red]■[/]";
+                bar += "[red3]■[/]";
         }
-        return bar + "]]";
+        bar += "]]";
+
+        if (HitPoints <= 0)
+        {
+            return $"[dim]{bar}[/]";
+        }
+        return bar;
     }
 
 }

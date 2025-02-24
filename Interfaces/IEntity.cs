@@ -1,5 +1,6 @@
 ﻿using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.DataTypes.Structs;
+using w5_assignment_ksteph.Interfaces.Behaviors;
 using w5_assignment_ksteph.UI;
 
 namespace w5_assignment_ksteph.Interfaces;

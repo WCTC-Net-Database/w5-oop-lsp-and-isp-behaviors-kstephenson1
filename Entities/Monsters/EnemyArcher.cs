@@ -1,9 +1,10 @@
 ﻿using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.Interfaces;
+using w5_assignment_ksteph.Interfaces.Behaviors;
 
 namespace w5_assignment_ksteph.Entities.Monsters;
 
-public class Archer : Monster, IShootable
+public class EnemyArcher : Monster, IArcher
 {
     // An Archer unit that is able to shoot.
     public ShootCommand ShootCommand { get; set; }

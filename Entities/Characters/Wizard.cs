@@ -1,9 +1,10 @@
 ﻿using w5_assignment_ksteph.Commands;
-using w5_assignment_ksteph.Interfaces;
+using w5_assignment_ksteph.Entities.Monsters;
+using w5_assignment_ksteph.Interfaces.Behaviors;
 
-namespace w5_assignment_ksteph.Entities.Monsters;
+namespace w5_assignment_ksteph.Entities.Characters;
 
-public class Mage : Monster, ICastable
+public class Wizard : Character, IMage
 {
     // A Mage unit that is able to cast spells.
     public CastCommand CastCommand { get; set; } = null!;
