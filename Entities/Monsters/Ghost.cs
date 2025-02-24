@@ -15,4 +15,6 @@ public class Ghost : Monster, IFlyable
         Invoker.ExecuteCommand(FlyCommand);
     }
 
+    public override void Move(Position position) => Fly(position);
+
 }

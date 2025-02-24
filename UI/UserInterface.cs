@@ -1,8 +1,11 @@
 ﻿using System.Diagnostics;
+using System.Windows.Input;
+using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.FileIO;
 using w5_assignment_ksteph.Interfaces;
+using ICommand = w5_assignment_ksteph.Commands.ICommand;
 
 namespace w5_assignment_ksteph.UI;
 
@@ -10,7 +13,8 @@ namespace w5_assignment_ksteph.UI;
 public static class UserInterface
 {
     public static InteractiveMainMenu MainMenu { get; private set; } = new();
-    public static InteractiveUnitSelectionMenu UnitSelectionMenu { get; private set; } = new();
+    public static InteractiveReturnMenu<IEntity> UnitSelectionMenu { get; private set; } = new();
+    public static InteractiveReturnMenu<ICommand> CommandMenu { get; private set; } = new();
     public static Menu ExitMenu { get; private set; } = new();
 
     public static void BuildMenus() // Builds main menu and he exit message.
@@ -20,18 +24,6 @@ public static class UserInterface
         BuildExitMenu();
     }
 
-    public static void UpdateUnitSelectMenu()
-    {
-        UnitSelectionMenu = new();
-        foreach (IEntity unit in UnitManager.Characters.Units)
-        {
-            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class}", unit);
-        }
-        foreach (IEntity unit in UnitManager.Monsters.Units)
-        {
-            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class}", unit);
-        }
-    }
     private static void BuildInteractiveMainMenu() // Builds the main menu.  The main menu stores an index (AutoNumber), option, description, and an action.
                                                    // Used for quick and easy reference later when these menus are shown and the selection action is executed.
     {
@@ -52,7 +44,26 @@ public static class UserInterface
         ExitMenu.BuildTable();
     }
 
-    public static void BuildUnitSelectMenu() => UpdateUnitSelectMenu();
+    public static void BuildUnitSelectMenu()
+    {
+        UnitSelectionMenu = new();
+        foreach (IEntity unit in UnitManager.Characters.Units)
+        {
+            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class}", unit);
+        }
+        foreach (IEntity unit in UnitManager.Monsters.Units)
+        {
+            UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class}", unit);
+        }
+    }
+    public static void BuildCommandMenu()
+    {
+        CommandMenu = new();
+        CommandMenu.AddMenuItem("Move", "Moves", new MoveCommand(null, new()));
+        CommandMenu.AddMenuItem("Attack", "Attacks", new AttackCommand(null, null));
+        CommandMenu.AddMenuItem("Cast", "Casts", new CastCommand(null, "null"));
+        CommandMenu.BuildTable();
+    }
 
     public static void Exit() // Shows the exit menu.
     {

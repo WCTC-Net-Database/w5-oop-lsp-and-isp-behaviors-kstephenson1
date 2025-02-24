@@ -6,19 +6,19 @@ using w5_assignment_ksteph.Interfaces;
 
 namespace w5_assignment_ksteph.UI;
 
-public class InteractiveUnitSelectionMenu : InteractiveMenu
+public class InteractiveReturnMenu<Ttype> : InteractiveMenu
 {
 
     // The MainMenu contains items that have 4 parts, the index, the name, the description, and the action that
     // is completed when that menu item is chosen.
-    public void AddMenuItem(string name, string desc, IEntity unit)
+    public void AddMenuItem(string name, string desc, Ttype selection)
     {
-        _menuItems.Add(new InteractiveUnitSelectionMenuItem(_menuItems.Count, name, desc, unit));
+        _menuItems.Add(new InteractiveReturnMenuItem<Ttype>(_menuItems.Count, name, desc, selection));
     }
 
-    public IEntity RunInteractiveMenuReturnUnit(string prompt)
+    public Ttype RunInteractiveMenuReturnUnit(string prompt)
     {
-        IEntity unit = null!;
+        Ttype selection = default(Ttype);
         bool exit = false;
         while (exit != true)
         {
@@ -27,32 +27,32 @@ public class InteractiveUnitSelectionMenu : InteractiveMenu
             BuildTable();
             Show();
             ConsoleKey key = ReturnValidKey();
-            unit = DoKeyActionReturnUnit(key, out exit);
+            selection = DoKeyActionReturnUnit(key, out exit);
         }
-        return unit;
+        return selection;
     }
 
-    public IEntity GetUnit(int selection)
+    public Ttype GetSelection(int selection)
     {
         // The Action method takes in a selecion from the main menu, then triggers the action associated with that menu item.
-        List<InteractiveUnitSelectionMenuItem> menuItems = new();
+        List<InteractiveReturnMenuItem<Ttype>> menuItems = new();
 
         foreach (MenuItem item in _menuItems) // Casts each of the MenuItems into MainMenuItems so the actions can work.
         {
-            menuItems.Add((InteractiveUnitSelectionMenuItem)item);
+            menuItems.Add((InteractiveReturnMenuItem<Ttype>)item);
         }
 
-        return menuItems[selection].Unit; // Runs the action selected.
+        return menuItems[selection].Selection; // Runs the action selected.
     }
 
-    protected bool MenuSelectEnterReturnUnit(out IEntity unit)
+    protected bool MenuSelectEnterReturnUnit(out Ttype selection)
     {
-        unit = GetUnit(_selectedIndex);
+        selection = GetSelection(_selectedIndex);
         return true;
     }
-    protected IEntity DoKeyActionReturnUnit(ConsoleKey key, out bool exit)
+    protected Ttype DoKeyActionReturnUnit(ConsoleKey key, out bool exit)
     {
-        IEntity unit = null!;
+        Ttype selection = default(Ttype);
         exit = false;
         switch (key)
         {
@@ -63,10 +63,10 @@ public class InteractiveUnitSelectionMenu : InteractiveMenu
                 MenuSelectDown();
                 break;
             case ConsoleKey.Enter:
-                exit = MenuSelectEnterReturnUnit(out unit);
+                exit = MenuSelectEnterReturnUnit(out selection);
                 break;
         }
-        return unit;
+        return selection;
     }
 }
 

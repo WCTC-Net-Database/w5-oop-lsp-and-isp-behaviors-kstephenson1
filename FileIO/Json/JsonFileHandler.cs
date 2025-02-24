@@ -2,7 +2,9 @@
 
 using System.Collections.Generic;
 using System.Text.Json;
+using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Entities.Characters;
+using w5_assignment_ksteph.Entities.Monsters;
 
 public class JsonFileHandler : ICharacterIO
 {
@@ -18,29 +20,15 @@ public class JsonFileHandler : ICharacterIO
         _options.WriteIndented = true;                              // Writes the json file in indented format.
     }
 
-    /*
-    public List<Character> ReadCharacters()
-    {
-
-        using StreamReader reader = new(JSON_FILE_PATH);            // reads from the json file and returns a list of characters.
-        string json = reader.ReadToEnd();
-        return JsonSerializer.Deserialize<List<Character>>(json, _options)!;
-    }
-
-    public void WriteCharacters(List<Character> characters)
-    {
-        using StreamWriter writer = new(JSON_FILE_PATH);            // Takes a list of characters and writes to the json file
-        writer.WriteLine(JsonSerializer.Serialize<List<Character>>(characters, _options));
-    }
-    */
-
     public List<TUnit> ReadUnits<TUnit>(string dir)
     {
 
         using StreamReader reader = new(dir + JSON_EXT);            // reads from the json file and returns a list of characters.
         string json = reader.ReadToEnd();
+
         return JsonSerializer.Deserialize<List<TUnit>>(json, _options)!;
     }
+
     public void WriteUnits<TUnit>(List<TUnit> units, string dir)
     {
         using StreamWriter writer = new(dir + JSON_EXT);            // Takes a list of characters and writes to the json file

@@ -37,11 +37,8 @@ public class GameEngine
     public static void Run()
     {
         //UserInterface.MainMenu.RunInteractiveMenu();
-        //UserInterface.UnitSelectionMenu.RunInteractiveMenu();
 
-        UserInterface.UpdateUnitSelectMenu();
-        //IEntity testunit = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit();
-       // Console.WriteLine(testunit);
+        UserInterface.BuildUnitSelectMenu();
 
         List<IEntity> entities = new();
         foreach(IEntity entity in UnitManager.Characters.Units)
@@ -54,51 +51,26 @@ public class GameEngine
             entities.Add(entity);
         }
 
-        UnitManager.Monsters.ExportUnits();
+        while (true)
+        {
+            IEntity unit1 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit("Select attacking unit");
 
-        IEntity archer1 = new Archer() { Name = "Archer", Class = "Archer", Level = 1, HitPoints = 10, Inventory = new(), Position = new(0, 0) };
-        IEntity archer2 = new Archer() { Name = "Archer", Class = "Archer", Level = 1, HitPoints = 10, Inventory = new(), Position = new(0, 0) };
-        archer1.Attack(archer2);
+            IEntity unit2 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit($"Select unit being attacked by {unit1.Name}");
 
-        //while (true)
-        //{
-        //    Console.WriteLine("Select attacking unit");
-        //    IEntity unit1 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit("Select first unit");
+            if (unit1 != unit2)
+            {
+                unit1.Attack(unit2);
+            }
+            else
+            {
+                Console.WriteLine($"{unit1.Name} should not attack themselves.  That's not very nice!");
+            }
 
-        //    Console.WriteLine("Select target unit");
-        //    IEntity unit2 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit("Select second unit");
-
-        //    if (unit1 != unit2)
-        //    {
-        //        // Encounter where damage is 1-4, hit chance is 70%, and crit chance is 10%
-        //        EncounterStats encounter = new(unit1, unit2, 1, 4, 70, 10);
-
-        //        AttackCommand attack = new(encounter);
-        //        //MoveCommand move = new(entities[3], entities[3].Position + new Position(1, 1));
-        //        //FlyCommand fly = new(entities[5], entities[3].Position + new Position(1, 1));
-        //        //ShootCommand shoot = new(encounter2);
-        //        //CastCommand cast = new(entities[8], "fireball");
-
-        //        InvokeCommand invoker = new InvokeCommand();
-        //        Console.WriteLine("");
-        //        invoker.ExecuteCommand(attack);
-        //        //invoker.ExecuteCommand(move);
-        //        //invoker.ExecuteCommand(fly);
-        //        //invoker.ExecuteCommand(shoot);
-        //        //invoker.ExecuteCommand(cast);
-
-
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine($"{unit1.Name} should not attack themselves.  That's not very nice!");
-        //    }
-
-        //    Console.WriteLine("\nPress escape to exit or any other key to continue...");
-        //    ConsoleKey key = Console.ReadKey(true).Key;
-        //    if (key == ConsoleKey.Escape)
-        //        return;
-        //}
+            Console.WriteLine("\nPress escape to exit or any other key to continue...");
+            ConsoleKey key = Console.ReadKey(true).Key;
+            if (key == ConsoleKey.Escape)
+                return;
+        }
     }
 
     public static void End()

@@ -23,7 +23,19 @@ public static class UnitManager
     public static void ImportUnits()                           //Imports the characters from the csv file and stores them.
     {
         Characters.Units = new FileManager<Character>().ImportUnits<Character>();
-        Monsters.Units = new FileManager<Monster>().ImportUnits<Monster>();
+
+        List<Monster> importedMonsters = new FileManager<Monster>().ImportUnits<Monster>();
+        foreach (Monster monster in importedMonsters)
+        {
+            if (monster.Class == "Archer")
+                Monsters.AddUnit(new Archer() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
+            if (monster.Class == "Ghost")
+                Monsters.AddUnit(new Ghost() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
+            if (monster.Class == "Goblin")
+                Monsters.AddUnit(new Goblin() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
+            if (monster.Class == "Mage")
+                Monsters.AddUnit(new Mage() { Name = monster.Name, Class = monster.Class, Level = monster.Level, HitPoints = monster.HitPoints, Inventory = monster.Inventory });
+        }
     }
 
     public static void ExportUnits()                           //Exports the stored characters into the specified csv file
