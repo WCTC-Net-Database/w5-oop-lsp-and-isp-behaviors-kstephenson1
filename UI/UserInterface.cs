@@ -23,7 +23,7 @@ public static class UserInterface
     public static void UpdateUnitSelectMenu()
     {
         UnitSelectionMenu = new();
-        foreach(IEntity unit in CharacterCollection.Characters)
+        foreach(IEntity unit in UnitManager.Characters.Units)
         {
             UnitSelectionMenu.AddMenuItem(unit.Name, $"Level {unit.Level} {unit.Class}", unit);
         }
@@ -33,7 +33,7 @@ public static class UserInterface
                                                    // Used for quick and easy reference later when these menus are shown and the selection action is executed.
     {
         MainMenu = new();
-        MainMenu.AddMenuItem("Display All Characters", "Displays all characters and items in their inventory.", CharacterCollection.DisplayAllCharacters);
+        MainMenu.AddMenuItem("Display All Characters", "Displays all characters and items in their inventory.", UnitManager.DisplayCharacters);
         MainMenu.AddMenuItem("Find Character", "Finds an existing character by name.", CharacterFunctions.FindCharacter);
         MainMenu.AddMenuItem("New Character", "Creates a new character.", CharacterFunctions.NewCharacter);
         MainMenu.AddMenuItem("Level Up Chracter", "Levels an existing character.", CharacterFunctions.LevelUp);

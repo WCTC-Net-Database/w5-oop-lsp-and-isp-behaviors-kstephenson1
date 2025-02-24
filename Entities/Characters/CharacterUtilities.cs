@@ -29,10 +29,10 @@ public class CharacterUtilities
         Console.Clear();
         Console.WriteLine($"\nWelcome, {name} the {characterClass}! You are level {level} and your equipment includes: {string.Join(", ", inventory)}.\n");
 
-        CharacterCollection.AddCharacter(
+        UnitManager.AddCharacter(
             new() { Name = name, Class = characterClass, Level = level, MaxHitPoints = hitPoints, Inventory = inventory });
 
-        CharacterCollection.ExportUnits();
+        UnitManager.ExportUnits();
     }
 
     public static void FindCharacter() // Asks the user for a name and displays a character based on input.
@@ -53,7 +53,7 @@ public class CharacterUtilities
 
     private static Character? FindCharacterByName(string name) // Finds and returns a character based on input.
     {
-        return CharacterCollection.Characters.Where(character => string.Equals(character.Name, name, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+        return UnitManager.Characters.Units.Where(character => string.Equals(character.Name, name, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
     }
 
     public static void LevelUp() //Asks the user for a character to level up, then displays that character.

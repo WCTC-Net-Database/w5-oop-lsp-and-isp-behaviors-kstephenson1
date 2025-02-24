@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.Commands.Invokers;
 using w5_assignment_ksteph.DataTypes.Structs;
+using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.Entities.Monsters;
 using w5_assignment_ksteph.Interfaces;
@@ -29,7 +30,7 @@ public class GameEngine
     {
         // The Initialization method runs a few things that need to be done before the main part of the program runs.
 
-        CharacterCollection.ImportUnits(); //Imports the caracters from the csv or json file.
+        UnitManager.ImportUnits(); //Imports the caracters from the csv or json file.
         UserInterface.BuildMenus(); // Builds the menus and prepares the user interface tables.
     }
 
@@ -38,14 +39,14 @@ public class GameEngine
         UserInterface.MainMenu.RunInteractiveMenu();
         UserInterface.UnitSelectionMenu.RunInteractiveMenu();
 
-        UnitCollection<Monster> monsters = new();
+        UnitSet<Monster> monsters = new();
         monsters.AddUnit(new Ghost() { Name = "Ghost", Class = "Ghost", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new() });
         monsters.AddUnit(new Goblin() { Name = "Goblin", Class = "Goblin", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new() });
         monsters.AddUnit(new Archer() { Name = "Archer", Class = "Archer", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new() });
         monsters.AddUnit(new Mage() { Name = "Mage", Class = "Mage", Level = 1, HitPoints = 5, MaxHitPoints = 5, Inventory = new(), Position = new() });
 
         List<IEntity> entities = new();
-        foreach(IEntity entity in CharacterCollection.Characters)
+        foreach(IEntity entity in UnitManager.Characters.Units)
         {
             entities.Add(entity);
         }
@@ -85,6 +86,6 @@ public class GameEngine
     public static void End()
     {
         // Exports the character list back to the chosen file format and ends the program.
-        CharacterCollection.ExportUnits();
+        UnitManager.ExportUnits();
     }
 }
