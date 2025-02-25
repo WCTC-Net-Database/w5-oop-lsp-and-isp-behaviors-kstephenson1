@@ -4,7 +4,7 @@ using w5_assignment_ksteph.FileIO;
 using w5_assignment_ksteph.Interfaces;
 
 
-// UnitSet<TUnit> is a class contains a list of a generic type of unit and functions that point toward this generic unit type's
+// UnitSet<Ttype> is a class contains a list of a generic type of unit and functions that point toward this generic unit type's
 // import and export methods.
 
 public class UnitSet<TUnit> where TUnit : IEntity

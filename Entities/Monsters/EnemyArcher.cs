@@ -1,4 +1,4 @@
-﻿using w5_assignment_ksteph.Commands;
+﻿using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Interfaces.Behaviors;
 

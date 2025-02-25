@@ -1,11 +1,11 @@
-﻿using w5_assignment_ksteph.Commands;
+﻿using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.DataTypes.Structs;
-using w5_assignment_ksteph.Interfaces.Behaviors;
-using w5_assignment_ksteph.UI;
+using w5_assignment_ksteph.Interfaces.Behaviors.CharacterBehaviors;
+using w5_assignment_ksteph.Interfaces.Behaviors.InventoryBehaviors;
 
 namespace w5_assignment_ksteph.Interfaces;
 
-public interface IEntity : IAttackable, IAttack, IInventory
+public interface IEntity : IAttackable, IAttack, IInventory, IHaveStats
 {
     // Interface tha allows units to exist.
     MoveCommand MoveCommand { set; get; }
