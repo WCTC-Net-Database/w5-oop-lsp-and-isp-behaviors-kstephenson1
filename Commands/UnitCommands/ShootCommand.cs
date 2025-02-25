@@ -1,8 +1,8 @@
 ﻿using w5_assignment_ksteph.Combat;
 using w5_assignment_ksteph.Interfaces;
-using w5_assignment_ksteph.Interfaces.Behaviors;
+using w5_assignment_ksteph.Interfaces.Behaviors.CharacterBehaviors;
 
-namespace w5_assignment_ksteph.Commands;
+namespace w5_assignment_ksteph.Commands.UnitCommands;
 
 public class ShootCommand : ICommand
 {
@@ -39,7 +39,8 @@ public class ShootCommand : ICommand
             {
                 Console.WriteLine($"{_unit.Name}'s misses {_target.Name}");
             }
-        } else
+        }
+        else
         {
             Console.WriteLine($"{_encounter.Unit.Name} cannot use the shoot action.");
         }

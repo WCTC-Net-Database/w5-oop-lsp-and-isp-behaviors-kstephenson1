@@ -1,7 +1,7 @@
 ﻿using CsvHelper.Configuration;
 using w5_assignment_ksteph.Entities;
 
-namespace w5_assignment_ksteph.FileIO.Csv;
+namespace w5_assignment_ksteph.FileIO.Csv.Converters;
 
 public class UnitMap : ClassMap<Unit>
 {

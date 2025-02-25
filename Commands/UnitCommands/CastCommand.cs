@@ -1,7 +1,7 @@
 ﻿using w5_assignment_ksteph.Interfaces;
-using w5_assignment_ksteph.Interfaces.Behaviors;
+using w5_assignment_ksteph.Interfaces.Behaviors.CharacterBehaviors;
 
-namespace w5_assignment_ksteph.Commands;
+namespace w5_assignment_ksteph.Commands.UnitCommands;
 
 public class CastCommand : ICommand
 {

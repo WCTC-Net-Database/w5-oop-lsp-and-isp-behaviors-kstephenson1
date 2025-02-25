@@ -1,4 +1,4 @@
-﻿namespace w5_assignment_ksteph.UI;
+﻿namespace w5_assignment_ksteph.UI.Menus.InteractiveMenus;
 
 public class InteractiveReturnMenu<Ttype> : InteractiveMenu
 {
@@ -8,7 +8,7 @@ public class InteractiveReturnMenu<Ttype> : InteractiveMenu
 
     public InteractiveReturnMenu()
     {
-        
+
     }
 
     public InteractiveReturnMenu(int selectedIndex)
@@ -22,7 +22,7 @@ public class InteractiveReturnMenu<Ttype> : InteractiveMenu
 
     public Ttype RunInteractiveMenuReturnUnit(string prompt)
     {
-        Ttype selection = default(Ttype)!;
+        Ttype selection = default!;
         bool exit = false;
         while (exit != true)
         {
@@ -56,7 +56,7 @@ public class InteractiveReturnMenu<Ttype> : InteractiveMenu
     }
     protected Ttype DoKeyActionReturnUnit(ConsoleKey key, out bool exit)
     {
-        Ttype selection = default(Ttype)!;
+        Ttype selection = default!;
         exit = false;
         switch (key)
         {

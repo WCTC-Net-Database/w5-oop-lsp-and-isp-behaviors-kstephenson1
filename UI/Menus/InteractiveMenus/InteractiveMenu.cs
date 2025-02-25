@@ -1,6 +1,6 @@
 ﻿using Spectre.Console;
 
-namespace w5_assignment_ksteph.UI;
+namespace w5_assignment_ksteph.UI.Menus.InteractiveMenus;
 
 public class InteractiveMenu : Menu
 {
@@ -9,7 +9,7 @@ public class InteractiveMenu : Menu
     // description, and the action that is completed when that menu item is chosen.
     public InteractiveMenu()
     {
-        
+
     }
 
     public InteractiveMenu(int selectedIndex)
@@ -67,12 +67,12 @@ public class InteractiveMenu : Menu
 
     protected virtual void MenuSelectDown()
     {
-        if (_selectedIndex < _menuItems.Count - 1)_selectedIndex++;
+        if (_selectedIndex < _menuItems.Count - 1) _selectedIndex++;
     }
 
     protected virtual bool MenuSelectEnter()
     {
-        return (_selectedIndex == _menuItems.Count - 1) ? true : false;
+        return _selectedIndex == _menuItems.Count - 1 ? true : false;
     }
 
     protected ConsoleKey ReturnValidKey()

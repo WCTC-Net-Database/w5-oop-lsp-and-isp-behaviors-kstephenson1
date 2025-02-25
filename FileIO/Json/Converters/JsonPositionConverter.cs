@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Inventories;
 
-namespace w5_assignment_ksteph.FileIO.Json;
+namespace w5_assignment_ksteph.FileIO.Json.Converters;
 
 // The JsonPositionConverter is used to turn json format into Positions structs automatically.
 public class JsonPositionConverter : JsonConverter<Position>
@@ -14,7 +14,8 @@ public class JsonPositionConverter : JsonConverter<Position>
         if (reader.TokenType == JsonTokenType.Null)
         {
             throw new JsonException("JsonPositionConverter: Value is null");
-        } else if (reader.TokenType != JsonTokenType.StartObject)
+        }
+        else if (reader.TokenType != JsonTokenType.StartObject)
         {
             throw new JsonException("JsonPositionConverter: Start of object reached.");
         }
@@ -33,7 +34,6 @@ public class JsonPositionConverter : JsonConverter<Position>
             else if (reader.TokenType == JsonTokenType.Number)
             {
                 coords.Add(reader.GetInt32());
-                Console.WriteLine(reader.GetInt32());
             }
             else
             {

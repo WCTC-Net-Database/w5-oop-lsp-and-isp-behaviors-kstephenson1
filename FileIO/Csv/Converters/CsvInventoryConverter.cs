@@ -2,7 +2,7 @@
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 
-namespace w5_assignment_ksteph.FileIO.Csv;
+namespace w5_assignment_ksteph.FileIO.Csv.Converters;
 
 // The CsvInventoryConverter is used to turn the inventory string into an Inventories Object automatically.
 public class CsvInventoryConverter : DefaultTypeConverter

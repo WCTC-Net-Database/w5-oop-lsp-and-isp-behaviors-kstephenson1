@@ -1,4 +1,4 @@
-﻿namespace w5_assignment_ksteph.UI;
+﻿namespace w5_assignment_ksteph.UI.Menus.InteractiveMenus;
 
 public class InteractiveMainMenu : InteractiveMenu
 {
@@ -25,7 +25,7 @@ public class InteractiveMainMenu : InteractiveMenu
     protected override bool MenuSelectEnter()
     {
         Action(_selectedIndex);
-        return (_selectedIndex == _menuItems.Count - 1) ? true : false;
+        return _selectedIndex == _menuItems.Count - 1 ? true : false;
     }
 }
 

@@ -1,4 +1,4 @@
-﻿namespace w5_assignment_ksteph.Interfaces.Behaviors
+﻿namespace w5_assignment_ksteph.Interfaces.Behaviors.CharacterBehaviors
 {
     public interface IAttackable
     {

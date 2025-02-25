@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using w5_assignment_ksteph.Inventories;
 
-namespace w5_assignment_ksteph.FileIO.Json;
+namespace w5_assignment_ksteph.FileIO.Json.Converters;
 
 // The JsonInventoryConverter is used to turn json format into an Inventories Object automatically.
 public class JsonInventoryConverter : JsonConverter<Inventory>
@@ -12,7 +12,8 @@ public class JsonInventoryConverter : JsonConverter<Inventory>
         if (reader.TokenType == JsonTokenType.Null)
         {
             throw new JsonException("ARRAYREADER: Value is null");
-        } else if (reader.TokenType != JsonTokenType.StartArray)
+        }
+        else if (reader.TokenType != JsonTokenType.StartArray)
         {
             throw new JsonException("ARRAYREADER: Value is not an array.");
         }
