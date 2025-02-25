@@ -1,9 +1,10 @@
 ﻿using w5_assignment_ksteph.Commands;
+using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.FileIO;
 using w5_assignment_ksteph.Interfaces;
-using ICommand = w5_assignment_ksteph.Commands.ICommand;
+using w5_assignment_ksteph.UI.Menus.InteractiveMenus;
 
 namespace w5_assignment_ksteph.UI;
 
@@ -61,7 +62,15 @@ public static class UserInterface
         }
         foreach (IEntity unit in UnitManager.Monsters.Units)
         {
-            UnitSelectionMenu.AddMenuItem($"[red][bold]{unit.Name}[/][/] Level {unit.Level} {unit.Class}", $" {unit.GetHealthBar()}", unit);
+            if (unit.HitPoints <= 0)
+            {
+                UnitSelectionMenu.AddMenuItem($"[red][dim][strikethrough]{unit.Name} Level {unit.Level} {unit.Class}[/][/][/]", $" {unit.GetHealthBar()}", unit);
+            }
+            else
+            {
+                UnitSelectionMenu.AddMenuItem($"[red][bold]{unit.Name}[/][/] Level {unit.Level} {unit.Class}", $" {unit.GetHealthBar()}", unit);
+
+            }
         }
     }
     public static void BuildCommandMenu()
