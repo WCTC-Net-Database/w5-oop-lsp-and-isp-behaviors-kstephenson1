@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using w5_assignment_ksteph.DataTypes;
 using w5_assignment_ksteph.FileIO.Json.Converters;
+using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Inventories;
 
 public class JsonFileHandler<T> : ICharacterIO, IItemIO
@@ -18,10 +19,12 @@ public class JsonFileHandler<T> : ICharacterIO, IItemIO
     public JsonFileHandler()
     {
         _options.Converters.Add(new JsonInventoryConverter());      // Using a custom converter to convert json string -> Inventory
+
         _options.Converters.Add(new JsonPositionConverter());       // Using a custom converter to convert json string -> Position
         _options.Converters.Add(new JsonNumberEnumConverter<WeaponType>());       // Using a custom converter to convert json string -> Position
         _options.Converters.Add(new JsonStringEnumConverter());       // Using a custom converter to convert json string -> Position
         _options.WriteIndented = true;                              // Writes the json file in indented format.
+        _options.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     }
 
     public List<T> Read<T>(string dir)

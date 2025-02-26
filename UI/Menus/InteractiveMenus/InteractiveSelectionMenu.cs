@@ -20,7 +20,7 @@ public class InteractiveSelectionMenu<T> : InteractiveMenu
         _menuItems.Add(new InteractiveSelectionMenuItem<T>(_menuItems.Count, name, desc, selection));
     }
 
-    public T RunInteractiveMenuReturnUnit(string prompt)
+    public T Display(string prompt)
     {
         T selection = default!;
         bool exit = false;

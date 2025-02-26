@@ -8,7 +8,10 @@ using w5_assignment_ksteph.FileIO.Csv.Converters;
 using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Interfaces.CharacterBehaviors;
 using w5_assignment_ksteph.Interfaces.InventoryBehaviors;
+using w5_assignment_ksteph.Interfaces.ItemBehaviors;
 using w5_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.Items;
+using w5_assignment_ksteph.Items.WeaponItems;
 
 namespace w5_assignment_ksteph.Entities;
 
@@ -32,8 +35,8 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
     [Ignore]
     public virtual int MaxHitPoints { get; set; }
 
-    [Name("Equipment")]                                     // CsvHelper Attribute
-    [JsonPropertyName("Equipment")]                         // Json Atribute
+    [Name("Inventory")]                                     // CsvHelper Attribute
+    [JsonPropertyName("Inventory")]                         // Json Atribute
     [TypeConverter(typeof(CsvInventoryConverter))]          // CsvHelper Attribute that helps CsvHelper import a new inventory object instead of a string.
     public virtual Inventory Inventory { get; set; } = new();
 
@@ -48,6 +51,13 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
 
     [Ignore]
     [JsonIgnore]
+    public virtual UseItemCommand UseItemCommand { get; set; } = null!;
+    public virtual EquipCommand EquipItemCommand { get; set; } = null!;
+    public virtual DropItemCommand DropItemCommand { get; set; } = null!;
+    public virtual TradeItemCommand TradeItemCommand { get; set; } = null!;
+
+    [Ignore]
+    [JsonIgnore]
     public virtual AttackCommand AttackCommand { get; set; } = null!;
 
     [Ignore]
@@ -57,8 +67,12 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
     [Ignore]
     [JsonIgnore]
     public UnitStats Stats { get; set; } = null!;
+    public EquipCommand EquipCommand { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-    public Unit() { }
+    public Unit()
+    {
+        Inventory.Unit = this;
+    }
 
     public Unit(string name, string characterClass, int level, int hitPoints, Inventory inventory)
     {
@@ -67,6 +81,7 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
         Level = level;
         MaxHitPoints = hitPoints;
         Inventory = inventory;
+        Inventory.Unit = this;
     }
 
     // Attacks the target unit.
@@ -136,6 +151,30 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
             return $"[dim]{bar}[/]";
         }
         return bar;
+    }
+
+    public void Equip(WeaponItem item)
+    {
+        EquipCommand = new(this, item);
+        Invoker.ExecuteCommand(EquipCommand);
+    }
+
+    public void DropItem(Item item)
+    {
+        DropItemCommand = new(this, item);
+        Invoker.ExecuteCommand(DropItemCommand);
+    }
+
+    public void TradeItem(Item item, IEntity target)
+    {
+        TradeItemCommand = new(this, item, target);
+        Invoker.ExecuteCommand(TradeItemCommand);
+    }
+
+    public void UseItem(IConsumableItem item)
+    {
+        UseItemCommand = new(this, item);
+        Invoker.ExecuteCommand(UseItemCommand);
     }
 
 }

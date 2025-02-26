@@ -4,6 +4,7 @@ using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.FileIO;
 using w5_assignment_ksteph.Interfaces;
+using w5_assignment_ksteph.Items;
 using w5_assignment_ksteph.UI.Menus.InteractiveMenus;
 
 namespace w5_assignment_ksteph.UI;
@@ -14,6 +15,8 @@ public static class UserInterface
     public static InteractiveMainMenu MainMenu { get; private set; } = new();
     public static InteractiveSelectionMenu<IEntity> UnitSelectionMenu { get; private set; } = new();
     public static InteractiveSelectionMenu<ICommand> CommandMenu { get; private set; } = new();
+    public static InteractiveSelectionMenu<Item> InventoryMenu { get; private set; } = new();
+    public static InteractiveSelectionMenu<bool> BoolMenu { get; private set; } = new();
     public static Menu ExitMenu { get; private set; } = new();
 
     public static void BuildMenus() // Builds main menu and he exit message.
@@ -77,10 +80,30 @@ public static class UserInterface
     {
         CommandMenu = new();
         CommandMenu.AddMenuItem("Move", "Moves the unit.", new MoveCommand(null, new()));
+        CommandMenu.AddMenuItem("Use Item", "Uses an item in this unit's inventory.", new UseItemCommand(null, null));
         CommandMenu.AddMenuItem("Attack", "Attacks a target unit.", new AttackCommand(null, null));
         CommandMenu.AddMenuItem("Heal", "Heals a target unit.", new HealCommand(null, null));
         CommandMenu.AddMenuItem("Cast", "Casts a spell.", new CastCommand(null, "null"));
         CommandMenu.BuildTable();
+    }
+
+    public static void BuildBoolMenu()
+    {
+        BoolMenu = new();
+        BoolMenu.AddMenuItem("Yes", "", true);
+        BoolMenu.AddMenuItem("No", "", true);
+        BoolMenu.BuildTable();
+    }
+
+    public static Item ShowInventoryMenu(IEntity unit, string prompt)
+    {
+        InventoryMenu = new();
+        foreach (Item item in unit.Inventory.Items)
+        {
+            InventoryMenu.AddMenuItem(item.Name, item.Description, item);
+        }
+        InventoryMenu.BuildTable();
+        return InventoryMenu.Display(prompt);
     }
 
     public static void Exit() // Shows the exit menu.

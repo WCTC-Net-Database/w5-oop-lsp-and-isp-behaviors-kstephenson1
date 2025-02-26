@@ -19,7 +19,7 @@ public class ItemPotion : Item, IConsumableItem
 
     public void BreakItem()
     {
-        throw new NotImplementedException();
+        Inventory.RemoveItem(this);
     }
 
     public void TakeItemDamage()
@@ -27,8 +27,16 @@ public class ItemPotion : Item, IConsumableItem
         throw new NotImplementedException();
     }
 
-    public void UseItem(IEntity itemUser, IEntity itemTarget)
+    public void UseItem()
     {
-        throw new NotImplementedException();
+        if (Inventory.Unit.HitPoints >= Inventory.Unit.MaxHitPoints)
+        {
+            Console.WriteLine($"{Inventory.Unit.Name} is already at max health.");
+        }
+        else
+        {
+            Inventory.Unit.HitPoints += 10;
+            UsesLeft--;
+        }
     }
 }

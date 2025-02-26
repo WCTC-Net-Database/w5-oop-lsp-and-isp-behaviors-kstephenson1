@@ -5,7 +5,7 @@ public interface IConsumableItem
 {
     public int MaxUses { get; set; }
     public int UsesLeft { get; set; }
-    public void UseItem(IEntity itemUser, IEntity itemTarget);
+    public void UseItem();
     public void TakeItemDamage();
     public void BreakItem();
 }

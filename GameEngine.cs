@@ -5,9 +5,12 @@ using w5_assignment_ksteph.DataHelper;
 using w5_assignment_ksteph.DataTypes;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Entities;
+using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Interfaces.CharacterBehaviors;
+using w5_assignment_ksteph.Interfaces.ItemBehaviors;
 using w5_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.Items;
 using w5_assignment_ksteph.Items.WeaponItems;
 using w5_assignment_ksteph.UI;
 
@@ -19,15 +22,26 @@ public class GameEngine
     {        
         Initialization();
         Run();
-        Test();
+        //Test();
         End();
     }
 
     void Test()
     {
-        ItemManager.Import<WeaponItem>();
+        //ItemManager.Import<WeaponItem>();
+        //ItemManager.DisplayItems();
 
-        ItemManager.DisplayItems();
+        IEntity test = UnitManager.Characters.Units[0];
+        Console.WriteLine("Character | " + test.ToString());
+        Console.WriteLine("Character.Inventory.Item | " + test.Inventory.Items[0].ToString());
+        Console.WriteLine("Character.Inventory.Item.Inventory | " + test.Inventory.Items[0].Inventory);
+        Console.WriteLine("Character.Inventory.Item.Inventory.Character | " + test.Inventory.Items[0].Inventory.Unit);
+
+        //Fighter test2 = new("Test", "Fighter", 20, 20, new(), new(0, 0));
+        //test2.Inventory.AddItem(new("testitem"));
+        //Console.WriteLine("Character.Inventory.Item.Inventory.Character | " + test2.Inventory.Items[0].Inventory.Unit);
+
+        //UnitManager.Characters.AddUnit(test2);
     }
 
     public static void Initialization()
@@ -51,12 +65,12 @@ public class GameEngine
         while (true)
         {
             // Asks the user to choose a unit.
-            IEntity unit1 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit("Select unit to control");
+            IEntity unit1 = UserInterface.UnitSelectionMenu.Display("Select unit to control");
 
             if (unit1.HitPoints <= 0) continue;
 
             // Asks the user to choose an action for unit.
-            ICommand command = UserInterface.CommandMenu.RunInteractiveMenuReturnUnit($"Select action for {unit1.Name}");
+            ICommand command = UserInterface.CommandMenu.Display($"Select action for {unit1.Name}");
 
             // If the unit is able to move, the unit moves.
             if (command.GetType() == typeof(MoveCommand))
@@ -73,12 +87,29 @@ public class GameEngine
                 }
 
             }
-            // If the unit is able to attack, it attacks.
+            // If the unit has a usable item, it can use an item.
+            else if (command.GetType() == typeof(UseItemCommand))
+            {
+                List<IConsumableItem> usableItems = unit1.Inventory.GetConsumableItems();
+
+                if (usableItems.Count > 0)
+                {
+                    Item item = UserInterface.ShowInventoryMenu(unit1, $"Select item for {unit1.Name}.");
+
+                    //
+
+                }
+                else
+                {
+                    Console.WriteLine($"{unit1.Name} has no usable items!");
+                }
+
+            }// If the unit is able to attack, it attacks.
             else if (command.GetType() == typeof(AttackCommand))
             {
                 if (unit1 is IAttack)
                 {
-                    IEntity unit2 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit($"Select unit being attacked by {unit1.Name}");
+                    IEntity unit2 = UserInterface.UnitSelectionMenu.Display($"Select unit being attacked by {unit1.Name}");
 
                     if (unit1 != unit2)
                     {
@@ -95,12 +126,12 @@ public class GameEngine
                 }
 
             }
-            // If the unit is able to attack, it attacks.
+            // If the unit is able to heal, it heals.
             else if (command.GetType() == typeof(HealCommand))
             {
                 if (unit1 is IHeal)
                 {
-                    IEntity unit2 = UserInterface.UnitSelectionMenu.RunInteractiveMenuReturnUnit($"Select unit being healed by {unit1.Name}");
+                    IEntity unit2 = UserInterface.UnitSelectionMenu.Display($"Select unit being healed by {unit1.Name}");
 
                     ((IHeal)unit1).Heal(unit2);
                 }

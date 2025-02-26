@@ -4,7 +4,7 @@
     "Class": "Fighter",
     "Level": 1,
     "HP": 10,
-    "Inventory": [
+    "Equipment": [
       "sword",
       "shield",
       "potion"
@@ -19,7 +19,7 @@
     "Class": "Wizard",
     "Level": 2,
     "HP": 6,
-    "Inventory": [
+    "Equipment": [
       "staff",
       "robe",
       "book"
@@ -34,7 +34,7 @@
     "Class": "Rogue",
     "Level": 3,
     "HP": 8,
-    "Inventory": [
+    "Equipment": [
       "dagger",
       "lockpick",
       "cloak"
@@ -49,7 +49,7 @@
     "Class": "Cleric",
     "Level": 4,
     "HP": 12,
-    "Inventory": [
+    "Equipment": [
       "mace",
       "armor",
       "potion"
@@ -64,7 +64,7 @@
     "Class": "Knight",
     "Level": 5,
     "HP": 20,
-    "Inventory": [
+    "Equipment": [
       "sword",
       "armor",
       "horse"

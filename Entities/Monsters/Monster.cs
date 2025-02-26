@@ -14,5 +14,6 @@ public class Monster : Unit
         Level = level;
         MaxHitPoints = hitPoints;
         Inventory = inventory;
+        Inventory.Unit = this;
     }
 }

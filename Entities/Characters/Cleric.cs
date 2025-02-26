@@ -1,12 +1,28 @@
 ﻿using w5_assignment_ksteph.Commands.UnitCommands;
+using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Entities.Monsters;
 using w5_assignment_ksteph.Interfaces;
+using w5_assignment_ksteph.Inventories;
 
 namespace w5_assignment_ksteph.Entities.Characters;
 
 public class Cleric : Character, ICleric
 {
     // An Cleric unit that is able to heal and cast spells.
+    public Cleric()
+    {
+        Inventory.Unit = this;
+    }
+    public Cleric(string name, string characterClass, int level, int hitPoints, Inventory inventory, Position position)
+    {
+        Name = name;
+        Class = characterClass;
+        Level = level;
+        HitPoints = hitPoints;
+        Inventory = inventory;
+        Position = position;
+        Inventory.Unit = this;
+    }
 
     public HealCommand HealCommand { get; set; } = null!;
     public CastCommand CastCommand { get; set; } = null!;

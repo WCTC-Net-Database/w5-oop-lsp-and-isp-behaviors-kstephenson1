@@ -2,14 +2,16 @@
 
 using System.Text.Json.Serialization;
 using w5_assignment_ksteph.Inventories;
-using w5_assignment_ksteph.Items;
 using w5_assignment_ksteph.UI;
 
 // The character class stores information for each character.
 public class Character : Unit
 {
     [JsonConstructor]
-    public Character() { }
+    public Character()
+    {
+        Inventory.Unit = this;
+    }
 
     public Character(string name, string characterClass, int level, int hitPoints, Inventory inventory)
     {
@@ -19,6 +21,7 @@ public class Character : Unit
         HitPoints = hitPoints;
         MaxHitPoints = hitPoints;
         Inventory = inventory;
+        Inventory.Unit = this;
     }
 
     public void DisplayCharacterInfo() => CharacterUI.DisplayCharacterInfo(this); // Displays the character info.
