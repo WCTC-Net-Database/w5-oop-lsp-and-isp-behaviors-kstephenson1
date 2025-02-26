@@ -1,6 +1,8 @@
-﻿using CsvHelper;
+﻿using System;
+using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using w5_assignment_ksteph.DataTypes.Structs;
 
 namespace w5_assignment_ksteph.FileIO.Csv.Converters;
 
@@ -9,6 +11,11 @@ public class CsvPositionConverter : DefaultTypeConverter
 {
     public override object ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {
-        return InventorySerializer.Deserialize(text!);
+        string[] parse = text.Split(',');
+        return new Position
+            (
+                Convert.ToInt32(parse[0]),
+                Convert.ToInt32(parse[1])
+            );
     }
 }

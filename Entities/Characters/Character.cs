@@ -11,13 +11,14 @@ public class Character : Unit
     [JsonConstructor]
     public Character() { }
 
-    public Character(string name, string characterClass, int level, int hitPoints, List<Item> items)
+    public Character(string name, string characterClass, int level, int hitPoints, Inventory inventory)
     {
         Name = name;
         Class = characterClass;
         Level = level;
+        HitPoints = hitPoints;
         MaxHitPoints = hitPoints;
-        Inventory = new(items);
+        Inventory = inventory;
     }
 
     public void DisplayCharacterInfo() => CharacterUI.DisplayCharacterInfo(this); // Displays the character info.

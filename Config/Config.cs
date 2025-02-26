@@ -18,7 +18,7 @@ public static class Config
      * * * * * * * * * * * * * * * * */
 
     // Sets the default file type for reading and writing characters. Options: FileType.Json, FileType.Csv (Default: FileType.Json.)
-    public const FileType DEFAULT_FILE_TYPE = FileType.Json;
+    public const FileType DEFAULT_FILE_TYPE = FileType.Csv;
 
     /* * * * * * * * * * * * * * * * *
     *         CSV SETTINGS          *

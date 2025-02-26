@@ -15,5 +15,6 @@ public class UnitMap : ClassMap<Unit>
         Map(unit => unit.Level);
         Map(unit => unit.HitPoints);
         Map(unit => unit.Inventory).TypeConverter(new CsvInventoryConverter());
+        Map(unit => unit.Position).TypeConverter(new CsvPositionConverter());
     }
 }

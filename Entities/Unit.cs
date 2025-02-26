@@ -17,10 +17,10 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
     // Unit is an abstract class that holds basic unit properties and functions.
 
     [Name("Name")]                                          // CsvHelper Attribute
-    public virtual required string Name { get; set; }
+    public virtual string Name { get; set; }
 
     [Name("Class")]                                         // CsvHelper Attribute
-    public virtual required string Class { get; set; }
+    public virtual string Class { get; set; }
 
     [Name("Level")]                                         // CsvHelper Attribute
     public virtual int Level { get; set; }
@@ -37,6 +37,7 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
     [TypeConverter(typeof(CsvInventoryConverter))]          // CsvHelper Attribute that helps CsvHelper import a new inventory object instead of a string.
     public virtual Inventory Inventory { get; set; } = new();
 
+    [Name("Position")]                                         // CsvHelper Attribute
     [JsonPropertyName("Position")]                         // Json Atribute
     [TypeConverter(typeof(CsvPositionConverter))]          // CsvHelper Attribute that helps CsvHelper import a new Position struct instead of a string.
     public virtual Position Position { get; set; } = new();
@@ -52,6 +53,9 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
     [Ignore]
     [JsonIgnore]
     public virtual MoveCommand MoveCommand { get; set; } = null!;
+
+    [Ignore]
+    [JsonIgnore]
     public UnitStats Stats { get; set; } = null!;
 
     public Unit() { }

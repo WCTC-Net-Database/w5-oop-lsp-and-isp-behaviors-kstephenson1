@@ -33,8 +33,7 @@ public class CharacterUtilities
         Console.Clear();
         Console.WriteLine($"\nWelcome, {name} the {characterClass}! You are level {level} and your equipment includes: {string.Join(", ", inventory)}.\n");
 
-        UnitManager.AddCharacter(
-            new() { Name = name, Class = characterClass, Level = level, HitPoints = hitPoints, MaxHitPoints = hitPoints, Inventory = inventory });
+        UnitManager.AddCharacter(new(name, characterClass, level, hitPoints, inventory));
 
         UnitManager.ExportUnits();
     }

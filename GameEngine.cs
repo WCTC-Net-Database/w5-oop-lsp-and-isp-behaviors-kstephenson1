@@ -18,7 +18,7 @@ public class GameEngine
     public void StartGameEngine()
     {        
         Initialization();
-        //Run();
+        Run();
         Test();
         End();
     }
