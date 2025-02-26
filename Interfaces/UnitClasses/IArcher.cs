@@ -1,6 +1,6 @@
 ﻿using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.Interfaces;
-using w5_assignment_ksteph.Interfaces.Behaviors.CharacterBehaviors;
+using w5_assignment_ksteph.Interfaces.CharacterBehaviors;
 
 namespace w5_assignment_ksteph.Entities.Monsters;
 

@@ -1,7 +1,7 @@
 ﻿using w5_assignment_ksteph.Commands.Invokers;
 using w5_assignment_ksteph.Commands.UnitCommands;
 
-namespace w5_assignment_ksteph.Interfaces.Behaviors.CharacterBehaviors;
+namespace w5_assignment_ksteph.Interfaces.CharacterBehaviors;
 
 public interface IShootable
 {

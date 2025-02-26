@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using w5_assignment_ksteph.Inventories;
 using w5_assignment_ksteph.DataHelper;
+using w5_assignment_ksteph.Items;
 
 public class InventorySerializer
 {

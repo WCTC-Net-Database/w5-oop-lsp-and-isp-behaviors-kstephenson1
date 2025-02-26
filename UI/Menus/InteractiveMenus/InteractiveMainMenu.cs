@@ -6,17 +6,17 @@ public class InteractiveMainMenu : InteractiveMenu
     // is completed when that menu item is chosen.  It loops until the menu is exited.
     public void AddMenuItem(string name, string desc, Action action)
     {
-        _menuItems.Add(new InteractiveReturnMenuItem<Action>(_menuItems.Count, name, desc, action));
+        _menuItems.Add(new InteractiveSelectionMenuItem<Action>(_menuItems.Count, name, desc, action));
     }
 
     public void Action(int selection)
     {
         // The Action method takes in a selecion from the main menu, then triggers the action associated with that menu item.
-        List<InteractiveReturnMenuItem<Action>> menuItems = new();
+        List<InteractiveSelectionMenuItem<Action>> menuItems = new();
 
         foreach (MenuItem item in _menuItems) // Casts each of the MenuItems into MainMenuItems so the actions can work.
         {
-            menuItems.Add((InteractiveReturnMenuItem<Action>)item);
+            menuItems.Add((InteractiveSelectionMenuItem<Action>)item);
         }
 
         menuItems[selection].Selection(); // Runs the action selected.

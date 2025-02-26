@@ -12,8 +12,8 @@ namespace w5_assignment_ksteph.UI;
 public static class UserInterface
 {
     public static InteractiveMainMenu MainMenu { get; private set; } = new();
-    public static InteractiveReturnMenu<IEntity> UnitSelectionMenu { get; private set; } = new();
-    public static InteractiveReturnMenu<ICommand> CommandMenu { get; private set; } = new();
+    public static InteractiveSelectionMenu<IEntity> UnitSelectionMenu { get; private set; } = new();
+    public static InteractiveSelectionMenu<ICommand> CommandMenu { get; private set; } = new();
     public static Menu ExitMenu { get; private set; } = new();
 
     public static void BuildMenus() // Builds main menu and he exit message.

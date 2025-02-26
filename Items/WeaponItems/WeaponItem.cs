@@ -1,7 +1,8 @@
 ﻿using w5_assignment_ksteph.DataTypes;
-using w5_assignment_ksteph.Interfaces.Behaviors.ItemBehaviors;
+using w5_assignment_ksteph.Interfaces.ItemBehaviors;
+using w5_assignment_ksteph.Items;
 
-namespace w5_assignment_ksteph.Inventories;
+namespace w5_assignment_ksteph.Items.WeaponItems;
 
 public class WeaponItem : Item, IWeaponItem
 {
@@ -12,18 +13,18 @@ public class WeaponItem : Item, IWeaponItem
     public int MaxDurability { get; set; }
     public int Durability { get; set; }
     public int Might { get; set; }
-    public int Hit {  get; set; }
-    public int Crit {  get; set; }
+    public int Hit { get; set; }
+    public int Crit { get; set; }
     public int Range { get; set; }
     public int Weight { get; set; }
     public int ExpModifier { get; set; }
 
     public WeaponItem(string id, string name, WeaponType weaponType, WeaponRank requiredRank, int maxDurability, int might, int hit, int crit, int range, int weight, int expModifier) : base(id)
     {
-        MaxDurability = maxDurability;  WeaponType = weaponType;    Name = name;
-        RequiredRank = requiredRank;    Weight = weight;            Crit = crit;
-        Durability = maxDurability;     Range = range;              Hit = hit;
-        ExpModifier = expModifier;      Might = might;              ID = id;
+        MaxDurability = maxDurability; WeaponType = weaponType; Name = name;
+        RequiredRank = requiredRank; Weight = weight; Crit = crit;
+        Durability = maxDurability; Range = range; Hit = hit;
+        ExpModifier = expModifier; Might = might; ID = id;
     }
 
     public override string ToString()

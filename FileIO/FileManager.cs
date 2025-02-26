@@ -6,22 +6,21 @@ using w5_assignment_ksteph.Config;
 using w5_assignment_ksteph.DataTypes;
 using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.Entities.Monsters;
-using w5_assignment_ksteph.Inventories;
-using w5_assignment_ksteph.Interfaces.Behaviors.ItemBehaviors;
+using w5_assignment_ksteph.Items.WeaponItems;
 
-public class FileManager<TType>
+public class FileManager<T>
 {
     // FileManager contains redirects to functions that assist with file IO functions.  This class allows the import and export of a generic
     // unit type.
 
     private static FileType _fileType = Config.DEFAULT_FILE_TYPE;
 
-    private Type _type = typeof(TType);
+    private Type _type = typeof(T);
     private Dictionary<Type, int> _typeDict = new Dictionary<Type, int>
         {
             {typeof(Character),0},
             {typeof(Monster),1},
-            {typeof(Item),2},
+            {typeof(WeaponItem),2},
         };
 
     private string GetFilePath()
@@ -36,21 +35,12 @@ public class FileManager<TType>
 
     }
 
-    private static ICharacterIO GetFileType<Ttype>() // Checks to see what the current file type is set to and execute the proper file system.
+    private static IFileIO GetFileType<T>() // Checks to see what the current file type is set to and execute the proper file system.
     {
         return _fileType switch
         {
-            FileType.Csv => new CsvFileHandler<Ttype>(),
-            FileType.Json => new JsonFileHandler<Ttype>(),
-            _ => throw new NullReferenceException("Error: File type not found in FileManager.GetFileType()"),
-        };
-    }
-    private static IItemIO GetFileType() // Checks to see what the current file type is set to and execute the proper file system.
-    {
-        return _fileType switch
-        {
-            FileType.Csv => new CsvFileHandler<Item>(),
-            FileType.Json => new JsonFileHandler<Item>(),
+            FileType.Csv => new CsvFileHandler<T>(),
+            FileType.Json => new JsonFileHandler<T>(),
             _ => throw new NullReferenceException("Error: File type not found in FileManager.GetFileType()"),
         };
     }
@@ -69,8 +59,6 @@ public class FileManager<TType>
         }
     }
 
-    public List<Ttype> ImportUnits<Ttype>() => GetFileType<Ttype>().ReadUnits<Ttype>(GetFilePath());
-    public void ExportUnits<Ttype>(List<Ttype> units) => GetFileType<Ttype>().WriteUnits(units, GetFilePath());
-    public List<Item> ImportItems() => GetFileType().ReadItems(GetFilePath());
-    public void ExportItems(List<Item> items) => GetFileType().WriteItems(items, GetFilePath());
+    public List<T> Import<T>() => GetFileType<T>().Read<T>(GetFilePath());
+    public void Export<T>(List<T> tList) => GetFileType<T>().Write<T>(tList, GetFilePath());
 }

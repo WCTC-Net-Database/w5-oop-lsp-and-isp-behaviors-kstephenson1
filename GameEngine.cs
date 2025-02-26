@@ -6,8 +6,9 @@ using w5_assignment_ksteph.DataTypes;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Interfaces;
-using w5_assignment_ksteph.Interfaces.Behaviors.CharacterBehaviors;
+using w5_assignment_ksteph.Interfaces.CharacterBehaviors;
 using w5_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.Items.WeaponItems;
 using w5_assignment_ksteph.UI;
 
 namespace w5_assignment_ksteph;
@@ -15,22 +16,18 @@ namespace w5_assignment_ksteph;
 public class GameEngine
 {
     public void StartGameEngine()
-    {
+    {        
         Initialization();
-        Run();
-        //Test();
+        //Run();
+        Test();
         End();
     }
 
     void Test()
     {
-        List<Item> items = new();
-        items.Add(new WeaponItem("iron_sword", "Iron Sword", WeaponType.Sword, WeaponRank.E, 45, 8,  80, 0, 1, 7,  1));
-        items.Add(new WeaponItem("iron_lance", "Iron Lance", WeaponType.Lance, WeaponRank.E, 45, 9,  70, 0, 1, 9,  1));
-        items.Add(new WeaponItem("iron_axe",   "Iron Axe",   WeaponType.Axe,   WeaponRank.E, 45, 10, 60, 0, 1, 11, 1));
-        items.Add(new WeaponItem("iron_bow",   "Iron Bow",   WeaponType.Bow,   WeaponRank.E, 45, 8,  80, 0, 1, 7,  1));
+        ItemManager.Import<WeaponItem>();
 
-        ItemManager.ExportItems(items);
+        ItemManager.DisplayItems();
     }
 
     public static void Initialization()

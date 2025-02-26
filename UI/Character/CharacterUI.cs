@@ -1,6 +1,6 @@
 ﻿using Spectre.Console;
 using w5_assignment_ksteph.Entities.Characters;
-using w5_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.Items;
 
 namespace w5_assignment_ksteph.UI;
 

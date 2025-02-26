@@ -1,7 +1,7 @@
 ﻿using w5_assignment_ksteph.DataTypes;
 using w5_assignment_ksteph.Inventories;
 
-namespace w5_assignment_ksteph.Interfaces.Behaviors.ItemBehaviors;
+namespace w5_assignment_ksteph.Interfaces.ItemBehaviors;
 
 public interface IWeaponItem
 {

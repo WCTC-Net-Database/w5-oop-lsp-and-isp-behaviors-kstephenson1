@@ -24,7 +24,7 @@ public static class UnitManager
 
     public static void ImportUnits()                           //Imports the characters from the csv file and stores them.
     {
-        List<Character> importedCharacters = new FileManager<Character>().ImportUnits<Character>();
+        List<Character> importedCharacters = new FileManager<Character>().Import<Character>();
 
         foreach (Character character in importedCharacters)
         {
@@ -42,7 +42,7 @@ public static class UnitManager
                 Characters.AddUnit(new Wizard() { Name = character.Name, Class = character.Class, Level = character.Level, HitPoints = character.HitPoints, Inventory = character.Inventory, Position = character.Position });
         }
 
-        List<Monster> importedMonsters = new FileManager<Monster>().ImportUnits<Monster>();
+        List<Monster> importedMonsters = new FileManager<Monster>().Import<Monster>();
         foreach (Monster monster in importedMonsters)
         {
             // Units imported from the monsters file are imported as monsters.  This block of text converts these monsters to their respective types.
@@ -72,8 +72,8 @@ public static class UnitManager
 
     public static void ExportUnits()                           //Exports the stored characters into the specified csv file
     {
-        new FileManager<Character>().ExportUnits<Character>(Characters.Units);
-        new FileManager<Monster>().ExportUnits<Monster>(Monsters.Units);
+        new FileManager<Character>().Export<Character>(Characters.Units);
+        new FileManager<Monster>().Export<Monster>(Monsters.Units);
     }
 
     public static void AddCharacter(Character character)            // Adds a new character to the stored characters list.

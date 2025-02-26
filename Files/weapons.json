@@ -1,0 +1,58 @@
+[
+  {
+    "WeaponType": 1,
+    "RequiredRank": "E",
+    "MaxDurability": 45,
+    "Durability": 45,
+    "Might": 8,
+    "Hit": 80,
+    "Crit": 0,
+    "Range": 1,
+    "Weight": 7,
+    "ExpModifier": 1,
+    "Name": "Iron Sword",
+    "ID": "iron_sword"
+  },
+  {
+    "WeaponType": 3,
+    "RequiredRank": "E",
+    "MaxDurability": 45,
+    "Durability": 45,
+    "Might": 9,
+    "Hit": 70,
+    "Crit": 0,
+    "Range": 1,
+    "Weight": 9,
+    "ExpModifier": 1,
+    "Name": "Iron Lance",
+    "ID": "iron_lance"
+  },
+  {
+    "WeaponType": 2,
+    "RequiredRank": "E",
+    "MaxDurability": 45,
+    "Durability": 45,
+    "Might": 10,
+    "Hit": 60,
+    "Crit": 0,
+    "Range": 1,
+    "Weight": 11,
+    "ExpModifier": 1,
+    "Name": "Iron Axe",
+    "ID": "iron_axe"
+  },
+  {
+    "WeaponType": 4,
+    "RequiredRank": "E",
+    "MaxDurability": 45,
+    "Durability": 45,
+    "Might": 8,
+    "Hit": 80,
+    "Crit": 0,
+    "Range": 1,
+    "Weight": 7,
+    "ExpModifier": 1,
+    "Name": "Iron Bow",
+    "ID": "iron_bow"
+  }
+]

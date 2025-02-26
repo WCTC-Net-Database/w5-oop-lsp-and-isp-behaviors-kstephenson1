@@ -1,8 +1,9 @@
 ﻿using w5_assignment_ksteph.DataHelper;
+using w5_assignment_ksteph.Interfaces;
 
-namespace w5_assignment_ksteph.Inventories;
+namespace w5_assignment_ksteph.Items;
 
-public class Item
+public class Item : IItem
 {
     // Item is a class that holds item information.
 
@@ -19,10 +20,5 @@ public class Item
     {
         ID = StringHelper.ToItemIdFormat(id);
         Name = StringHelper.ToItemNameFormat(name);
-    }
-
-    public override string ToString()
-    {
-        return ID;
     }
 }

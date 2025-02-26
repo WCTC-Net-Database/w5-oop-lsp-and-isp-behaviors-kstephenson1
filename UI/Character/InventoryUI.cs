@@ -1,5 +1,6 @@
 ﻿using w5_assignment_ksteph.FileIO;
 using w5_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.Items;
 
 namespace w5_assignment_ksteph.UI;
 

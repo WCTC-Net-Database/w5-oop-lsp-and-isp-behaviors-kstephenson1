@@ -1,9 +1,13 @@
 ﻿namespace w5_assignment_ksteph.Entities.Characters;
 
 using Spectre.Console;
+using System.Runtime.CompilerServices;
 using w5_assignment_ksteph.Config;
 using w5_assignment_ksteph.DataHelper;
+using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Inventories;
+using w5_assignment_ksteph.Items;
+
 public class CharacterUtilities
 {
     // CharacterFunctions class contains fuctions that manipulate characters based on user input.
@@ -20,7 +24,7 @@ public class CharacterUtilities
             string? newItem = Input.GetString($"Enter the name of an item in {name}'s inventory. (Leave blank to end): ", false);
             if (newItem != "")
             {
-                inventory.Items!.Add(new(newItem));
+                inventory.AddItem(new(newItem));
                 continue;
             }
             break;

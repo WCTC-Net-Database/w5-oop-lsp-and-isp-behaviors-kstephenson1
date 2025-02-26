@@ -2,8 +2,8 @@
 
 namespace w5_assignment_ksteph.FileIO;
 
-public interface IItemIO
+public interface IItemIO : IFileIO
 {
-    public List<Item> ReadItems(string dir);
-    public void WriteItems(List<Item> items, string dir);
+    new public List<TItem> Read<TItem>(string dir);
+    new public void Write<TItem>(List<TItem> items, string dir);
 }

@@ -6,13 +6,13 @@ using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.FileIO.Csv.Converters;
 using w5_assignment_ksteph.Interfaces;
-using w5_assignment_ksteph.Interfaces.Behaviors.CharacterBehaviors;
-using w5_assignment_ksteph.Interfaces.Behaviors.InventoryBehaviors;
+using w5_assignment_ksteph.Interfaces.CharacterBehaviors;
+using w5_assignment_ksteph.Interfaces.InventoryBehaviors;
 using w5_assignment_ksteph.Inventories;
 
 namespace w5_assignment_ksteph.Entities;
 
-public abstract class Unit : IEntity, IAttackable, IAttack, IInventory
+public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
 {
     // Unit is an abstract class that holds basic unit properties and functions.
 
