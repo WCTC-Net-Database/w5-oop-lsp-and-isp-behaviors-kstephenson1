@@ -15,7 +15,7 @@ using w5_assignment_ksteph.Items.WeaponItems;
 
 namespace w5_assignment_ksteph.Entities;
 
-public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
+public abstract class Unit : IEntity, ITargetable, IAttack, IHaveInventory
 {
     // Unit is an abstract class that holds basic unit properties and functions.
 
@@ -52,7 +52,7 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
     [Ignore]
     [JsonIgnore]
     public virtual UseItemCommand UseItemCommand { get; set; } = null!;
-    public virtual EquipCommand EquipItemCommand { get; set; } = null!;
+    public virtual EquipCommand EquipCommand { get; set; } = null!;
     public virtual DropItemCommand DropItemCommand { get; set; } = null!;
     public virtual TradeItemCommand TradeItemCommand { get; set; } = null!;
 
@@ -67,7 +67,6 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
     [Ignore]
     [JsonIgnore]
     public UnitStats Stats { get; set; } = null!;
-    public EquipCommand EquipCommand { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     public Unit()
     {
@@ -99,17 +98,23 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
     }
 
     // Has the unit take damage then check if it is dead.
-    public virtual void TakeDamage(int damage)
+    public virtual void Damage(int damage)
     {
         HitPoints -= damage;
-        OnDamageTaken();
+        OnHealthChanged();
 
         if (IsDead())
             OnDeath();
     }
 
+    public virtual void Heal(int heal)
+    {
+        HitPoints += heal;
+        OnHealthChanged();
+    }
+
     // Triggers every time this unit takes damage.
-    public virtual void OnDamageTaken()
+    public virtual void OnHealthChanged()
     {
         if (HitPoints > MaxHitPoints)
             HitPoints = MaxHitPoints;
@@ -153,7 +158,7 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
         return bar;
     }
 
-    public void Equip(WeaponItem item)
+    public void Equip(IWeaponItem item)
     {
         EquipCommand = new(this, item);
         Invoker.ExecuteCommand(EquipCommand);
@@ -171,7 +176,7 @@ public abstract class Unit : IEntity, IAttackable, IAttack, IHaveInventory
         Invoker.ExecuteCommand(TradeItemCommand);
     }
 
-    public void UseItem(IConsumableItem item)
+    public void UseItem(IItem item)
     {
         UseItemCommand = new(this, item);
         Invoker.ExecuteCommand(UseItemCommand);

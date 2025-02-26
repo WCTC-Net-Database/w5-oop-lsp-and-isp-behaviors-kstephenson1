@@ -24,7 +24,7 @@ public class CharacterUtilities
             string? newItem = Input.GetString($"Enter the name of an item in {name}'s inventory. (Leave blank to end): ", false);
             if (newItem != "")
             {
-                inventory.AddItem(new(newItem));
+                inventory.AddItem(new Item(newItem));
                 continue;
             }
             break;

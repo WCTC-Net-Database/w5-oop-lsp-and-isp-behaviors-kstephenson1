@@ -28,12 +28,12 @@ public class ShootCommand : ICommand
             if (_encounter.IsCrit())
             {
                 Console.WriteLine($"{_unit.Name} critically hit {_target.Name} for {_encounter.Damage} damage!");
-                _target.TakeDamage(_encounter.Damage);
+                _target.Damage(_encounter.Damage);
             }
             else if (_encounter.IsHit())
             {
                 Console.WriteLine($"{_unit.Name} hit {_target.Name} for {_encounter.Damage} damage.");
-                _target.TakeDamage(_encounter.Damage);
+                _target.Damage(_encounter.Damage);
             }
             else
             {

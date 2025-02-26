@@ -11,13 +11,14 @@ public class EquipCommand : ICommand
     // not the unit hit/crit and calculates damage.  If the unit cannot attack, a message is provided to the user.
 
     private readonly IEntity _unit;
-    private readonly WeaponItem _item;
-    public EquipCommand(IEntity unit, WeaponItem item)
+    private readonly IWeaponItem _item;
+    public EquipCommand(IEntity unit, IWeaponItem item)
     {
+        _unit = unit;
         _item = item;
     }
     public void Execute()
     {
-        _unit.Equip(_item);
+        _item.Equip();
     }
 }

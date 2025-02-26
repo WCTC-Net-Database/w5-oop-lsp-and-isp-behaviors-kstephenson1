@@ -25,12 +25,12 @@ public class HealCommand : ICommand
             if (_encounter.IsCrit())
             {
                 Console.WriteLine($"{_unit.Name} critically heals {_target.Name} for {_encounter.Damage} hit points!");
-                _target.TakeDamage(_encounter.Damage * -1);
+                _target.Damage(_encounter.Damage * -1);
             }
             else if (_encounter.IsHit())
             {
                 Console.WriteLine($"{_unit.Name} heals {_target.Name} for {_encounter.Damage} hit points.");
-                _target.TakeDamage(_encounter.Damage * -1);
+                _target.Damage(_encounter.Damage * -1);
             }
             else
             {

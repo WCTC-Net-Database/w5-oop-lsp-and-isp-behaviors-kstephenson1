@@ -5,7 +5,7 @@ using w5_assignment_ksteph.Interfaces.InventoryBehaviors;
 
 namespace w5_assignment_ksteph.Interfaces;
 
-public interface IEntity : IAttackable, IAttack, IHaveInventory, IHaveStats, IUseItems
+public interface IEntity : ITargetable, IAttack, IHaveInventory, IHaveStats, IUseItems
 {
     // Interface tha allows units to exist.
     MoveCommand MoveCommand { set; get; }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using w5_assignment_ksteph.Inventories;
 using w5_assignment_ksteph.DataHelper;
 using w5_assignment_ksteph.Items;
+using w5_assignment_ksteph.Interfaces;
 
 public class InventorySerializer
 {
@@ -23,7 +24,7 @@ public class InventorySerializer
         Inventory inventory = new();
         foreach (string item in itemArray)
         {
-            inventory.Items!.Add(new(item));
+            inventory.Items!.Add(new Item(item));
         }
         return inventory;
     }
@@ -38,9 +39,9 @@ public class InventorySerializer
         return itemArray;
     }
 
-    private static List<Item> ToItemList(string itemString)             //Converts String into List<Item>
+    private static List<IItem> ToItemList(string itemString)             //Converts String into List<Item>
     {
-        List<Item> itemList = [];
+        List<IItem> itemList = [];
 
         string[] items = itemString.Split('|');
 
@@ -50,7 +51,7 @@ public class InventorySerializer
         return itemList;
     }
 
-    private static string ToString(List<Item> items)                    // Converts List<Item> to String
+    private static string ToString(List<IItem> items)                    // Converts List<Item> to String
     {
         if (items == null)
             return "";
@@ -58,7 +59,7 @@ public class InventorySerializer
         {
             string inventory = "";
 
-            foreach (Item item in items)
+            foreach (IItem item in items)
             {
                 if (inventory == "")
                     inventory += StringHelper.ToItemIdFormat(item.ID);
@@ -70,12 +71,12 @@ public class InventorySerializer
         }
     }
 
-    private static Inventory ToInventory(List<Item> itemList)           // Converts List<Item> to Inventories
+    private static Inventory ToInventory(List<IItem> itemList)           // Converts List<Item> to Inventories
     {
         return new(itemList);
     }
 
-    private static List<Item>? ToItemList(Inventory inventory)          // Converts Inventories to List<Item>
+    private static List<IItem>? ToItemList(Inventory inventory)          // Converts Inventories to List<Item>
     {
         return inventory.Items;
     }

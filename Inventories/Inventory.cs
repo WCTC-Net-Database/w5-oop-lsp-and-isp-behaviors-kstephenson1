@@ -11,19 +11,19 @@ public class Inventory
     // The Inventory class holds a list of items.
     [JsonIgnore]
     public IEntity Unit;
-    public List<Item>? Items { get; set; } = new();
+    public List<IItem>? Items { get; set; } = new();
 
     public Inventory()
     {
         //SetParentsInItems();
     }
-    public Inventory(List<Item> items)
+    public Inventory(List<IItem> items)
     {
         Items = items;
         //SetParentsInItems();
     }
 
-    public bool AddItem(Item item)
+    public bool AddItem(IItem item)
     {
         if (Items!.Count < 5)
         {
@@ -34,7 +34,7 @@ public class Inventory
         return false;
     }
 
-    public bool RemoveItem(Item item)
+    public bool RemoveItem(IItem item)
     {
         try
         {
@@ -47,7 +47,7 @@ public class Inventory
         }
     }
 
-    public bool IsEquipped(out WeaponItem? weapon)
+    public bool IsEquipped(out IItem? weapon)
     {
         foreach(Item item in Items!)
         {
@@ -61,15 +61,27 @@ public class Inventory
         return false;
     }
 
-    public void SetEquippedItem(WeaponItem item)
+    public bool SetEquippedItem(WeaponItem item)
     {
-
+        IsEquipped(out IItem? weapon);
+        if (weapon != null && weapon != item)
+        {
+            Items.Remove(item);
+            Items.Insert(0, item);
+            return true;
+        }
+        return false;
     }
     public bool DamageEquippedItem()
     {
-        if (IsEquipped(out WeaponItem? weapon))
+        if (IsEquipped(out IItem? weapon))
         {
-            weapon!.TakeDurabilityDamage(1);
+            if (weapon is WeaponItem)
+            {
+                ((WeaponItem)weapon!).TakeDurabilityDamage(1);
+                return true;
+            }
+            
             return true;
         }
         else
@@ -92,13 +104,13 @@ public class Inventory
 
     private void SetParentsInItems()
     {
-        foreach (var item in Items!)
+        foreach (IItem item in Items!)
         {
             item.Inventory = this;
         }
     }
 
-    private void SetParentsInItem(Item item)
+    private void SetParentsInItem(IItem item)
     {
         item.Inventory = this;
     }

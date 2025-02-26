@@ -4,6 +4,7 @@ using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.FileIO;
 using w5_assignment_ksteph.Interfaces;
+using w5_assignment_ksteph.Interfaces.ItemBehaviors;
 using w5_assignment_ksteph.Items;
 using w5_assignment_ksteph.UI.Menus.InteractiveMenus;
 
@@ -15,7 +16,7 @@ public static class UserInterface
     public static InteractiveMainMenu MainMenu { get; private set; } = new();
     public static InteractiveSelectionMenu<IEntity> UnitSelectionMenu { get; private set; } = new();
     public static InteractiveSelectionMenu<ICommand> CommandMenu { get; private set; } = new();
-    public static InteractiveSelectionMenu<Item> InventoryMenu { get; private set; } = new();
+    public static InteractiveSelectionMenu<IItem> InventoryMenu { get; private set; } = new();
     public static InteractiveSelectionMenu<bool> BoolMenu { get; private set; } = new();
     public static Menu ExitMenu { get; private set; } = new();
 
@@ -95,15 +96,27 @@ public static class UserInterface
         BoolMenu.BuildTable();
     }
 
-    public static Item ShowInventoryMenu(IEntity unit, string prompt)
+    public static IItem ShowInventoryMenu(IEntity unit, string prompt)
     {
         InventoryMenu = new();
-        foreach (Item item in unit.Inventory.Items)
+        foreach (IItem item in unit.Inventory.Items)
         {
-            InventoryMenu.AddMenuItem(item.Name, item.Description, item);
+            if (item is IConsumableItem consumableItem)
+            {
+                InventoryMenu.AddMenuItem($"Use {consumableItem.Name}", $"[[{consumableItem.UsesLeft}/{consumableItem.MaxUses}]] {consumableItem.Description}", item);
+            }
+            else if (item is IWeaponItem weaponItem)
+            {
+                InventoryMenu.AddMenuItem($"Equip {weaponItem.Name}", $"[[{weaponItem.Durability}/{weaponItem.MaxDurability}]] {weaponItem.Description}", item);
+            }
+            else
+            {
+                InventoryMenu.AddMenuItem(item.Name, item.Description, item);
+            }
         }
+        InventoryMenu.AddMenuItem("Go Back", "Don't use any items", null);
         InventoryMenu.BuildTable();
-        return InventoryMenu.Display(prompt);
+        return InventoryMenu.Display(prompt); 
     }
 
     public static void Exit() // Shows the exit menu.

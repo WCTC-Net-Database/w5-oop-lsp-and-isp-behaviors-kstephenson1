@@ -11,14 +11,22 @@ public class UseItemCommand : ICommand
     // not the unit hit/crit and calculates damage.  If the unit cannot attack, a message is provided to the user.
 
     private readonly IEntity _unit;
-    private readonly IConsumableItem _item;
-    public UseItemCommand(IEntity unit, IConsumableItem item)
+    private readonly IItem _item;
+    public UseItemCommand(IEntity unit, IItem item)
     {
         _unit = unit;
         _item = item;
     }
     public void Execute()
     {
-        _item.UseItem();
+        if (_item is IConsumableItem consumableItem)
+        {
+            consumableItem.UseItem();
+        }
+        else
+        {
+            Console.WriteLine("This item is not usable.");
+        }
+        
     }
 }

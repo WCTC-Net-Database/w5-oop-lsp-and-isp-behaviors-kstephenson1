@@ -3,7 +3,7 @@ using w5_assignment_ksteph.Inventories;
 
 namespace w5_assignment_ksteph.Interfaces.ItemBehaviors;
 
-public interface IWeaponItem
+public interface IWeaponItem : IItem
 {
     public WeaponType WeaponType { get; set; }
     public WeaponRank RequiredRank { get; set; }

@@ -11,6 +11,7 @@ using w5_assignment_ksteph.Interfaces.CharacterBehaviors;
 using w5_assignment_ksteph.Interfaces.ItemBehaviors;
 using w5_assignment_ksteph.Inventories;
 using w5_assignment_ksteph.Items;
+using w5_assignment_ksteph.Items.ConsumableItems;
 using w5_assignment_ksteph.Items.WeaponItems;
 using w5_assignment_ksteph.UI;
 
@@ -62,6 +63,10 @@ public class GameEngine
 
         List<IEntity> entities = new();
 
+        UnitManager.Characters.Units[0].Inventory.AddItem(new WeaponItem("sword", "Sword", WeaponType.Sword, WeaponRank.E, 45, 8, 80, 0, 1, 4, 1));
+        UnitManager.Characters.Units[0].Inventory.AddItem(new WeaponItem("bow", "Bow", WeaponType.Bow, WeaponRank.E, 45, 8, 80, 0, 1, 4, 1));
+        UnitManager.Characters.Units[0].Inventory.AddItem(new ItemPotion());
+
         while (true)
         {
             // Asks the user to choose a unit.
@@ -90,14 +95,23 @@ public class GameEngine
             // If the unit has a usable item, it can use an item.
             else if (command.GetType() == typeof(UseItemCommand))
             {
-                List<IConsumableItem> usableItems = unit1.Inventory.GetConsumableItems();
-
-                if (usableItems.Count > 0)
+                if (unit1.Inventory.Items!.Count > 0)
                 {
-                    Item item = UserInterface.ShowInventoryMenu(unit1, $"Select item for {unit1.Name}.");
+                    IItem item = UserInterface.ShowInventoryMenu(unit1, $"Select item for {unit1.Name}.");
 
-                    //
-
+                    if ( item != null)
+                    {
+                        switch (item)
+                        {
+                            case IConsumableItem consumableItem:
+                                unit1.UseItem(consumableItem);
+                                break;
+                            case IWeaponItem weaponItem:
+                                unit1.Equip(weaponItem);
+                                break;
+                        }
+                        
+                    }
                 }
                 else
                 {

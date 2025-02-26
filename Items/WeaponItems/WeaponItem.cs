@@ -34,7 +34,15 @@ public class WeaponItem : Item, IWeaponItem
 
     public void Equip()
     {
-        throw new NotImplementedException();
+        bool wasEquipped = Inventory.SetEquippedItem(this);
+        if (wasEquipped)
+        {
+            Console.WriteLine($"{Inventory.Unit.Name} equipped {Name}");
+        }
+        else
+        {
+            Console.WriteLine($"{Inventory.Unit.Name} already has {Name} equipped!");
+        }
     }
 
     public void TakeDurabilityDamage(int durabilityDamage)

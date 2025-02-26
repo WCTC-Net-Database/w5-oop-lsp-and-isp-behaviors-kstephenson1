@@ -11,5 +11,5 @@ public interface IUseItems
     // Interface tha allows units to hold items.
     CommandInvoker Invoker { get; set; }
     UseItemCommand UseItemCommand { get; set; }
-    void UseItem(IConsumableItem item);
+    void UseItem(IItem item);
 }

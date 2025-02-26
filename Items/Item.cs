@@ -12,16 +12,20 @@ public class Item : IItem
     public string Description { get; set; }
     public string ID { get; set; }
 
+    public Item() { }
+
     public Item(string id)
     {
         ID = StringHelper.ToItemIdFormat(id);
         Name = StringHelper.ToItemNameFormat(id);
+        Description = StringHelper.ToItemNameFormat(Name);
     }
 
     public Item(string id, string name)
     {
         ID = StringHelper.ToItemIdFormat(id);
         Name = StringHelper.ToItemNameFormat(name);
+        Description = StringHelper.ToItemNameFormat(Name);
     }
 
     public override string ToString()

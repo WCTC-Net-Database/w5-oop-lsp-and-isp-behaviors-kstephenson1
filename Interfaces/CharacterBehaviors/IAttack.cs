@@ -1,5 +1,7 @@
 ﻿using w5_assignment_ksteph.Commands.Invokers;
 using w5_assignment_ksteph.Commands.UnitCommands;
+using w5_assignment_ksteph.Entities;
+using w5_assignment_ksteph.Interfaces.ItemBehaviors;
 using w5_assignment_ksteph.Items.WeaponItems;
 
 namespace w5_assignment_ksteph.Interfaces.CharacterBehaviors;
@@ -12,5 +14,5 @@ public interface IAttack
     EquipCommand EquipCommand { set; get; }
 
     void Attack(IEntity target);
-    void Equip(WeaponItem item);
+    void Equip(IWeaponItem item);
 }

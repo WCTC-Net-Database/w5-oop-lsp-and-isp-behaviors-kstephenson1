@@ -1,4 +1,5 @@
 ﻿using w5_assignment_ksteph.FileIO;
+using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Inventories;
 using w5_assignment_ksteph.Items;
 
@@ -25,7 +26,7 @@ public static class InventoryUI
         }
         else
         {
-            List<Item> items = InventorySerializer.Deserialize(inventoryString).Items!;
+            List<IItem> items = InventorySerializer.Deserialize(inventoryString).Items!;
 
             foreach (Item item in items)
             {

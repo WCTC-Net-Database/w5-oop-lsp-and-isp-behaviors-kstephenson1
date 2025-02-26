@@ -1,12 +1,13 @@
 ﻿namespace w5_assignment_ksteph.Interfaces.CharacterBehaviors
 {
-    public interface IAttackable
+    public interface ITargetable
     {
         // Interface tha allows units to be attacked.
         public int HitPoints { get; set; }
         public int MaxHitPoints { get; set; }
-        public void TakeDamage(int damage);
-        void OnDamageTaken();
+        public void Damage(int damage);
+        public void Heal(int damage);
+        void OnHealthChanged();
         void OnDeath();
         bool IsDead();
 
