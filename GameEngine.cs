@@ -46,7 +46,7 @@ public class GameEngine
     public static void Run()
     {
         // Shows the main menu.  Allows you to add/edit characters before the game is started.
-        //UserInterface.MainMenu.RunInteractiveMenu();
+        UserInterface.MainMenu.RunInteractiveMenu();
 
         // Builds the unit select menu.
         UserInterface.BuildUnitSelectMenu();
