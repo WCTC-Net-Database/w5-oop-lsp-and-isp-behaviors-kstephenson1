@@ -13,7 +13,7 @@ public class ItemBook : Item, IConsumableItem
     {
         ID = "book";
         Name = StringHelper.ToItemNameFormat(ID);
-        Description = "It's a book.";
+        Description = "Use to read book.";
         UsesLeft = MaxUses;
     }
 
@@ -24,6 +24,6 @@ public class ItemBook : Item, IConsumableItem
 
     public void UseItem()
     {
-        Console.WriteLine($"You read the book.  Aren't you in combat right now?");
+        Console.WriteLine($"You read the book. Isn't there a battle going on right now!?");
     }
 }

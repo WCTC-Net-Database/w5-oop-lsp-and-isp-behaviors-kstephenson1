@@ -11,7 +11,7 @@ public class CsvPositionConverter : DefaultTypeConverter
 {
     public override object ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {
-        string[] parse = text.Split(',');
+        string[] parse = text!.Split(',');
         return new Position
             (
                 Convert.ToInt32(parse[0]),

@@ -2,14 +2,10 @@
 using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Interfaces.CharacterBehaviors;
 
-namespace w5_assignment_ksteph.Entities.Monsters;
+namespace w5_assignment_ksteph.Interfaces.UnitClasses;
 
 public interface IArcher : IShootable
 {
     // An Archer unit that is able to shoot.
-    public ShootCommand ShootCommand { get; set; }
-
-    public void Shoot(IEntity target);
-
     public void Attack(IEntity target) => Shoot(target);
 }

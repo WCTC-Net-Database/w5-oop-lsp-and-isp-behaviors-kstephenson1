@@ -3,7 +3,6 @@ using w5_assignment_ksteph.Commands.ItemCommands;
 using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Interfaces.ItemBehaviors;
-using w5_assignment_ksteph.Items.WeaponItems;
 
 namespace w5_assignment_ksteph.Interfaces.CharacterBehaviors;
 

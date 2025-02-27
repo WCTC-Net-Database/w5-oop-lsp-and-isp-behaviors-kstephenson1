@@ -13,7 +13,7 @@ public class ItemLockpick : Item, IConsumableItem
     {
         ID = "lockpick";
         Name = StringHelper.ToItemNameFormat(ID);
-        Description = "Useful for unlocking chests and doors.";
+        Description = "Use to unlock a nearby door or chest.";
         UsesLeft = MaxUses;
     }
 
@@ -24,7 +24,7 @@ public class ItemLockpick : Item, IConsumableItem
 
     public void UseItem()
     {
-        Console.WriteLine($"{Inventory.Unit.Name} unlocked something!");
+        Console.WriteLine($"{Inventory.Unit!.Name} unlocked something!");
         UsesLeft--;
 
         if (UsesLeft == 0)

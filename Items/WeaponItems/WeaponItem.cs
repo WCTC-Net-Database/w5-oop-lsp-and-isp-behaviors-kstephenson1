@@ -41,11 +41,11 @@ public class WeaponItem : Item, IWeaponItem
         bool wasEquipped = Inventory.SetEquippedItem(this);
         if (wasEquipped)
         {
-            Console.WriteLine($"{Inventory.Unit.Name} equipped {Name}");
+            Console.WriteLine($"{Inventory.Unit!.Name} equipped {Name}");
         }
         else
         {
-            Console.WriteLine($"{Inventory.Unit.Name} already has {Name} equipped!");
+            Console.WriteLine($"{Inventory.Unit!.Name} already has {Name} equipped!");
         }
     }
 

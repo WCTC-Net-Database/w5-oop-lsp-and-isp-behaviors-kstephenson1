@@ -24,7 +24,7 @@ public class ItemPotion : Item, IConsumableItem
 
     public void UseItem()
     {
-        if (Inventory.Unit.HitPoints >= Inventory.Unit.MaxHitPoints)
+        if (Inventory.Unit!.HitPoints >= Inventory.Unit.MaxHitPoints)
         {
             Console.WriteLine($"{Inventory.Unit.Name} is already at max health.");
         }
