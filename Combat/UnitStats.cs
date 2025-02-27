@@ -6,16 +6,10 @@ namespace w5_assignment_ksteph.Combat;
 
 public class UnitStats
 {
-    public UnitStats(IEntity unit)
+    public UnitStats()
     {
-        Unit = unit;
+        
     }
-
-    // // // // // // // // // // // // // // // // //
-    // Unit Unfo                                    //
-    // // // // // // // // // // // // // // // // //
-    public IEntity Unit { get; set; }          // UNIT
-
 
     // // // // // // // // // // // // // // // // //
     // Health                                       //

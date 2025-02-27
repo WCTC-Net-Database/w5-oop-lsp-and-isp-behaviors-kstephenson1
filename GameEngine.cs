@@ -6,6 +6,7 @@ using w5_assignment_ksteph.DataTypes;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Entities;
 using w5_assignment_ksteph.Entities.Characters;
+using w5_assignment_ksteph.FileIO;
 using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Interfaces.CharacterBehaviors;
 using w5_assignment_ksteph.Interfaces.ItemBehaviors;
@@ -29,20 +30,8 @@ public class GameEngine
 
     void Test()
     {
-        //ItemManager.Import<WeaponItem>();
-        //ItemManager.DisplayItems();
+       
 
-        IEntity test = UnitManager.Characters.Units[0];
-        Console.WriteLine("Character | " + test.ToString());
-        Console.WriteLine("Character.Inventory.Item | " + test.Inventory.Items[0].ToString());
-        Console.WriteLine("Character.Inventory.Item.Inventory | " + test.Inventory.Items[0].Inventory);
-        Console.WriteLine("Character.Inventory.Item.Inventory.Character | " + test.Inventory.Items[0].Inventory.Unit);
-
-        //Fighter test2 = new("Test", "Fighter", 20, 20, new(), new(0, 0));
-        //test2.Inventory.AddItem(new("testitem"));
-        //Console.WriteLine("Character.Inventory.Item.Inventory.Character | " + test2.Inventory.Items[0].Inventory.Unit);
-
-        //UnitManager.Characters.AddUnit(test2);
     }
 
     public static void Initialization()
@@ -61,11 +50,11 @@ public class GameEngine
         // Builds the unit select menu.
         UserInterface.BuildUnitSelectMenu();
 
-        List<IEntity> entities = new();
+        //List<IEntity> entities = new();
 
-        UnitManager.Characters.Units[0].Inventory.AddItem(new WeaponItem("sword", "Sword", WeaponType.Sword, WeaponRank.E, 45, 8, 80, 0, 1, 4, 1));
-        UnitManager.Characters.Units[0].Inventory.AddItem(new WeaponItem("bow", "Bow", WeaponType.Bow, WeaponRank.E, 45, 8, 80, 0, 1, 4, 1));
-        UnitManager.Characters.Units[0].Inventory.AddItem(new ItemPotion());
+        //UnitManager.Characters.Units[0].Inventory.AddItem(new WeaponItem("sword", "Sword", WeaponType.Sword, WeaponRank.E, 45, 8, 80, 0, 1, 4, 1));
+        //UnitManager.Characters.Units[0].Inventory.AddItem(new WeaponItem("bow", "Bow", WeaponType.Bow, WeaponRank.E, 45, 8, 80, 0, 1, 4, 1));
+        //UnitManager.Characters.Units[0].Inventory.AddItem(new ItemPotion());
 
         while (true)
         {

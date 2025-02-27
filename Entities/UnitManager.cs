@@ -23,6 +23,7 @@ public static class UnitManager
         }
     }
 
+
     public static void ImportUnits()                           //Imports the characters from the csv file and stores them.
     {
         List<Character> importedCharacters = new FileManager<Character>().Import<Character>();

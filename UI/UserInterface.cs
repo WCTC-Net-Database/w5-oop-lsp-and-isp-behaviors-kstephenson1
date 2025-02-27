@@ -107,7 +107,14 @@ public static class UserInterface
             }
             else if (item is IWeaponItem weaponItem)
             {
-                InventoryMenu.AddMenuItem($"Equip {weaponItem.Name}", $"[[{weaponItem.Durability}/{weaponItem.MaxDurability}]] {weaponItem.Description}", item);
+                unit.Inventory.IsEquipped(out IItem equippedItem);
+                if (weaponItem == equippedItem)
+                {
+                    InventoryMenu.AddMenuItem($"Equip {weaponItem.Name}", $"[[{weaponItem.Durability}/{weaponItem.MaxDurability}]] {weaponItem.Description} (Equipped)", item);
+                } else
+                {
+                    InventoryMenu.AddMenuItem($"Equip {weaponItem.Name}", $"[[{weaponItem.Durability}/{weaponItem.MaxDurability}]] {weaponItem.Description}", item);
+                }
             }
             else
             {

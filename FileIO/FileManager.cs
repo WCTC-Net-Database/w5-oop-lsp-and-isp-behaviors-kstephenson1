@@ -7,6 +7,7 @@ using w5_assignment_ksteph.DataTypes;
 using w5_assignment_ksteph.Entities.Characters;
 using w5_assignment_ksteph.Entities.Monsters;
 using w5_assignment_ksteph.Items.WeaponItems;
+using w5_assignment_ksteph.Items;
 
 public class FileManager<T>
 {

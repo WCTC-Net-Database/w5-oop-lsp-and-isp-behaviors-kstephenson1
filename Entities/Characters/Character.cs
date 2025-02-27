@@ -7,7 +7,6 @@ using w5_assignment_ksteph.UI;
 // The character class stores information for each character.
 public class Character : Unit
 {
-    [JsonConstructor]
     public Character()
     {
         Inventory.Unit = this;

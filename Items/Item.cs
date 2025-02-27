@@ -1,4 +1,5 @@
-﻿using w5_assignment_ksteph.DataHelper;
+﻿using System.Text.Json.Serialization;
+using w5_assignment_ksteph.DataHelper;
 using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Inventories;
 
@@ -7,6 +8,7 @@ namespace w5_assignment_ksteph.Items;
 public class Item : IItem
 {
     // Item is a class that holds item information.
+    [JsonIgnore]
     public Inventory Inventory { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
@@ -31,5 +33,10 @@ public class Item : IItem
     public override string ToString()
     {
         return ID;
+    }
+
+    private IItem GetCopyOfItem()
+    {
+        return (IItem) MemberwiseClone();
     }
 }

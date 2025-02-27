@@ -1,4 +1,5 @@
-﻿using w5_assignment_ksteph.DataTypes;
+﻿using System.Text.Json.Serialization;
+using w5_assignment_ksteph.DataTypes;
 using w5_assignment_ksteph.Interfaces.ItemBehaviors;
 using w5_assignment_ksteph.Items;
 
@@ -8,7 +9,10 @@ public class WeaponItem : Item, IWeaponItem
 {
     // Item is a class that holds item information.
 
+    [JsonConverter(typeof(JsonStringEnumConverter<WeaponType>))]
     public WeaponType WeaponType { get; set; }
+
+    [JsonConverter(typeof(JsonStringEnumConverter<WeaponRank>))]
     public WeaponRank RequiredRank { get; set; }
     public int MaxDurability { get; set; }
     public int Durability { get; set; }

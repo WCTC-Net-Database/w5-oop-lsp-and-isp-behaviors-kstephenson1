@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace w5_assignment_ksteph.DataTypes
 {
-    [JsonConverter(typeof(JsonNumberEnumConverter<WeaponType>))]
     public enum WeaponType
     {
         None = 0,

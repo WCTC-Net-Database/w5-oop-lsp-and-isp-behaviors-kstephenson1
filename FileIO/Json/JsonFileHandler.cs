@@ -24,7 +24,7 @@ public class JsonFileHandler<T> : ICharacterIO, IItemIO
         _options.Converters.Add(new JsonNumberEnumConverter<WeaponType>());       // Using a custom converter to convert json string -> Position
         _options.Converters.Add(new JsonStringEnumConverter());       // Using a custom converter to convert json string -> Position
         _options.WriteIndented = true;                              // Writes the json file in indented format.
-        _options.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        //_options.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     }
 
     public List<T> Read<T>(string dir)

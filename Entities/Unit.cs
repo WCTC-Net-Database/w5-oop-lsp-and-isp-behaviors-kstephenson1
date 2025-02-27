@@ -32,7 +32,6 @@ public abstract class Unit : IEntity, ITargetable, IAttack, IHaveInventory
     [JsonPropertyName("HP")]                                // Json Atribute
     public virtual int HitPoints { get; set; }
 
-    [Ignore]
     public virtual int MaxHitPoints { get; set; }
 
     [Name("Inventory")]                                     // CsvHelper Attribute
@@ -45,23 +44,26 @@ public abstract class Unit : IEntity, ITargetable, IAttack, IHaveInventory
     [TypeConverter(typeof(CsvPositionConverter))]          // CsvHelper Attribute that helps CsvHelper import a new Position struct instead of a string.
     public virtual Position Position { get; set; } = new();
 
-    [Ignore]
-    [JsonIgnore]
+    [Ignore] [JsonIgnore]
     public virtual CommandInvoker Invoker { get; set; } = new();
 
-    [Ignore]
-    [JsonIgnore]
+    [Ignore] [JsonIgnore]
     public virtual UseItemCommand UseItemCommand { get; set; } = null!;
+
+    [Ignore] [JsonIgnore]
     public virtual EquipCommand EquipCommand { get; set; } = null!;
+
+    [Ignore] [JsonIgnore]
+
     public virtual DropItemCommand DropItemCommand { get; set; } = null!;
+
+    [Ignore] [JsonIgnore]
     public virtual TradeItemCommand TradeItemCommand { get; set; } = null!;
 
-    [Ignore]
-    [JsonIgnore]
+    [Ignore] [JsonIgnore]
     public virtual AttackCommand AttackCommand { get; set; } = null!;
 
-    [Ignore]
-    [JsonIgnore]
+    [Ignore] [JsonIgnore]
     public virtual MoveCommand MoveCommand { get; set; } = null!;
 
     [Ignore]
