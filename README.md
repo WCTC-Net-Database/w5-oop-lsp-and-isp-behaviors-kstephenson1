@@ -1,3 +1,5 @@
+*Author's Note:  I was having a little too much fun.  I've never really had the oppertunity to use generics and did not understand the extent of how useful they were.  Now that i've had the opportunity to expand on my file i/o methods to include generic types, I can now say I understand why they are so great, and am a huge fan.  I've never used interfaces before, neither.  It's incredible how much flexibility and control interfaces give while manipulating all sorts of alike classes.  I went a little overboard with this assignment, and I have learned quite a lot while completing it.  I am proud of my work, I hope you enjoy.*
+
 ## ConsoleRPG Feature Notes v0.1.5
 
 ### New Interactive Menu
