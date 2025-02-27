@@ -173,9 +173,9 @@ public abstract class Unit : IEntity, ITargetable, IAttack, IHaveInventory
         Invoker.ExecuteCommand(DropItemCommand);
     }
 
-    public void TradeItem(IItem item, IEntity target)
+    public void TradeItem(IItem item)
     {
-        TradeItemCommand = new(this, item, target);
+        TradeItemCommand = new(this, item);
         Invoker.ExecuteCommand(TradeItemCommand);
     }
 

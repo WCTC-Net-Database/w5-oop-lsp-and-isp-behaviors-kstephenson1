@@ -172,7 +172,7 @@ public static class UserInterface
         ItemMenu = new();
 
         ItemMenu.AddMenuItem($"Drop Item", $"Get rid of the item forever.", new DropItemCommand(null!, null!));
-        ItemMenu.AddMenuItem($"Trade Item", $"Gives this item to someone else.", new TradeItemCommand(null!, null!, null!));
+        ItemMenu.AddMenuItem($"Trade Item", $"Gives this item to someone else.", new TradeItemCommand(null!, null!));
 
         if (item is IConsumableItem consumableItem)
         {

@@ -92,8 +92,7 @@ public class GameEngine
                                     unit1.UseItem(item);
                                     break;
                                 case TradeItemCommand:
-                                    IEntity target = UserInterface.UnitSelectionMenu.Display($"Select unit to trade {item} to.");
-                                    unit1.TradeItem(item, target);
+                                    unit1.TradeItem(item);
                                     break;
                                 case DropItemCommand:
                                     unit1.DropItem(item);

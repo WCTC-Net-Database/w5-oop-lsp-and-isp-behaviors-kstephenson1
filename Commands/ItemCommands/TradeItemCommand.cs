@@ -4,6 +4,7 @@ using w5_assignment_ksteph.Interfaces.CharacterBehaviors;
 using w5_assignment_ksteph.Interfaces.InventoryBehaviors;
 using w5_assignment_ksteph.Interfaces.ItemBehaviors;
 using w5_assignment_ksteph.Items;
+using w5_assignment_ksteph.UI;
 
 namespace w5_assignment_ksteph.Commands.ItemCommands;
 
@@ -14,15 +15,16 @@ public class TradeItemCommand : ICommand
 
     private readonly IEntity _unit;
     private readonly IItem _item;
-    private readonly IEntity _target;
-    public TradeItemCommand(IEntity unit, IItem item, IEntity target)
+    private IEntity _target;
+    public TradeItemCommand(IEntity unit, IItem item)
     {
         _unit = unit;
         _item = item;
-        _target = target;
     }
     public void Execute()
     {
+        _target = UserInterface.UnitSelectionMenu.Display($"Select unit to trade {_item} to.");
+
         if (_unit is IHaveInventory && _target is IHaveInventory)
         {
             if (!_target.Inventory.IsFull())
