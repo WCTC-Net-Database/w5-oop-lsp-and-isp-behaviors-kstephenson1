@@ -17,8 +17,8 @@ public class FileManager<T>
     private static FileType _fileType = Config.DEFAULT_FILE_TYPE;
 
     private Type _type = typeof(T);
-    private Dictionary<Type, int> _typeDict = new Dictionary<Type, int>
-        {
+    private Dictionary<Type, int> _typeDict = new()
+    {
             {typeof(Character),0},
             {typeof(Monster),1},
             {typeof(WeaponItem),2},

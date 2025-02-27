@@ -1,5 +1,6 @@
 ﻿using Spectre.Console;
 using w5_assignment_ksteph.Commands;
+using w5_assignment_ksteph.Commands.ItemCommands;
 using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.DataHelper;
 using w5_assignment_ksteph.DataTypes;
@@ -24,7 +25,7 @@ public class GameEngine
     {        
         Initialization();
         Run();
-        //Test();
+        Test();
         End();
     }
 
@@ -45,7 +46,7 @@ public class GameEngine
     public static void Run()
     {
         // Shows the main menu.  Allows you to add/edit characters before the game is started.
-        UserInterface.MainMenu.RunInteractiveMenu();
+        //UserInterface.MainMenu.RunInteractiveMenu();
 
         // Builds the unit select menu.
         UserInterface.BuildUnitSelectMenu();
@@ -60,27 +61,21 @@ public class GameEngine
         {
             // Asks the user to choose a unit.
             IEntity unit1 = UserInterface.UnitSelectionMenu.Display("Select unit to control");
+            if (unit1 == null) break;
 
+            // If the selected unit is down, restarts
             if (unit1.HitPoints <= 0) continue;
 
             // Asks the user to choose an action for unit.
-            ICommand command = UserInterface.CommandMenu.Display($"Select action for {unit1.Name}");
+            ICommand command = UserInterface.ShowCommandMenu(unit1, $"Select action for {unit1.Name}");
+            if (command == null) continue; // Go back was selected, sends back to unit selection.
 
             // If the unit is able to move, the unit moves.
             if (command.GetType() == typeof(MoveCommand))
             {
-                if (unit1 is IEntity)
-                {
-                    int x = Input.GetInt("Enter location's x-coordinate: ");
-                    int z = Input.GetInt("Enter location's z-coordinate: ");
-                    Position position = new(x, z);
-                    unit1.Move(position);
-                } else
-                {
-                    Console.WriteLine($"{unit1.Name} is unable to move!");
-                }
-
+                unit1.Move();
             }
+
             // If the unit has a usable item, it can use an item.
             else if (command.GetType() == typeof(UseItemCommand))
             {
@@ -90,16 +85,29 @@ public class GameEngine
 
                     if ( item != null)
                     {
-                        switch (item)
-                        {
-                            case IConsumableItem consumableItem:
-                                unit1.UseItem(consumableItem);
-                                break;
-                            case IWeaponItem weaponItem:
-                                unit1.Equip(weaponItem);
-                                break;
-                        }
+                        ICommand itemCommand = UserInterface.ShowItemMenu(item, $"Select action for {unit1.Name} to use on {item.Name}");
                         
+                        if ( itemCommand != null )
+                        {
+                            switch (itemCommand)
+                            {
+                                case EquipCommand:
+                                    unit1.Equip((item as WeaponItem)!);
+                                    break;
+                                case UseItemCommand:
+                                    unit1.UseItem(item);
+                                    break;
+                                case TradeItemCommand:
+                                    IEntity target = UserInterface.UnitSelectionMenu.Display($"Select unit to trade {item} to.");
+                                    unit1.TradeItem(item, target);
+                                    break;
+                                case DropItemCommand:
+                                    unit1.DropItem(item);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
                     }
                 }
                 else
@@ -113,49 +121,20 @@ public class GameEngine
                 if (unit1 is IAttack)
                 {
                     IEntity unit2 = UserInterface.UnitSelectionMenu.Display($"Select unit being attacked by {unit1.Name}");
-
-                    if (unit1 != unit2)
-                    {
-                        unit1.Attack(unit2);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{unit1.Name} should not attack themselves.  That's not very nice!");
-                    }
+                    unit1.Attack(unit2);
                 }
-                else
-                {
-                    Console.WriteLine($"{unit1.Name} cannot attack!");
-                }
-
             }
             // If the unit is able to heal, it heals.
             else if (command.GetType() == typeof(HealCommand))
             {
-                if (unit1 is IHeal)
-                {
-                    IEntity unit2 = UserInterface.UnitSelectionMenu.Display($"Select unit being healed by {unit1.Name}");
-
-                    ((IHeal)unit1).Heal(unit2);
-                }
-                else
-                {
-                    Console.WriteLine($"{unit1.Name} cannot heal!");
-                }
-
+                IEntity unit2 = UserInterface.UnitSelectionMenu.Display($"Select unit being healed by {unit1.Name}");
+                ((IHeal)unit1).Heal(unit2);
             }
             // If the unit is able to cast spells, it casts a spell.
             else if (command.GetType() == typeof(CastCommand))
             {
-                if (unit1 is ICastable)
-                {
-                    string spell = Input.GetString($"Enter name of spell being cast by {unit1.Name}: ");
-                    ((ICastable)unit1).Cast(spell);
-                }
-                else
-                {
-                    Console.WriteLine($"{unit1.Name} is not a spellcaster!");
-                }
+                string spell = Input.GetString($"Enter name of spell being cast by {unit1.Name}: ");
+                ((ICastable)unit1).Cast(spell);
             }
 
             UserInterface.BuildUnitSelectMenu(); ;
@@ -172,5 +151,6 @@ public class GameEngine
     {
         // Exports the character list back to the chosen file format and ends the program.
         UnitManager.ExportUnits();
+        UserInterface.ExitMenu.Show();
     }
 }

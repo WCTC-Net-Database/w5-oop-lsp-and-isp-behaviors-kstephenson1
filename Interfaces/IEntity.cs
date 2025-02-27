@@ -14,6 +14,6 @@ public interface IEntity : ITargetable, IAttack, IHaveInventory, IHaveStats, IUs
     public int Level { get; set; }
     Position Position { get; set; }
 
-    void Move(Position position);
+    void Move();
     string GetHealthBar();
 }
