@@ -93,7 +93,7 @@ public class InventorySerializer
             "book" => new ItemBook(),
             "lockpick" => new ItemLockpick(),
 
-            _ => new WeaponItem($"{itemString}", $"TestItem {itemString}", WeaponType.None, WeaponRank.E, 1, 0, 0, 0, 0, 0, 0)
+            _ => new WeaponItem($"{itemString}", $"{StringHelper.ToItemNameFormat(itemString)}", WeaponType.None, WeaponRank.E, 1, 0, 0, 0, 0, 0, 0)
         };
     }
 }
