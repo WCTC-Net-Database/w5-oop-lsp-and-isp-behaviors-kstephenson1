@@ -22,27 +22,32 @@ public class AttackCommand : ICommand
     {
         if (_unit is IAttack)
         {
-            Console.WriteLine($"{_unit.Name} attacks {_target.Name}");
+            if (_unit != _target)
+            {
+                Console.WriteLine($"{_unit.Name} attacks {_target.Name}");
 
-            if (_encounter.IsCrit())
+                if (_encounter.IsCrit())
+                {
+                    Console.WriteLine($"{_unit.Name} critically hit {_target.Name} for {_encounter.Damage} damage!");
+                    _target.Damage(_encounter.Damage);
+                }
+                else if (_encounter.IsHit())
+                {
+                    Console.WriteLine($"{_unit.Name} hit {_target.Name} for {_encounter.Damage} damage.");
+                    _target.Damage(_encounter.Damage);
+                }
+                else
+                {
+                    Console.WriteLine($"{_unit.Name}'s misses {_target.Name}");
+                }
+            } else
             {
-                Console.WriteLine($"{_unit.Name} critically hit {_target.Name} for {_encounter.Damage} damage!");
-                _target.Damage(_encounter.Damage);
-            }
-            else if (_encounter.IsHit())
-            {
-                Console.WriteLine($"{_unit.Name} hit {_target.Name} for {_encounter.Damage} damage.");
-                _target.Damage(_encounter.Damage);
-            }
-            else
-            {
-                Console.WriteLine($"{_unit.Name}'s misses {_target.Name}");
+                Console.WriteLine($"{_unit.Name} should not attack themselves.  That's not very nice!");
             }
         }
         else
         {
             Console.WriteLine($"{_unit} cannot attack.");
         }
-
     }
 }

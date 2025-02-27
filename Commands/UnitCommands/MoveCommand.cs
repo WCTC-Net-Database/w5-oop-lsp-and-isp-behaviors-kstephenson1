@@ -1,4 +1,5 @@
-﻿using w5_assignment_ksteph.DataTypes.Structs;
+﻿using w5_assignment_ksteph.DataHelper;
+using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Interfaces;
 
 namespace w5_assignment_ksteph.Commands.UnitCommands;
@@ -8,17 +9,20 @@ public class MoveCommand : ICommand
     // The MoveCommand takes in a unit and a position, checks to see if the unit can move, then moves to that position of able.
 
     private readonly IEntity _unit;
-    private readonly Position _position;
-    public MoveCommand(IEntity unit, Position position)
+    private Position _position;
+    public MoveCommand(IEntity unit)
     {
         _unit = unit;
-        _position = position;
     }
     public void Execute()
     {
         if (_unit is IEntity)
         {
-            Console.WriteLine($"{_unit.Name} moves from {_unit.Position} to {_position.ToString()}");
+            int x = Input.GetInt("Enter target location's x-coordinate: ");
+            int z = Input.GetInt("Enter target location's z-coordinate: ");
+            _position = new(x, z);
+
+            Console.WriteLine($"{_unit.Name} moves from {_unit.Position} to {_position}");
             _unit.Position = _position;
         }
         else

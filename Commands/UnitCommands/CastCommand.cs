@@ -22,7 +22,7 @@ public class CastCommand : ICommand
         }
         else
         {
-            Console.WriteLine($"{_unit.Name} cannot cast spells.");
+            Console.WriteLine($"{_unit.Name} is not a spellcaster!");
         }
     }
 }
