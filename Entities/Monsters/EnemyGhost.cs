@@ -25,12 +25,12 @@ public class EnemyGhost : Monster, IFlyable
     }
     public FlyCommand FlyCommand { get ; set ; } = null!;
 
-    public void Fly(Position position)
+    public void Fly()
     {
-        FlyCommand = new(this, position);
+        FlyCommand = new(this);
         Invoker.ExecuteCommand(FlyCommand);
     }
 
-    public override void Move(Position position) => Fly(position);
+    public override void Move() => Fly();
 
 }
