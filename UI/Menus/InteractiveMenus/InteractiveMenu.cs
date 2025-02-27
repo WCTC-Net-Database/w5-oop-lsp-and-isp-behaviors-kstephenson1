@@ -72,7 +72,7 @@ public class InteractiveMenu : Menu
 
     protected virtual bool MenuSelectEnter()
     {
-        return _selectedIndex == _menuItems.Count - 1 ? true : false;
+        return _selectedIndex == _menuItems.Count - 1;
     }
 
     protected ConsoleKey ReturnValidKey()
