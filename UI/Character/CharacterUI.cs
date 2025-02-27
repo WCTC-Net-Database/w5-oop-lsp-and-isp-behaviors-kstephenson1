@@ -1,5 +1,6 @@
 ﻿using Spectre.Console;
 using w5_assignment_ksteph.Entities.Characters;
+using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Items;
 
 namespace w5_assignment_ksteph.UI;
@@ -33,7 +34,7 @@ public static class CharacterUI
 
         if (character.Inventory.Items!.Count != 0)
         {
-            foreach (Item item in character.Inventory.Items!)
+            foreach (IItem item in character.Inventory.Items!)
             {
                 invTable.AddRow(item.Name);
             }

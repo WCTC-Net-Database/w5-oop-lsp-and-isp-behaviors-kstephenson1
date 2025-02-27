@@ -28,7 +28,7 @@ public static class InventoryUI
         {
             List<IItem> items = InventorySerializer.Deserialize(inventoryString).Items!;
 
-            foreach (Item item in items)
+            foreach (IItem item in items)
             {
                 Console.WriteLine($"    - {item.Name}");
             }

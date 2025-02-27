@@ -15,7 +15,7 @@ public static class ItemUtilities
     {
         Console.Clear();
 
-        foreach (Item item in ItemManager.Items)
+        foreach (IItem item in ItemManager.Items)
         {
             Console.WriteLine(item.Name);
         }

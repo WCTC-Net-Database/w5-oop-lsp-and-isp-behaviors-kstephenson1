@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 using w5_assignment_ksteph.Combat;
 using w5_assignment_ksteph.Commands.Invokers;
+using w5_assignment_ksteph.Commands.ItemCommands;
 using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.FileIO.Csv.Converters;
@@ -93,9 +94,9 @@ public abstract class Unit : IEntity, ITargetable, IAttack, IHaveInventory
     }
 
     // Moves the unit to a position.
-    public virtual void Move(Position position)
+    public virtual void Move()
     {
-        MoveCommand = new(this, position);
+        MoveCommand = new(this);
         Invoker.ExecuteCommand(MoveCommand);
     }
 
@@ -133,7 +134,7 @@ public abstract class Unit : IEntity, ITargetable, IAttack, IHaveInventory
     // Function to check to see if unit should be dead.
     public bool IsDead()
     {
-        return HitPoints <= 0 ? true : false;
+        return HitPoints <= 0;
     }
 
     public override string ToString()
@@ -166,13 +167,13 @@ public abstract class Unit : IEntity, ITargetable, IAttack, IHaveInventory
         Invoker.ExecuteCommand(EquipCommand);
     }
 
-    public void DropItem(Item item)
+    public void DropItem(IItem item)
     {
         DropItemCommand = new(this, item);
         Invoker.ExecuteCommand(DropItemCommand);
     }
 
-    public void TradeItem(Item item, IEntity target)
+    public void TradeItem(IItem item, IEntity target)
     {
         TradeItemCommand = new(this, item, target);
         Invoker.ExecuteCommand(TradeItemCommand);
@@ -180,7 +181,7 @@ public abstract class Unit : IEntity, ITargetable, IAttack, IHaveInventory
 
     public void UseItem(IItem item)
     {
-        UseItemCommand = new(this, item);
+        UseItemCommand = new(item);
         Invoker.ExecuteCommand(UseItemCommand);
     }
 

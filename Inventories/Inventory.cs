@@ -10,7 +10,7 @@ public class Inventory
 {
     // The Inventory class holds a list of items.
     [JsonIgnore]
-    public IEntity Unit;
+    public IEntity? Unit;
     public List<IItem>? Items { get; set; } = new();
 
     public Inventory()
@@ -47,9 +47,14 @@ public class Inventory
         }
     }
 
+    public bool IsFull()
+    {
+        return Items!.Count >= 5;
+    }
+
     public bool IsEquipped(out IItem? weapon)
     {
-        foreach(Item item in Items!)
+        foreach(IItem item in Items!)
         {
             if (item is WeaponItem)
             {
@@ -66,7 +71,7 @@ public class Inventory
         IsEquipped(out IItem? weapon);
         if (weapon != null && weapon != item)
         {
-            Items.Remove(item);
+            Items!.Remove(item);
             Items.Insert(0, item);
             return true;
         }
@@ -91,7 +96,7 @@ public class Inventory
     public List<IConsumableItem> GetConsumableItems()
     {
         List<IConsumableItem> consumableItems = new();
-        foreach (Item item in Items!)
+        foreach (IItem item in Items!)
         {
             if (item is IConsumableItem)
             {
@@ -100,14 +105,6 @@ public class Inventory
         }
 
         return consumableItems;
-    }
-
-    private void SetParentsInItems()
-    {
-        foreach (IItem item in Items!)
-        {
-            item.Inventory = this;
-        }
     }
 
     private void SetParentsInItem(IItem item)

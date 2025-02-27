@@ -56,7 +56,7 @@ public static class UnitManager
         {
             unit.MaxHitPoints = unit.HitPoints;
             unit.Inventory.Unit = unit;
-            foreach (Item item in unit.Inventory.Items)
+            foreach (IItem item in unit.Inventory.Items!)
             {
                 item.Inventory = unit.Inventory;
             }
