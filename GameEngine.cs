@@ -51,12 +51,6 @@ public class GameEngine
         // Builds the unit select menu.
         UserInterface.BuildUnitSelectMenu();
 
-        //List<IEntity> entities = new();
-
-        //UnitManager.Characters.Units[0].Inventory.AddItem(new WeaponItem("sword", "Sword", WeaponType.Sword, WeaponRank.E, 45, 8, 80, 0, 1, 4, 1));
-        //UnitManager.Characters.Units[0].Inventory.AddItem(new WeaponItem("bow", "Bow", WeaponType.Bow, WeaponRank.E, 45, 8, 80, 0, 1, 4, 1));
-        //UnitManager.Characters.Units[0].Inventory.AddItem(new ItemPotion());
-
         while (true)
         {
             // Asks the user to choose a unit.
