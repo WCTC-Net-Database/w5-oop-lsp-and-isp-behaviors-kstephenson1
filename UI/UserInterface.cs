@@ -23,15 +23,18 @@ public static class UserInterface
     public static InteractiveSelectionMenu<bool> BoolMenu { get; private set; } = new();
     public static Menu ExitMenu { get; private set; } = new();
 
-    public static void BuildMenus() // Builds main menu and he exit message.
+    // Builds main menu and the exit message.
+    public static void BuildMenus() 
     {
         BuildInteractiveMainMenu();
         BuildUnitSelectMenu();
         BuildExitMenu();
     }
 
-    private static void BuildInteractiveMainMenu() // Builds the main menu.  The main menu stores an index (AutoNumber), option, description, and an action.
-                                                   // Used for quick and easy reference later when these menus are shown and the selection action is executed.
+    // Builds the main menu.  The main menu stores an index (AutoNumber), option, description, and an action.
+    // Used for quick and easy reference later when these menus are shown and the selection action is executed.
+    private static void BuildInteractiveMainMenu() 
+                                                   
     {
         MainMenu = new();
         MainMenu.AddMenuItem("Display All Characters",  "Displays all characters and items in their inventory.",    UnitManager.DisplayCharacters);
@@ -43,7 +46,8 @@ public static class UserInterface
         MainMenu.BuildTable();
     }
 
-    private static void BuildExitMenu() // Builds the exit message.  It's technically a menu but who cares.
+    // Builds the exit message.  It's technically a menu but who cares.
+    private static void BuildExitMenu()
     {
         ExitMenu = new();
         ExitMenu.AddMenuItem("                                                                      ");
@@ -53,6 +57,8 @@ public static class UserInterface
         ExitMenu.BuildTable();
     }
 
+    // Builds the unit selection menu.  This menu takes all the characters and monsters and puts them into a selectable menu.  This menu
+    // displays the characters in green, monsters in red, and contains basic unit info and health bars.  Downed units are dimmed out.
     public static void BuildUnitSelectMenu()
     {
         int prevIndex = UnitSelectionMenu.GetSelectedIndex();
@@ -87,9 +93,14 @@ public static class UserInterface
         UnitSelectionMenu.AddMenuItem($"Exit Game", $"", null!);
 
     }
+
+    // Builds the menu that is used to select commands.  This menu takes in a unit and a prompt.  The menu has a list of commands, and checks to see
+    // if the provided unit can do that command.  If the command is usable by that unit, the command is build into the table, and it is hidden if not.
+    // Then the menu is ran with the prompt provided and returns the command selected by the user.  These commands are null and don't do anything.
+    // Additional processing outside of this method is required.
     public static ICommand ShowCommandMenu(IEntity unit, string prompt)
     {
-        // Builds the menu that is used to select commands.
+        
         CommandMenu = new();
 
         CommandMenu.AddMenuItem("Move", "Moves the unit.", new MoveCommand(null!));
@@ -97,29 +108,19 @@ public static class UserInterface
         if (unit is IHaveInventory)
         {
             if (unit.Inventory.Items!.Count != 0)
-            {
                 CommandMenu.AddMenuItem("Items", "Uses an item in this unit's inventory.", new UseItemCommand(null!));
-            }
             else
-            {
                 CommandMenu.AddMenuItem("[dim]Items[/]", "[dim]Uses an item in this unit's inventory.[/]", new UseItemCommand(null!));
-            }
         }
 
         if (unit is IAttack)
-        {
             CommandMenu.AddMenuItem("Attack", "Attacks a target unit.", new AttackCommand(null!, null!));
-        }
 
         if (unit is IHeal)
-        {
             CommandMenu.AddMenuItem("Heal", "Heals a target unit.", new HealCommand(null!, null!));
-        }
 
         if (unit is IHeal || unit is ICastable)
-        {
             CommandMenu.AddMenuItem("Cast", "Casts a spell.", new CastCommand(null!, "null"));
-        }
 
         CommandMenu.AddMenuItem("Go Back", "", null!);
         CommandMenu.BuildTable();
@@ -127,14 +128,17 @@ public static class UserInterface
 
     }
 
+    // A menu that asks the user for a yes or no and returns the selection.
     public static void BuildBoolMenu()
     {
-        // A menu that asks the user for a yes or no and returns the selection.
         BoolMenu = new();
         BoolMenu.AddMenuItem("Yes", "", true);
         BoolMenu.AddMenuItem("No", "", true);
         BoolMenu.BuildTable();
     }
+
+    // The ShowInventoryMenu is similar to the command menu, except it returns an item instead of a command.  It checks the provided unit
+    // to retrieve a list of items in the unit's inventory, and displays those items in a menu and asks the user to select one.
 
     public static IItem ShowInventoryMenu(IEntity unit, string prompt)
     {
@@ -167,6 +171,8 @@ public static class UserInterface
         return InventoryMenu.Display(prompt);
     }
 
+    // The ShowItemMenu is similar to the command menu.  It checks the provided item to see if the item can be used with certain actions
+    // and returns each action the item is usable in.  Asks the user to select one of the provided actions.
     public static ICommand ShowItemMenu(IItem item, string prompt)
     {
         ItemMenu = new();

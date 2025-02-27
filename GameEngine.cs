@@ -1,19 +1,10 @@
-﻿using Spectre.Console;
-using w5_assignment_ksteph.Commands;
+﻿using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.Commands.ItemCommands;
 using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.DataHelper;
-using w5_assignment_ksteph.DataTypes;
-using w5_assignment_ksteph.DataTypes.Structs;
 using w5_assignment_ksteph.Entities;
-using w5_assignment_ksteph.Entities.Characters;
-using w5_assignment_ksteph.FileIO;
 using w5_assignment_ksteph.Interfaces;
 using w5_assignment_ksteph.Interfaces.CharacterBehaviors;
-using w5_assignment_ksteph.Interfaces.ItemBehaviors;
-using w5_assignment_ksteph.Inventories;
-using w5_assignment_ksteph.Items;
-using w5_assignment_ksteph.Items.ConsumableItems;
 using w5_assignment_ksteph.Items.WeaponItems;
 using w5_assignment_ksteph.UI;
 
@@ -75,15 +66,20 @@ public class GameEngine
             {
                 if (unit1.Inventory.Items!.Count > 0)
                 {
+                    // Shows a list of items that are in the selected unit's inventory and asks the user to select an item.
                     IItem item = UserInterface.ShowInventoryMenu(unit1, $"Select item for {unit1.Name}.");
 
+                    // Item is null if the user selects go back.
                     if ( item != null)
                     {
+                        // Checks the items to see what commands are allowed, displays those commands to the user and asks for a selection
                         ICommand itemCommand = UserInterface.ShowItemMenu(item, $"Select action for {unit1.Name} to use on {item.Name}");
-                        
-                        if ( itemCommand != null )
+
+                        // Command is null if the user selects "Go Back"
+                        if ( itemCommand != null ) 
                         {
-                            switch (itemCommand)
+                            // The selected command is executed by the selected unit.
+                            switch (itemCommand) 
                             {
                                 case EquipCommand:
                                     unit1.Equip((item as WeaponItem)!);
@@ -130,7 +126,8 @@ public class GameEngine
                 ((ICastable)unit1).Cast(spell);
             }
 
-            UserInterface.BuildUnitSelectMenu(); ;
+            // Rebuilds the unit selection menu so that the health bars are updated.
+            UserInterface.BuildUnitSelectMenu();
 
             // Waits for user input.  Escape leaves the program and any other button loops the process.
             Console.WriteLine("\nPress escape to exit or any other key to continue...");
