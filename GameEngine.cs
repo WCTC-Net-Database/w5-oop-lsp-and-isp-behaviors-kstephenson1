@@ -1,4 +1,6 @@
-﻿using w5_assignment_ksteph.Commands;
+﻿using Spectre.Console;
+using System.Diagnostics.Metrics;
+using w5_assignment_ksteph.Commands;
 using w5_assignment_ksteph.Commands.ItemCommands;
 using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.DataHelper;
@@ -130,10 +132,8 @@ public class GameEngine
             UserInterface.BuildUnitSelectMenu();
 
             // Waits for user input.  Escape leaves the program and any other button loops the process.
-            Console.WriteLine("\nPress escape to exit or any other key to continue...");
+            AnsiConsole.MarkupLine($"\nPress [green][[ANY KEY]][/] to continue...");
             ConsoleKey key = Console.ReadKey(true).Key;
-            if (key == ConsoleKey.Escape)
-                return;
         }
     }
 
