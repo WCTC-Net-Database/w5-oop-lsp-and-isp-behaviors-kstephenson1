@@ -35,8 +35,4 @@ public class Item : IItem
         return ID;
     }
 
-    private IItem GetCopyOfItem()
-    {
-        return (IItem) MemberwiseClone();
-    }
 }
