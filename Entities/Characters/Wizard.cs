@@ -1,6 +1,6 @@
 ﻿using w5_assignment_ksteph.Commands.UnitCommands;
 using w5_assignment_ksteph.DataTypes.Structs;
-using w5_assignment_ksteph.Entities.Monsters;
+using w5_assignment_ksteph.Interfaces.UnitClasses;
 using w5_assignment_ksteph.Inventories;
 
 namespace w5_assignment_ksteph.Entities.Characters;

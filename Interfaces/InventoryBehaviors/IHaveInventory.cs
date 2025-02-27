@@ -1,7 +1,6 @@
 ﻿using w5_assignment_ksteph.Commands.Invokers;
-using w5_assignment_ksteph.Commands.UnitCommands;
+using w5_assignment_ksteph.Commands.ItemCommands;
 using w5_assignment_ksteph.Inventories;
-using w5_assignment_ksteph.Items;
 
 namespace w5_assignment_ksteph.Interfaces.InventoryBehaviors;
 
@@ -12,6 +11,6 @@ public interface IHaveInventory
     DropItemCommand DropItemCommand { get; set; }
     TradeItemCommand TradeItemCommand { get; set; }
     Inventory Inventory { get; set; }
-    void DropItem(Item item);
-    void TradeItem(Item item, IEntity target);
+    void DropItem(IItem item);
+    void TradeItem(IItem item, IEntity target);
 }
