@@ -17,7 +17,8 @@ public class InventorySerializer
     // InventorySerializer contains fuctions to turn a string into List<Item> to Inventories and vice versa.
     public static Inventory Deserialize(string inventoryString)         // Converts String into Inventories
     {
-        return ToInventory(ToItemList(inventoryString));
+        List<string> items = ToStringList(inventoryString);
+        return DeserializeList(items);
     }
 
     public static string? Serialize(Inventory inventory)                // Converts Inventories into String
@@ -34,35 +35,22 @@ public class InventorySerializer
             inventory.Items!.Add(convertedItem);
         }
         return inventory;
-
-        //Inventory inventory = new();
-        //foreach (string item in itemArray)
-        //{
-        //    inventory.Items!.Add(new Item(item));
-        //}
-        //return inventory;
     }
 
     public static List<string>? SerializeList(Inventory inventory)      // Converts Inventories into String
     {
         List<string> itemArray = new();
-        foreach (Item item in inventory.Items!)
+        foreach (IItem item in inventory.Items!)
         {
             itemArray.Add(item.ID);
         }
         return itemArray;
     }
 
-    private static List<IItem> ToItemList(string itemString)             //Converts String into List<Item>
+    private static List<string> ToStringList(string itemString)             //Converts String into List<string>
     {
-        List<IItem> itemList = [];
-
         string[] items = itemString.Split('|');
-
-        foreach (string item in items)
-            itemList.Add(new Item(item));
-
-        return itemList;
+        return items.ToList();
     }
 
     private static string ToString(List<IItem> items)                    // Converts List<Item> to String
@@ -83,11 +71,6 @@ public class InventorySerializer
 
             return inventory;
         }
-    }
-
-    private static Inventory ToInventory(List<IItem> itemList)           // Converts List<Item> to Inventories
-    {
-        return new(itemList);
     }
 
     private static List<IItem>? ToItemList(Inventory inventory)          // Converts Inventories to List<Item>
