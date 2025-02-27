@@ -3,28 +3,20 @@
 ### New Interactive Menu
 We are happy to introduce the new interactive menu!  Instead of prompting the user for a number, we have a new menu that allows the user to hit up, down, and enter to make selections.
 
-### New Inferfaces
-- IAttack
-  - Allows a unit to attack.
-- IAttackable
-   - Allows a unit to be attacked.
-- ICastable
-   - Allows a unit to cast spells.
-- IEntity
-   - Allows a unit to exist.
-- IFlyable
-   - Allows a unit to fly.
-- IHeal
-   - Allows a unit to heal.
-- IInventory
-   - Allows a unit to hold items.
-- IShootable
-   - Allows a unit to shoot
-- ICommand
-   - An interface to implement the new command system.
+### New Interfaces
+- IAttack - Allows a unit to attack.
+- IAttackable - Allows a unit to be attacked.
+- ICastable - Allows a unit to cast spells.
+- IEntity - Allows a unit to exist.
+- IFlyable - Allows a unit to fly.
+- IHeal - Allows a unit to heal.
+- IInventory - Allows a unit to hold items.
+- IShootable - Allows a unit to shoot
+- ICommand - An interface to implement the new command system.
+- ...and a few others.
 
 ### New Classes
-Intrudoducing new unit structure system that includes:
+Introducing new unit structure system that includes:
 - Abstract Unit class that implements IEntity that serves as a base for other units.
    - Generic Monster class
       - An Archer class that is able to shoot.
@@ -32,11 +24,18 @@ Intrudoducing new unit structure system that includes:
       - A Ghost class that can fly.
       - A Goblin class with no special features.
       - A Mage class that can cast spells.
+   - Generic Character class
+      - A Cleric class that can heal others and cast spells.
+      - A Fighter class that attack.
+      - A Knight class that can attack.
+      - A Rogue class that can attack.
+      - A Wizard class that can cast spells.
 
 ### Refactors For Generic Types!
 A few changes have been made to a few classes to allow for generic types to be used.
 - Character importing and exporting
-   - UnitManager<TUnit>, FileManager<TUnit>, CsvFileHandler<TUnit>, and JsonFileHandler<TUnit> now allow generic types to allow importing of other types of units instead of just characters.  A new monsters.csv and monsters.json file have been added that load monsters into the game.
+   - UnitManager<TUnit> - now allows generic types to allow importing of other types of units instead of just characters.  A new monsters.csv and monsters.json file have been added that load monsters into the game.
+   - FileManager<T>, CsvFileHandler<T>, and JsonFileHandler<T> - now allows generic types to allow importing and exporting of other types of objects instead of just units.  Does work with items such as weapons, but is not implemented yet.
 - InteractiveReturnMenu
    - InteractiveReturnMenu<TType> is a menu that allows the user to select an option using the new interactive menu and returns a generic type.  This new menu type is being used to:
       - Ask the user to select a unit and returns a unit.
@@ -47,21 +46,31 @@ A few changes have been made to a few classes to allow for generic types to be u
       - UnitSet<Character> that holds a list of characters
       - UnitSet<Monster> that holds a list of monsters of various classes.
 
+### Custom Items
+- Custom items that are compatible with json/csv import/export.
+  - WeaponItem - An item you can equip that holds weapon stats such as durability, damage, hit and crit strike chance, among others.  This item can have many instances.
+    - Includes dagger, mace, staff, and sword.
+    - *Note: Weapon stats have not been implemented yet.*
+  - ConsumableItem
+    - PotionItem - An item with 3 uses that heals the user for 10hp.
+    - BookItem - It's a book.
+    - LockpickItem - Unlocks doors, traps, and chests.
+      - *Note: doors, traps, and chests have not been implemented yet.*
 
 ### New Command System
-A new command system has been added that implments the usage of ICommand.
-- AttackCommand
-  - Allows a unit to attack another unit.  The attack command uses a hit chance and a crit chance to determine whether or not an attack lands.  Damage is also calculated.
-- CastCommand
-   - Allows a unit to cast a spell.  Takes in a spell name and causes the unit to cast the named spell.
-- FlyCommand
-   - Allows a unit to fly.  A unit will fly instead of move when move is called.
-- HealCommand
-   - Allows a unit to heal others.  Takes in a target and calculates crit chance and heal amount.  Heal spells cannot miss.
-- MoveCommand
-   - Allows a unit to move.  Asks the user for an x-coord and a z-coord and moves the unit to that position.
-- ShootCommand
-   - Allows a unit to shoot another unit.  The attack command uses a hit chance and a crit chance to determine whether or not an attack lands.  Damage is also calculated.  A unit will shoot instead of attack if possible.
+A new command system has been added that implements the usage of ICommand.
+- Unit Commands
+  - AttackCommand - Allows a unit to attack another unit.  The attack command uses a hit chance and a crit chance to determine whether or not an attack lands.  Damage is also calculated.
+  - CastCommand - Allows a unit to cast a spell.  Takes in a spell name and causes the unit to cast the named spell.
+  - FlyCommand - Allows a unit to fly.  A unit will fly instead of move when move is called.
+  - HealCommand - Allows a unit to heal others.  Takes in a target and calculates crit chance and heal amount.  Heal spells cannot miss.
+  - MoveCommand - Allows a unit to move.  Asks the user for an x-coord and a z-coord and moves the unit to that position.
+  - ShootCommand - Allows a unit to shoot another unit.  The attack command uses a hit chance and a crit chance to determine whether or not an attack lands.  Damage is also calculated.  A unit will shoot instead of attack if possible.
+  - Item Commands
+    - UseItemCommand - Allows the unit to use a consumable item.
+    - EquipItemCommand - Allows the unit to equip a weapon item.
+    - DropItemCommand - Allows the unit to drop an item.
+    - TradeItemCommand - Allows the unit to trade any item with another unit.
  
 ### Game Engine
 Last, but certainly not least, we have implemented a new GameEngine class.
@@ -77,15 +86,20 @@ Last, but certainly not least, we have implemented a new GameEngine class.
    - Change File Format
       - Switches the file format between .csv and .json
    - Start Game
+     -UI Includes a display that shows units' hit points.
       - Asks the user to select a unit from the new interactive menu.
       - Asks the user to select an action using the new interactive menu.
          - Move:
             - Asks the user to input an x-coord and a z-coord
             - Flies the unit if it is able to.
             - Moves the unit if it is able to.
+        - Items:
+            - Asks the user to select an item in the unit's inventory.
+            - Checks for the commands that the item can use, then asks to choose from those commands.
+            - executes the selected command.
          - Attack:
             - Asks the user to select a target unit.
-            - Shoots the target init if it is able to do so.
+            - Shoots the target unit if it is able to do so.
             - Attacks the target unit if it is able to.
                - Calculates hit and crit chance.  (Crit deals double damage)
                - Applies damage if applicable.
@@ -95,6 +109,8 @@ Last, but certainly not least, we have implemented a new GameEngine class.
          - Cast:
             - Asks the user for a spell name.
             - The unit casts that spell if it is able to.
+
+
 
 
 ## Week 5 Assignment: Refactor ConsoleRPG to Adhere to LSP and Implement New Behaviors
